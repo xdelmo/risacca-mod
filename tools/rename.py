@@ -86,7 +86,7 @@ def load_table(path):
     for key in ET.parse(path).getroot().iter("key"):
         s = key.find("string")
         if s is not None and s.text:
-            table.setdefault(key.get("name").lstrip("#"), s.text)
+            table.setdefault(key.get("name", "").lstrip("#"), s.text)
     return table
 
 
