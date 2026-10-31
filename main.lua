@@ -7,7 +7,7 @@ local ITEM_ROTTO = Isaac.GetItemIdByName("Ho Rotto il Gioco")
 local ITEM_DEADGOD = Isaac.GetItemIdByName("-1 al Dead God")
 local TRINKET_STREAK = Isaac.GetTrinketIdByName("Win Streak")
 
-local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKills = 0 } end
+local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKills = 0, beastyShown = false, kubrickShown = false } end
 local run = freshRun()
 local roomFlags = {}
 
@@ -92,5 +92,84 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player, flag)
   elseif flag == CacheFlag.CACHE_SPEED then player.MoveSpeed = player.MoveSpeed + b.speed * n
   elseif flag == CacheFlag.CACHE_RANGE then player.TearRange = player.TearRange + b.range * n
   elseif flag == CacheFlag.CACHE_FIREDELAY then player.MaxFireDelay = player.MaxFireDelay + b.fireDelay * n
+  end
+end)
+
+-- ===== Scritte a schermo =====
+local T, P = L.TEXT, L.PRIO
+local q = L.newQueue()
+local function say(t, s, delay, prio) q:push(t, s, delay, prio) end
+
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+  local t, s = q:tick()
+  if t then game:GetHUD():ShowItemText(t, s or "") end
+end)
+
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, isContinued)
+  if not isContinued then say(T.INTRO, T.INTRO_SUB, 30, P.INTRO) end
+end)
+
+mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function()
+  local isXL = (game:GetLevel():GetCurses() & LevelCurse.CURSE_OF_LABYRINTH) ~= 0
+  local t, s = L.xlText(isXL)
+  say(t, s, 90, P.XL)
+end)
+
+-- stato per player, chiave GetPtrHash(player)
+local devilPending, prevQueued, armed, wasDead = {}, {}, {}, {}
+
+mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, pickup, collider)
+  local player = collider:ToPlayer()
+  if player and L.isDevilPrice(pickup.Price) then
+    devilPending[GetPtrHash(player)] = pickup.SubType
+  end
+end, PickupVariant.PICKUP_COLLECTIBLE)
+
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
+  local idx = GetPtrHash(player)
+
+  local qi = player.QueuedItem.Item
+  if qi and not prevQueued[idx] and qi:IsCollectible() then
+    local t = L.pickupText(qi.Quality, devilPending[idx] == qi.ID)
+    devilPending[idx] = nil
+    if t then say(t, nil, 45, P.PICKUP) end
+  end
+  prevQueued[idx] = qi ~= nil
+
+  local half = player:GetHearts() + player:GetSoulHearts()
+  if armed[idx] == nil then armed[idx] = half > 1 end
+  local fire
+  fire, armed[idx] = L.ansia(armed[idx], half)
+  if fire then say(T.ANSIA, nil, 0, P.ANSIA) end
+
+  local dead = player:IsDead()
+  if dead and not wasDead[idx] then say(T.BABBUINO, nil, 0, P.BABBUINO) end
+  wasDead[idx] = dead
+end)
+
+mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, _, amount)
+  if amount >= 2 and not roomFlags.tacchino then
+    roomFlags.tacchino = true
+    say(T.TACCHINO, nil, 2, P.TACCHINO)
+  end
+end, EntityType.ENTITY_PLAYER)
+
+mod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, function(_, npc)
+  if npc.Variant ~= 0 then return end
+  if npc.Type == EntityType.ENTITY_BEAST and not run.beastyShown then
+    run.beastyShown = true
+    say(T.BEASTY, nil, 30, P.BOSSNAME)
+    save()
+  elseif npc.Type == EntityType.ENTITY_MEGA_SATAN and not run.kubrickShown then
+    run.kubrickShown = true
+    say(T.KUBRICK, nil, 30, P.BOSSNAME)
+    save()
+  end
+end)
+
+mod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, function(_, npc)
+  if L.isFinalBoss(npc.Type, npc.Variant) and not roomFlags.bacione then
+    roomFlags.bacione = true
+    say(T.BACIONE, T.BACIONE_SUB, 30, P.BACIONE)
   end
 end)
