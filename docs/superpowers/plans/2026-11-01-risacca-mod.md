@@ -11,7 +11,7 @@
 - Solo API vanilla Repentance; nessuna dipendenza (REPENTOGON, EID, ecc.).
 - Nessun errore Lua: ogni callback ritorna `nil` salvo dove l'API vuole un valore (`MC_USE_ITEM` → `true`).
 - Testi degli oggetti nuovi in italiano; testi vanilla restano in inglese tranne le rinomine.
-- Rinomine (regex a parola intera, case-insensitive, in quest'ordine): `Mega Satan`→`Mega Stanley Kubrick`; nome esatto `Incubus`→`Il buddy più forte del gioco`; `keys?`→`Chiaviz-Chiavoz`; `bombs?`→`Bombiz-Bomboz`; `boss(es)?`→`Beppe Bossicchio`.
+- Rinomine (regex a parola intera, case-insensitive, in quest'ordine): `Mega Satan`→`Mega Stanley Kubrick`; nome esatto `Incubus`→`Il buddy più forte del gioco`; `keys?`→`Chiaviz-Chiavoz`; `bombs?`→`Bombiz-Bomboz`; `boss(es)?`→`Beppe Bossicchio`; `Bumbo`→`Bumbazzo`.
 - Tutte le stringhe a schermo stanno in un'unica tabella `L.TEXT` in `logic.lua` (per poterle sostituire in un punto se il font non mostra gli accenti).
 - Cartella mod: `~/development/hobbies/risacca-mod/`; il pacchetto per il PC contiene solo `metadata.xml`, `main.lua`, `logic.lua`, `content/`, `resources/`, `resources-dlc3/`.
 
@@ -93,10 +93,10 @@
 - Create: `tools/rename.py`
 
 **Interfaces:**
-- Produces: `rename_text(s: str) -> str` (applica le 5 regole dei Global Constraints in ordine; Incubus solo se il nome è esattamente "Incubus"); CLI `python3 tools/rename.py <cartella_estratta>` legge `<cartella>/items.xml`, `pocketitems.xml`, `stringtable.sta` e scrive `resources-dlc3/items.xml` e `resources-dlc3/pocketitems.xml`; `--selftest`.
+- Produces: `rename_text(s: str) -> str` (applica le 6 regole dei Global Constraints in ordine; Incubus solo se il nome è esattamente "Incubus"); CLI `python3 tools/rename.py <cartella_estratta>` legge `<cartella>/items.xml`, `pocketitems.xml`, `stringtable.sta` e scrive `resources-dlc3/items.xml` e `resources-dlc3/pocketitems.xml`; `--selftest`.
 - Regole file: attributi `name` e `description` di ogni elemento; se il valore inizia con `#` lo risolve nella prima `<string>` della `<key name="...">` corrispondente in `stringtable.sta` (se non trovato, lascia invariato). Scrive il testo letterale **solo** se `rename_text` lo cambia; tutto il resto del file resta identico all'originale (stessi elementi, stessi attributi, stesso ordine).
 
-- [ ] **Step 1:** `--selftest` con assert: `"Skeleton Key"`→`"Skeleton Chiaviz-Chiavoz"`; `"Bobby-Bomb"`→`"Bobby-Bombiz-Bomboz"`; `"Bomber Boy"` invariato; `"Keeper's Box"` invariato; `"Mom's Key"`→`"Mom's Chiaviz-Chiavoz"`; `"+5 bombs"`→`"+5 Bombiz-Bomboz"`; `"Boss Rush"`→`"Beppe Bossicchio Rush"`; `"Mega Satan"`→`"Mega Stanley Kubrick"` (non "Mega Satan" + Beppe); nome `"Incubus"`→`"Il buddy più forte del gioco"`. Più un mini XML inline (2 voci, una con `#PLACEHOLDER` risolto da una mini stringtable) → controlla che solo la voce toccata diventi letterale e che il numero di elementi sia uguale.
+- [ ] **Step 1:** `--selftest` con assert: `"Skeleton Key"`→`"Skeleton Chiaviz-Chiavoz"`; `"Bobby-Bomb"`→`"Bobby-Bombiz-Bomboz"`; `"Bomber Boy"` invariato; `"Keeper's Box"` invariato; `"Mom's Key"`→`"Mom's Chiaviz-Chiavoz"`; `"+5 bombs"`→`"+5 Bombiz-Bomboz"`; `"Boss Rush"`→`"Beppe Bossicchio Rush"`; `"Mega Satan"`→`"Mega Stanley Kubrick"` (non "Mega Satan" + Beppe); nome `"Incubus"`→`"Il buddy più forte del gioco"`; `"Bumbo"`→`"Bumbazzo"`; `"Bumbo's Heart"`→`"Bumbazzo's Heart"`. Più un mini XML inline (2 voci, una con `#PLACEHOLDER` risolto da una mini stringtable) → controlla che solo la voce toccata diventi letterale e che il numero di elementi sia uguale.
 - [ ] **Step 2:** `python3 tools/rename.py --selftest` → FAIL.
 - [ ] **Step 3:** Implementa con `re` + `xml.etree.ElementTree` (scrittura con `encoding="utf-8", xml_declaration=True`).
 - [ ] **Step 4:** `--selftest` → `OK`.

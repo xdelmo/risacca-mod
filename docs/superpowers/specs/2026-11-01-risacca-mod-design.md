@@ -21,6 +21,7 @@ Riferimenti presi dai titoli del canale: "ho rotto il gioco", Win Streak, "-N al
    - bomb / bombs → **Bombiz-Bomboz**
    - boss / bosses → **Beppe Bossicchio** (solo la parola nei testi, NON schermata VS)
    - Incubus → **Il buddy più forte del gioco**
+   - Bumbo → **Bumbazzo** (parola intera, ovunque nei testi)
 5. **"Il Beasty Boy"** (nome che Risacca dà a The Beast, confermato dai video): il nome di The Beast non compare mai come testo, quindi all'inizio dello scontro compare a schermo "IL BEASTY BOY" (rilevato con `MC_POST_NPC_INIT` su `EntityType.ENTITY_BEAST`, variant 0, una volta per run).
 6. **"Mega Stanley Kubrick"** (richiesta dell'utente): stesso meccanismo di Beasty Boy, all'inizio dello scontro con Mega Satan (`EntityType.ENTITY_MEGA_SATAN`) compare "MEGA STANLEY KUBRICK". In più `rename.py` sostituisce "Mega Satan" → "Mega Stanley Kubrick" nei testi, se compare (regola applicata prima di quella su "boss").
 8. **"GODOR MAXIMOR!"**: quando raccogli un oggetto di qualità 4 compare GODOR MAXIMOR! al posto di GODOR!, che resta per la qualità 3.
