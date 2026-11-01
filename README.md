@@ -23,8 +23,10 @@ Mod per **The Binding of Isaac: Repentance** dedicata a [Risacca](https://www.yo
 ### Oggetti nuovi
 
 - **Ho Rotto il Gioco** (attivo, 6 cariche): fa comparire un oggetto glitchato, come con TMTRAINER.
-- **-1 al Dead God** (passivo): ogni boss sconfitto dà +0.2 danno, +0.03 velocità, +4 gittata e un tiro un po' più rapido. Il bonus arriva al massimo a 10 boss.
+- **-1 al Dead God** (passivo): ogni boss sconfitto dà +0.2 danno, +0.03 velocità, +0.1 gittata e un tiro un po' più rapido. Il bonus arriva al massimo a 10 boss e conta un solo boss per stanza.
 - **Win Streak** (trinket): dà +0.5 danno per ogni piano finito senza essere colpiti. Basta un colpo per azzerare la serie.
+
+Con [External Item Descriptions](https://steamcommunity.com/sharedfiles/filedetails/?id=836319872) attiva, i tre oggetti mostrano anche la loro descrizione in italiano. Il riquadro Item Info del menu di pausa li mostra comunque come "Unknown": è un limite dell'API del gioco.
 
 ### Nomi alla Risacca
 
@@ -42,10 +44,14 @@ Gli oggetti originali del gioco vengono rinominati nei nomi e nelle descrizioni:
 
 ## Installazione
 
-1. Iscriviti alla mod dallo Steam Workshop. In alternativa, estrai `risacca-mod.zip` dentro `...\steamapps\common\The Binding of Isaac Rebirth\mods\`.
+La mod non è ancora sullo Steam Workshop.
+
+1. Scarica `risacca-mod.zip` dalle [release](https://github.com/xdelmo/risacca-mod/releases) ed estrailo dentro `...\steamapps\common\The Binding of Isaac Rebirth\mods\`.
 2. Attivala dal menu **Mods** del gioco.
 
-Serve Repentance. La mod non ha bisogno di REPENTOGON né di altre mod.
+Serve Repentance, ed è provata su Repentance+ v1.9.7.17. La mod non ha bisogno di REPENTOGON né di altre mod.
+
+Le prove in gioco ancora da fare sono in [docs/da-fare-su-windows.md](docs/da-fare-su-windows.md).
 
 ## Sviluppo
 
