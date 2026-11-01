@@ -7,9 +7,18 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 INCLUDE = ["metadata.xml", "main.lua", "logic.lua", "content", "resources", "resources-dlc3"]
 BANNED = ("docs/", "tools/", "tests/", "extracted/")
+# git-ignored: senza questi file lo zip uscirebbe senza rinomine
+REQUIRED = ["resources-dlc3/items.xml", "resources-dlc3/pocketitems.xml"]
+
+
+def missing_required(root=ROOT):
+    return [name for name in REQUIRED if not (Path(root) / name).is_file()]
 
 
 def build(dst):
+    missing = missing_required()
+    if missing:
+        sys.exit("File mancanti: " + ", ".join(missing) + "\nRigenerali con: python3 tools/rename.py extracted")
     dst = Path(dst)
     dst.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(dst, "w", zipfile.ZIP_DEFLATED) as z:
@@ -23,8 +32,10 @@ def build(dst):
 
 def selftest():
     with tempfile.TemporaryDirectory() as d:
-        names = zipfile.ZipFile(build(Path(d) / "t.zip")).namelist()
-    for n in ("metadata.xml", "main.lua", "logic.lua"):
+        assert missing_required(d) == REQUIRED
+        with zipfile.ZipFile(build(Path(d) / "t.zip")) as z:
+            names = z.namelist()
+    for n in ["metadata.xml", "main.lua", "logic.lua"] + REQUIRED:
         assert "risacca-mod/" + n in names, (n, names)
     assert not [n for n in names if n.removeprefix("risacca-mod/").startswith(BANNED)], names
     assert not [n for n in names if "/." in n], names

@@ -52,7 +52,7 @@ Non c'è un test runner. I test sono script con `assert`: per provarne uno basta
 - **Contenuti XML.** Gli oggetti nuovi stanno in `content/items.xml` e `content/itempools.xml`. Gli sprite si generano da griglie di caratteri in `tools/sprites.py`: non modificare i PNG a mano.
 - **Rinomine dei vanilla.**
   - Esempi: chiavi → Chiaviz-Chiavoz, boss → Beppe Bossicchio, Bumbo → Bumbazzo, Greed → Ballerino di Flamenco.
-  - Le genera `tools/rename.py` in `resources-dlc3/`, partendo dagli originali messi in `extracted/` (git-ignored).
+  - Le genera `tools/rename.py` in `resources-dlc3/` (git-ignored, perché contiene i testi del gioco e la repo è pubblica), partendo dagli originali messi in `extracted/` (git-ignored).
   - Gli originali sono `items.xml`, `pocketitems.xml` e `stringtable.sta`, presi dal ResourceExtractor dell'utente.
 - **Pacchetto.** `tools/build.py` mette nello zip solo `metadata.xml`, `main.lua`, `logic.lua`, `content/`, `resources/` e `resources-dlc3/`. Esclude `docs/`, `tools/`, `tests/`, `extracted/` e i file nascosti.
 - **Pubblicazione.** In `metadata.xml` la visibilità resta `Private` finché l'utente non dà l'ok alla pubblicazione.
