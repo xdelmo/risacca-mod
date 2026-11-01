@@ -153,7 +153,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
   if fire then say(T.ANSIA, nil, 0, P.ANSIA) end
 
   local dead = player:IsDead()
-  if dead and not wasDead[idx] then say(T.BABBUINO, nil, 0, P.BABBUINO) end
+  if dead and not wasDead[idx] then say(T.BEDUINS, nil, 0, P.BEDUINS) end
   wasDead[idx] = dead
 end)
 

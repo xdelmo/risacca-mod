@@ -18,7 +18,7 @@ Mod per **The Binding of Isaac: Repentance** dedicata a [Risacca](https://www.yo
 | Resti a mezzo cuore | *C'ho l'ansia* |
 | Compare The Beast / Mega Satan | *IL BEASTY BOY* / *MEGA STANLEY KUBRICK* |
 | Boss finale sconfitto | *Un bacione grande*, poi *dal vostro Risacca* |
-| Morte | *Calmati tacchinardo* |
+| Morte | *Beduins* |
 
 ### Oggetti nuovi
 

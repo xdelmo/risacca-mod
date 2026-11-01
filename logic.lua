@@ -16,7 +16,7 @@ L.TEXT = {
   FACCIAZZA = "Alla facciazza vostra!",
   BACIONE = "Un bacione grande",
   BACIONE_SUB = "dal vostro Risacca",
-  BABBUINO = "Calmati tacchinardo",
+  BEDUINS = "Beduins",
 }
 
 -- Descrizioni per External Item Descriptions: "#" va a capo, {{...}} sono le icone di EID.
@@ -26,7 +26,7 @@ L.EID = {
   STREAK = "↑ {{Damage}} +0.5 Danni per ogni piano di fila finito senza essere colpito#Se vieni colpito la serie si azzera e il bonus sparisce al piano successivo",
 }
 
-L.PRIO = { XL = 1, INTRO = 1, PICKUP = 2, TACCHINO = 2, ANSIA = 3, BOSSNAME = 3, BACIONE = 4, BABBUINO = 5 }
+L.PRIO = { XL = 1, INTRO = 1, PICKUP = 2, TACCHINO = 2, ANSIA = 3, BOSSNAME = 3, BACIONE = 4, BEDUINS = 5 }
 
 function L.pickupText(quality, devilDeal)
   if devilDeal then return L.TEXT.FACCIAZZA end

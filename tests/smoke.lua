@@ -139,7 +139,7 @@ expect({ "Un bacione grande / dal vostro Risacca" })
 
 -- morte → tacchinardo
 player.hearts = 0; player.dead = true; frames(30)
-expect({ "Calmati tacchinardo" })
+expect({ "Beduins" })
 
 -- oggetti: Ho Rotto il Gioco e -1 al Dead God
 assert(fire(ModCallbacks.MC_USE_ITEM, 733, 733, nil, player) == true, "USE_ITEM deve ritornare true")
