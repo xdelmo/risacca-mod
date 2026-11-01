@@ -9,6 +9,7 @@ from pathlib import Path
 
 RULES = [(re.compile(p, re.I), r) for p, r in [
     (r"\bMega Satan\b", "Mega Stanley Kubrick"),
+    (r"\btreasure rooms?\b", "Stanza d'Auro"),
     (r"\bkeys?\b", "Chiaviz-Chiavoz"),
     (r"\bbombs?\b", "Bombiz-Bomboz"),
     (r"\bboss(es)?\b", "Beppe Bossicchio"),
@@ -50,6 +51,8 @@ def selftest():
         "+5 bombs": "+5 Bombiz-Bomboz",
         "Boss Rush": "Beppe Bossicchio Rush",
         "Mega Satan": "Mega Stanley Kubrick",
+        "Treasure Room": "Stanza d'Auro",
+        "Treasure Map": "Treasure Map",
         "Incubus": "Il buddy più forte del gioco",
         "Bumbo": "Bumbazzo",
         "Bumbo's Heart": "Bumbazzo's Heart",
