@@ -7,6 +7,14 @@ local ITEM_ROTTO = Isaac.GetItemIdByName("Ho Rotto il Gioco")
 local ITEM_DEADGOD = Isaac.GetItemIdByName("-1 al Dead God")
 local TRINKET_STREAK = Isaac.GetTrinketIdByName("Win Streak")
 
+-- Descrizioni per External Item Descriptions, solo se l'altra mod è attiva
+if EID then
+  EID:setModIndicatorName("Risacca Mod")
+  EID:addCollectible(ITEM_ROTTO, L.EID.ROTTO)
+  EID:addCollectible(ITEM_DEADGOD, L.EID.DEADGOD)
+  EID:addTrinket(TRINKET_STREAK, L.EID.STREAK)
+end
+
 local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKills = 0, beastyShown = false, kubrickShown = false } end
 local run = freshRun()
 local roomFlags = {}
@@ -38,6 +46,8 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, isContinued)
     if ok and type(data) == "table" then
       for k in pairs(run) do if data[k] ~= nil then run[k] = data[k] end end
     end
+    -- il gioco calcola le statistiche prima di questa callback, quando i bonus erano ancora a zero
+    refresh(CacheFlag.CACHE_ALL)
   end
   save()
 end)

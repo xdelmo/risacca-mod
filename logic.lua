@@ -2,7 +2,7 @@
 local L = {}
 
 L.TEXT = {
-  GODOR = "GODOR!",
+  GODOR = "IL GODOR!",
   MAXIMOR = "GODOR MAXIMOR!",
   XL_Q = "È XL?",
   XL_YES = "SÌ, È XL!",
@@ -16,7 +16,14 @@ L.TEXT = {
   FACCIAZZA = "Alla facciazza vostra!",
   BACIONE = "Un bacione grande",
   BACIONE_SUB = "dal vostro Risacca",
-  BABBUINO = "Calmati babbuino",
+  BABBUINO = "Calmati tacchinardo",
+}
+
+-- Descrizioni per External Item Descriptions: "#" va a capo, {{...}} sono le icone di EID.
+L.EID = {
+  ROTTO = "Fa comparire accanto a te un oggetto glitchato",
+  DEADGOD = "Ogni boss sconfitto dà, fino a un massimo di 10 boss:#↑ {{Damage}} +0.2 Danni#↑ {{Speed}} +0.03 Velocità#↑ {{Range}} +0.1 Gittata#↑ {{Tears}} -0.1 ritardo di tiro#Conta al massimo un boss per stanza",
+  STREAK = "↑ {{Damage}} +0.5 Danni per ogni piano di fila finito senza essere colpito#Se vieni colpito la serie si azzera e il bonus sparisce al piano successivo",
 }
 
 L.PRIO = { XL = 1, INTRO = 1, PICKUP = 2, TACCHINO = 2, ANSIA = 3, BOSSNAME = 3, BACIONE = 4, BABBUINO = 5 }

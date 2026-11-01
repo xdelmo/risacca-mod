@@ -12,13 +12,13 @@ Mod per **The Binding of Isaac: Repentance** dedicata a [Risacca](https://www.yo
 |---|---|
 | Inizio di una nuova run | *Ciao a tutti, io sono Risacca*, poi *Benvenuti sul mio canale* |
 | Ogni nuovo piano | *È XL?*, poi *SÌ, È XL!* oppure *No... non è XL* |
-| Oggetto di qualità 3 / 4 | *GODOR!* / *GODOR MAXIMOR!* |
+| Oggetto di qualità 3 / 4 | *IL GODOR!* / *GODOR MAXIMOR!* |
 | Oggetto preso con un patto col diavolo | *Alla facciazza vostra!* |
 | Colpo da un cuore intero | *Tacchino!* |
 | Resti a mezzo cuore | *C'ho l'ansia* |
 | Compare The Beast / Mega Satan | *IL BEASTY BOY* / *MEGA STANLEY KUBRICK* |
 | Boss finale sconfitto | *Un bacione grande*, poi *dal vostro Risacca* |
-| Morte | *Calmati babbuino* |
+| Morte | *Calmati tacchinardo* |
 
 ### Oggetti nuovi
 

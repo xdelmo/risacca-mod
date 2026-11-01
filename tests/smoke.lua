@@ -15,7 +15,7 @@ function GetPtrHash(e) return e.hash end
 function include(name) return dofile(name .. ".lua") end
 package.preload["json"] = function()
   return { encode = function(t) local s = {} for k, v in pairs(t) do s[#s + 1] = k .. "=" .. tostring(v) end return table.concat(s, ";") end,
-           decode = function() error("decode non usato nello smoke") end }
+           decode = function() return { deadGodKills = 1 } end }
 end
 
 function RegisterMod(name)
@@ -39,7 +39,8 @@ function player:GetTrinketMultiplier() return 1 end
 function player:AddCollectible(id) items[id] = true end
 function player:RemoveCollectible(id) items[id] = nil end
 function player:AddCacheFlags() end
-function player:EvaluateItems() end
+local evaluations = 0
+function player:EvaluateItems() evaluations = evaluations + 1 end
 function player:GetHearts() return self.hearts end
 function player:GetSoulHearts() return self.soul end
 function player:IsDead() return self.dead end
@@ -73,8 +74,17 @@ local function fire(id, key, ...)
   return ret
 end
 
+-- External Item Descriptions finto: registra le descrizioni ricevute
+local eid = {}
+EID = {
+  setModIndicatorName = function() end,
+  addCollectible = function(_, id, text) eid[id] = text end,
+  addTrinket = function(_, id, text) eid[id] = text end,
+}
+
 dofile("main.lua")
 assert(#cbs > 0, "nessuna callback registrata")
+assert(eid[733] and eid[734] and eid[190], "descrizioni EID mancanti")
 
 local function frames(n)
   for _ = 1, n do
@@ -127,9 +137,9 @@ fire(ModCallbacks.MC_POST_NPC_DEATH, nil, npc(84, 0)) -- seconda fase, più tard
 frames(40)
 expect({ "Un bacione grande / dal vostro Risacca" })
 
--- morte → babbuino
+-- morte → tacchinardo
 player.hearts = 0; player.dead = true; frames(30)
-expect({ "Calmati babbuino" })
+expect({ "Calmati tacchinardo" })
 
 -- oggetti: Ho Rotto il Gioco e -1 al Dead God
 assert(fire(ModCallbacks.MC_USE_ITEM, 733, 733, nil, player) == true, "USE_ITEM deve ritornare true")
@@ -142,6 +152,11 @@ fire(ModCallbacks.MC_EVALUATE_CACHE, nil, player, CacheFlag.CACHE_DAMAGE)
 assert(math.abs(player.Damage - before - 0.2) < 1e-9, "bonus Dead God errato: " .. (player.Damage - before))
 fire(ModCallbacks.MC_PRE_GAME_EXIT)
 assert(saved and saved:find("deadGodKills=1"), "salvataggio mancante: " .. tostring(saved))
+
+-- Continua: dopo aver caricato il salvataggio le statistiche vanno ricalcolate
+evaluations = 0
+fire(ModCallbacks.MC_POST_GAME_STARTED, nil, true)
+assert(evaluations > 0, "statistiche non ricalcolate dopo il Continua")
 
 -- ogni callback registrata deve essere stata chiamata almeno una volta
 for i, c in ipairs(cbs) do assert(called[c], "callback #" .. i .. " mai chiamata") end

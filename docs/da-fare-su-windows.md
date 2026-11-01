@@ -21,11 +21,11 @@ Nuova run, con un personaggio qualsiasi:
 - [ ] All'inizio compare **"Ciao a tutti, io sono Risacca / Benvenuti sul mio canale"**.
 - [ ] Poco dopo compare **"È XL?"**, poi **"No... non è XL"**. In un piano XL deve uscire **"SÌ, È XL!"**.
 - [ ] **Controlla le lettere accentate:** guarda se "È" e "Ì" si vedono bene. Se vedi quadratini o lettere sbagliate, fai una foto e segnalo.
-- [ ] Raccogli un oggetto di qualità 3 o 4: compare **"GODOR!"** o **"GODOR MAXIMOR!"**.
+- [ ] Raccogli un oggetto di qualità 3 o 4: compare **"IL GODOR!"** o **"GODOR MAXIMOR!"**.
 - [ ] Prendi un oggetto con un patto col diavolo, pagandolo in cuori: compare **"Alla facciazza vostra!"**.
 - [ ] Prendi un colpo da un cuore intero: compare **"Tacchino!"**.
 - [ ] Scendi a mezzo cuore: compare **"C'ho l'ansia"**.
-- [ ] Muori: compare **"Calmati babbuino"**.
+- [ ] Muori: compare **"Calmati tacchinardo"**.
 
 ## 3. Provare gli oggetti nuovi
 

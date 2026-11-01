@@ -4,7 +4,7 @@ local function near(a, b) return math.abs(a - b) < 1e-9 end
 
 -- pickupText
 assert(L.pickupText(4, false) == "GODOR MAXIMOR!")
-assert(L.pickupText(3, false) == "GODOR!")
+assert(L.pickupText(3, false) == "IL GODOR!")
 assert(L.pickupText(2, false) == nil)
 assert(L.pickupText(1, true) == "Alla facciazza vostra!")
 assert(L.pickupText(4, true) == "Alla facciazza vostra!")
