@@ -1,5 +1,5 @@
 <items gfxroot="gfx/items/" version="1">
-    <active name="Ho Rotto il Gioco" description="Ho rotto il gioco!" gfx="collectibles/ho_rotto_il_gioco.png" maxcharges="6" quality="2" />
-    <passive name="-1 al Dead God" description="Un boss alla volta" gfx="collectibles/meno_uno_dead_god.png" cache="damage speed range firedelay" quality="2" />
-    <trinket name="Win Streak" description="Non farti colpire" gfx="trinkets/win_streak.png" />
+    <active name="Ho Rotto il Gioco" description="Ho rotto il gioco!" gfx="ho_rotto_il_gioco.png" maxcharges="6" quality="2" />
+    <passive name="-1 al Dead God" description="Un boss alla volta" gfx="meno_uno_dead_god.png" cache="damage speed range firedelay" quality="2" />
+    <trinket name="Win Streak" description="Non farti colpire" gfx="win_streak.png" />
 </items>
