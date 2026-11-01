@@ -1,3 +1,4 @@
 /.superpowers/
 dist/
 extracted/
+/log*.txt
