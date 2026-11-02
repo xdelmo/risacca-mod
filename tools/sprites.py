@@ -12,19 +12,14 @@ OUT = {
     "win_streak": "resources/gfx/items/trinkets/win_streak.png",
 }
 PALETTE = {
-    "K": (20, 14, 14),      # Contorno scuro e crepe profonde stile Isaac
+    "K": (20, 14, 14),      # Isaac dark outline / contorno profondo stile Isaac
     "W": (255, 255, 255),  # Punto luce puro speculare
     
-    # Joypad (plastica e pulsanti)
-    "w": (236, 238, 244),  # Luce calda plastica scocca
-    "g": (188, 192, 202),  # Grigio principale controller
-    "m": (138, 142, 156),  # Ombra media controller
-    "d": (88, 92, 106),    # Ombra profonda / impugnature inferiori
-    "D": (54, 56, 68),     # D-pad ardesia scuro
-    "R": (224, 40, 40),    # Tasto rosso / fiamma
-    "Y": (246, 200, 45),   # Tasto giallo / oro principale
-    "B": (48, 115, 232),   # Tasto blu
-    "G": (45, 185, 60),    # Tasto verde
+    # Cartuccia retrò (Ho Rotto il Gioco)
+    "w": (236, 238, 245),  # Luce plastica cartuccia
+    "g": (186, 190, 202),  # Grigio cartuccia
+    "m": (132, 138, 152),  # Ombra media scanalature
+    "d": (82, 86, 100),    # Ombra profonda / slot superiore
     
     # Glitch TMTRAINER
     "C": (50, 245, 245),   # Ciano neon acceso
@@ -32,71 +27,71 @@ PALETTE = {
     "P": (245, 50, 210),   # Magenta acceso
     "p": (165, 25, 145),   # Magenta scuro
     
-    # Lapide Meno Uno Dead God (pietra, crepe, muschio e terra)
-    "t": (216, 220, 224),  # Bordo luce pietra
-    "s": (160, 164, 174),  # Pietra grigia
-    "u": (114, 118, 130),  # Pietra ombreggiata / rilievo interno
-    "k": (72, 75, 86),     # Crepa roccia scura
-    "r": (142, 22, 32),    # Rosso scuro incisione incassata
-    "l": (255, 95, 95),    # Rosso vivo riflesso incisione
-    "e": (110, 76, 52),    # Terra media
-    "E": (70, 46, 32),     # Terra scura
-    "M": (68, 150, 50),    # Muschio chiaro
-    "v": (36, 88, 30),     # Muschio d'ombra
+    # Ossa e corna (Teschio Dead God / The Beast)
+    "t": (235, 230, 216),  # Luce ossea / avorio chiaro
+    "s": (184, 178, 162),  # Tonalità osso principale
+    "u": (130, 124, 112),  # Ombra ossea / fessura
+    "k": (76, 70, 62),     # Ombra profonda cavità
     
-    # Coppa Win Streak (metallo dorato e fuoco)
-    "L": (255, 244, 150),  # Oro chiaro / highlight fiamma
-    "y": (180, 128, 26),   # Oro caldo in ombra
-    "b": (118, 74, 16),    # Bronzo profondo / sottosquadro
+    # Sangue / Incisione (-1)
+    "l": (255, 95, 95),    # Riflesso rosso sangue acceso
+    "R": (225, 35, 35),    # Rosso sangue vermiglio
+    "r": (135, 20, 25),    # Sangue scuro / ombra incisione
+    
+    # Oro e metallo (Win Streak / Etichetta e pin cartuccia)
+    "L": (255, 246, 160),  # Oro chiaro speculare
+    "Y": (246, 198, 42),   # Oro brillante
+    "y": (180, 126, 24),   # Oro caldo in ombra
+    "b": (116, 72, 16),    # Bronzo antico / sottosquadro
+    
+    # Fiamma sacra dello streak
     "F": (230, 48, 26),    # Fiamma rossa esterna
     "O": (255, 145, 28),   # Fiamma arancione viva
 }
 
 # Solo i riempimenti: il contorno nero stile Isaac lo aggiunge outline().
 SPRITES = {
-    "ho_rotto_il_gioco": [  # Joypad bombato crepato con frammenti glitch TMTRAINER
-        "      dd       CC         ",
-        "   CC dd   PP  CCc        ",
-        "  CCc dd   PP             ",
-        "  wwwwddwwwwKwwwwwwww     ",
-        " wwwwwwwwwwKwwwwwwRRw     ",
-        "wwwwDwwwwwwwKwwwwRRRww    ",
-        "wwwDDDDwwwwwwKwwYYwBBww   ",
-        "wwwDDDDDwwwwKkwwYYwBBww P ",
-        "wwwwDwwwwwwKKwwwwGGwGwwPp ",
-        "wwwgDggggggKkggggGGgGgwPp ",
-        "ggggggggggmKkgggggggggw   ",
-        "gggggggggmmKKmggggggggg   ",
-        " ggggggmdd   mmdmggggg    ",
-        "  ggggmd       mmdggg     ",
-        "   dmd     CC    mdd      ",
-        "           CCc            ",
-        "            c             ",
+    "ho_rotto_il_gioco": [  # Cartuccia di gioco retrò spaccata con pixel glitch TMTRAINER
+        "   d m d m d      CC    ",
+        "  wddmddmddd    CCCCc   ",
+        "  wggggggggm     CCc    ",
+        "  wg wKww gg    P       ",
+        "  wg  wK   m   PPp      ",
+        "  wg YYYYY m   Ppp      ",
+        "  wg YRRYY m            ",
+        "  wg YRRYY m    CC      ",
+        "  wg YYYYY m    CCc     ",
+        "  wg mmmm  m     c      ",
+        "  wg  K    m            ",
+        "  wggm K g m            ",
+        "  wggm  K  m            ",
+        "  wggmm  K mm   PP      ",
+        "  wggggm  K g   PPp     ",
+        "  wddddd  Kdd    p      ",
+        "   YY YY   YY           ",
+        "   yy yy   yy           ",
     ],
-    "meno_uno_dead_god": [  # Lapide gotica con "-1" scolpito in bassorilievo rosso sangue
-        "       ttsstt         ",
-        "     ttsssssstt       ",
-        "    tsssssssssst      ",
-        "   ttskkssssssstt     ",
-        "   tssksssssssssu     ",
-        "  tsskssssssssssu     ",
-        "  tsskkkkkkkkkkssu    ",
-        "  tskuuuuuuuuuussu    ",
-        "  tskurlllru  rRRrus  ",
-        "  tskulRRRru rllRRus  ",
-        "  tskurrrrru  rRRrus  ",
-        "  tskuuuuuuu  rRRrus  ",
-        "  tskuuuuuuu  rRRrus  ",
-        "  tskuuuuuuu rRRRRus  ",
-        "  tskuuuuuuuuuussu    ",
-        "  tssutttttttttssu    ",
-        "  usskuussksuusssku   ",
-        "  usssuuussuuusssku   ",
-        "  vMkkMvkkkMMvkvkk    ",
-        " vMMvMMMEeEEMMMvMMv   ",
-        " EEEEEeeEEeeEEEEEEE   ",
+    "meno_uno_dead_god": [  # Teschio cornuto del Dead God / Beast con "-1" inciso a sangue
+        "  s              s  ",
+        " tss            sst ",
+        " tss            sst ",
+        "  tsu          ust  ",
+        "  tsu  tttttt  ust  ",
+        "   tsutsssssstust   ",
+        "   tssurlllru rRssu ",
+        "    ssulRRRruurlRsu ",
+        "    ssurrrrru  rRsu ",
+        "    ssuuuuuuu  rRsu ",
+        "    ssuuuuuuu rRRsu ",
+        "   tssKKssKKsssssu  ",
+        "   tsKKKssKKKssssu  ",
+        "   tssKKssKKsssssu  ",
+        "    ssssKKsssssu    ",
+        "    tsstttsssstu    ",
+        "    susususususu    ",
+        "     k u k u k      ",
     ],
-    "win_streak": [  # Coppa d'oro cesellata con manici sinuosi e fiamma dello streak viva
+    "win_streak": [  # Calice d'oro cesellato con manici sinuosi e fiamma dello streak ardente
         "         F          ",
         "        FFF         ",
         "        FOF         ",
