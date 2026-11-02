@@ -12,72 +12,114 @@ OUT = {
     "win_streak": "resources/gfx/items/trinkets/win_streak.png",
 }
 PALETTE = {
-    "K": (20, 14, 14), "g": (196, 196, 204), "D": (70, 70, 84), "R": (214, 40, 40),
-    "B": (52, 108, 222), "Y": (240, 196, 48), "y": (176, 128, 30), "L": (255, 244, 150),
-    "P": (236, 60, 220), "C": (60, 236, 236), "s": (150, 150, 158), "d": (96, 96, 106),
-    "G": (64, 150, 56), "F": (230, 70, 30), "O": (255, 150, 30), "W": (255, 255, 255),
+    "K": (20, 14, 14),      # Contorno scuro e crepe profonde stile Isaac
+    "W": (255, 255, 255),  # Punto luce puro speculare
+    
+    # Joypad (plastica e pulsanti)
+    "w": (236, 238, 244),  # Luce calda plastica scocca
+    "g": (188, 192, 202),  # Grigio principale controller
+    "m": (138, 142, 156),  # Ombra media controller
+    "d": (88, 92, 106),    # Ombra profonda / impugnature inferiori
+    "D": (54, 56, 68),     # D-pad ardesia scuro
+    "R": (224, 40, 40),    # Tasto rosso / fiamma
+    "Y": (246, 200, 45),   # Tasto giallo / oro principale
+    "B": (48, 115, 232),   # Tasto blu
+    "G": (45, 185, 60),    # Tasto verde
+    
+    # Glitch TMTRAINER
+    "C": (50, 245, 245),   # Ciano neon acceso
+    "c": (18, 155, 185),   # Ciano profondo
+    "P": (245, 50, 210),   # Magenta acceso
+    "p": (165, 25, 145),   # Magenta scuro
+    
+    # Lapide Meno Uno Dead God (pietra, crepe, muschio e terra)
+    "t": (216, 220, 224),  # Bordo luce pietra
+    "s": (160, 164, 174),  # Pietra grigia
+    "u": (114, 118, 130),  # Pietra ombreggiata / rilievo interno
+    "k": (72, 75, 86),     # Crepa roccia scura
+    "r": (142, 22, 32),    # Rosso scuro incisione incassata
+    "l": (255, 95, 95),    # Rosso vivo riflesso incisione
+    "e": (110, 76, 52),    # Terra media
+    "E": (70, 46, 32),     # Terra scura
+    "M": (68, 150, 50),    # Muschio chiaro
+    "v": (36, 88, 30),     # Muschio d'ombra
+    
+    # Coppa Win Streak (metallo dorato e fuoco)
+    "L": (255, 244, 150),  # Oro chiaro / highlight fiamma
+    "y": (180, 128, 26),   # Oro caldo in ombra
+    "b": (118, 74, 16),    # Bronzo profondo / sottosquadro
+    "F": (230, 48, 26),    # Fiamma rossa esterna
+    "O": (255, 145, 28),   # Fiamma arancione viva
 }
 
 # Solo i riempimenti: il contorno nero stile Isaac lo aggiunge outline().
 SPRITES = {
-    "ho_rotto_il_gioco": [  # joypad crepato con pixel glitch
-        "   C                PP  ",
-        "  CC                PPP ",
-        "  ggggggggggKggggggggg  ",
-        " gggggggggggKgggggRRggg ",
-        "ggggDggggggKggggggRRgggg",
-        "ggggDggggggKggggYYggBBgg",
-        "ggDDDDDgggggKgggYYggBBgg",
-        "ggggDggggggggKggggGGgggg",
-        "ggggDgggggggKgggggGGgggg",
-        "gggggggggggKgggggggggggg",
-        "gggggggggggKgggggggggggg",
-        "gggggggg        gggggggg",
-        " gggggg          gggggg ",
-        " CCggg            gggPP ",
-        " CC    CC             P ",
+    "ho_rotto_il_gioco": [  # Joypad bombato crepato con frammenti glitch TMTRAINER
+        "      dd       CC         ",
+        "   CC dd   PP  CCc        ",
+        "  CCc dd   PP             ",
+        "  wwwwddwwwwKwwwwwwww     ",
+        " wwwwwwwwwwKwwwwwwRRw     ",
+        "wwwwDwwwwwwwKwwwwRRRww    ",
+        "wwwDDDDwwwwwwKwwYYwBBww   ",
+        "wwwDDDDDwwwwKkwwYYwBBww P ",
+        "wwwwDwwwwwwKKwwwwGGwGwwPp ",
+        "wwwgDggggggKkggggGGgGgwPp ",
+        "ggggggggggmKkgggggggggw   ",
+        "gggggggggmmKKmggggggggg   ",
+        " ggggggmdd   mmdmggggg    ",
+        "  ggggmd       mmdggg     ",
+        "   dmd     CC    mdd      ",
+        "           CCc            ",
+        "            c             ",
     ],
-    "meno_uno_dead_god": [  # lapide con "-1"
-        "      ssssss      ",
-        "    sWssssssss    ",
-        "   sWssssssssss   ",
-        "  sWssssssssssss  ",
-        "  sssssssssRRsss  ",
-        "  ssssssssRRRsss  ",
-        "  sssssssRRRRsss  ",
-        "  ssRRRRssRRRsss  ",
-        "  ssRRRRssRRRsss  ",
-        "  ssssssssRRRsss  ",
-        "  ssssssssRRRsss  ",
-        "  sssssssRRRRRss  ",
-        "  ssssssssssssss  ",
-        "  sdssssssssssds  ",
-        "  ssssssssssssss  ",
-        "  ssssssssssssds  ",
-        " dddddddddddddddd ",
-        "GGGGGGGGGGGGGGGGGG",
-        "GGGGGGGGGGGGGGGGGG",
+    "meno_uno_dead_god": [  # Lapide gotica con "-1" scolpito in bassorilievo rosso sangue
+        "       ttsstt         ",
+        "     ttsssssstt       ",
+        "    tsssssssssst      ",
+        "   ttskkssssssstt     ",
+        "   tssksssssssssu     ",
+        "  tsskssssssssssu     ",
+        "  tsskkkkkkkkkkssu    ",
+        "  tskuuuuuuuuuussu    ",
+        "  tskurlllru  rRRrus  ",
+        "  tskulRRRru rllRRus  ",
+        "  tskurrrrru  rRRrus  ",
+        "  tskuuuuuuu  rRRrus  ",
+        "  tskuuuuuuu  rRRrus  ",
+        "  tskuuuuuuu rRRRRus  ",
+        "  tskuuuuuuuuuussu    ",
+        "  tssutttttttttssu    ",
+        "  usskuussksuusssku   ",
+        "  usssuuussuuusssku   ",
+        "  vMkkMvkkkMMvkvkk    ",
+        " vMMvMMMEeEEMMMvMMv   ",
+        " EEEEEeeEEeeEEEEEEE   ",
     ],
-    "win_streak": [  # coppa con fiammella
-        "        F         ",
-        "       FF         ",
-        "       FOF        ",
-        "      FOLOF       ",
-        "      FOLLOF      ",
-        "       FLLF       ",
-        "  YYYYYYYYYYYYYY  ",
-        "YY YWYYYYYYYYyY YY",
-        "Y  YWYYYYYYYYyY  Y",
-        "Y  YWYYYYYYYYyY  Y",
-        " Y YYYYYYYYYYyY Y ",
-        "  YYYYYYYYYYYyYY  ",
-        "    YYYYYYYYyY    ",
-        "      YYYYyY      ",
-        "        Yy        ",
-        "        Yy        ",
-        "       yYYy       ",
-        "     yyyyyyyy     ",
-        "     yyyyyyyy     ",
+    "win_streak": [  # Coppa d'oro cesellata con manici sinuosi e fiamma dello streak viva
+        "         F          ",
+        "        FFF         ",
+        "        FOF         ",
+        "       FOOOF        ",
+        "       FOLOF   FF   ",
+        "      FOLLLOF FOF   ",
+        "      FOLLWLOFOF    ",
+        "       FOWLLOFO     ",
+        "  LLLLLLOFFFOLLLLb  ",
+        " LWWWWWWLLLLLLLLLYb ",
+        "YY LWWYYYYYYYYYyY YY",
+        "Yb LWWYYYYYYYYYyY by",
+        "Yb  YYYYYYYYYYYyY by",
+        " Yb  YYYYYYYYYyY  y ",
+        "  y   YYYYYYYyY  y  ",
+        "       YYYYyYy      ",
+        "        YyYyb       ",
+        "        YyYyb       ",
+        "       LYYYYyb      ",
+        "      LYYYYYYyb     ",
+        "     LYYYYYYYYyb    ",
+        "    LYYYYYYYYYYyb   ",
+        "    bbbyyyyyybbbb   ",
     ],
 }
 
