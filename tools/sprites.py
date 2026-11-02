@@ -10,6 +10,10 @@ OUT = {
     "ho_rotto_il_gioco": "resources/gfx/items/collectibles/ho_rotto_il_gioco.png",
     "meno_uno_dead_god": "resources/gfx/items/collectibles/meno_uno_dead_god.png",
     "win_streak": "resources/gfx/items/trinkets/win_streak.png",
+    "non_vi_rubo": "resources/gfx/items/collectibles/non_vi_rubo.png",
+    "potrebbe_stare_qua": "resources/gfx/items/collectibles/potrebbe_stare_qua.png",
+    "san_gennaruzzo": "resources/gfx/items/collectibles/san_gennaruzzo.png",
+    "te_ne_privi": "resources/gfx/items/trinkets/te_ne_privi.png",
 }
 PALETTE = {
     "K": (20, 14, 14),      # Isaac dark outline / contorno profondo stile Isaac
@@ -20,6 +24,7 @@ PALETTE = {
     "g": (186, 190, 202),  # Grigio cartuccia
     "m": (132, 138, 152),  # Ombra media scanalature
     "d": (82, 86, 100),    # Ombra profonda / slot superiore
+    "n": (50, 50, 72),     # Ombra fredda della bomba
     
     # Glitch TMTRAINER
     "C": (50, 245, 245),   # Ciano neon acceso
@@ -116,6 +121,76 @@ SPRITES = {
         "    LYYYYYYYYYYyb   ",
         "    bbbyyyyyybbbb   ",
     ],
+    "non_vi_rubo": [  # Sveglia d'oro con le lancette rosse, luce da in alto a sinistra
+        "   LY        Yy   ",
+        "  LYYy  Ly  YYyb  ",
+        "   yb  LYYy  yb   ",
+        "     LLwwwwYy     ",
+        "    LwWWwwwwgy    ",
+        "   LwWwwRRwwwgy   ",
+        "  LwWwwwRRwwwwgy  ",
+        "  LwwwwwRRwwwwgy  ",
+        "  LwwwwwRRRRRwgy  ",
+        "  Ywwwwwrrrrrggy  ",
+        "  Ywwwwwwwwwgggy  ",
+        "   Ywwwwwwwgggy   ",
+        "    Ywwwgggggy    ",
+        "     yYggggyb     ",
+        "   yb  yyyy  yb   ",
+        "   bb        bb   ",
+    ],
+    "potrebbe_stare_qua": [  # Bomba con un punto interrogativo: dove sarà la secret?
+        "            L O   ",
+        "           OLO    ",
+        "          b  O    ",
+        "         yb       ",
+        "       mddn       ",
+        "     mmdddddnn    ",
+        "    mmwmYYYYdnn   ",
+        "   mmwmYYddYYdnn  ",
+        "   mmmdddddYYdnn  ",
+        "   mdddddYYYddnn  ",
+        "   ddddddYYddnnn  ",
+        "   ddddddYYdnnnn  ",
+        "   dddddddddnnnn  ",
+        "    dddddYYnnnn   ",
+        "     ddddYYnnn    ",
+        "       dnnnn      ",
+    ],
+    "san_gennaruzzo": [  # Ampolla del sangue di San Gennaro sotto un'aureola d'oro
+        "     LLLLLYYy     ",
+        "    LY      Yy    ",
+        "     Lyyyyyyb     ",
+        "                  ",
+        "       ybbk       ",
+        "       ybbk       ",
+        "       wggm       ",
+        "       wggm       ",
+        "      wwggmm      ",
+        "     wWggggmm     ",
+        "    wWlRRRRRrm    ",
+        "    wlRRRRRRrm    ",
+        "    wlRRRRRrrm    ",
+        "    wRRRRRRrrm    ",
+        "    gRRRRRrrrm    ",
+        "     grrrrrrm     ",
+        "      mmmmmm      ",
+    ],
+    "te_ne_privi": [  # Monetina con il punto interrogativo
+        "     LLLLLL     ",
+        "   LLLLYYYYYy   ",
+        "  LLYYbbbbYYyy  ",
+        " LLYYbbYYbbYYyy ",
+        " LLYYbbYYbbYYyb ",
+        " LYYYYYYYbbYYyb ",
+        " LYYYYYYbbYYYyb ",
+        " LYYYYYbbYYYYyb ",
+        " LYYYYYbbYYYyyb ",
+        " YYYYYYYYYYYyyb ",
+        "  YYYYYbbYYyyb  ",
+        "   yYYYbbyyyb   ",
+        "     ybbbbb     ",
+    ],
 }
 
 
@@ -165,7 +240,7 @@ def write_all(base):
 def selftest():
     with tempfile.TemporaryDirectory() as d:
         paths = write_all(Path(d))
-        assert len(paths) == 3, paths
+        assert len(paths) == len(OUT), paths
         for p in paths:
             im = Image.open(p)
             assert im.size == (32, 32) and im.mode == "RGBA", (p, im.size, im.mode)

@@ -17,6 +17,12 @@ L.TEXT = {
   BACIONE = "Un bacione grande",
   BACIONE_SUB = "dal vostro Risacca",
   BEDUINS = "Beduins",
+  RUBO = "Non vi rubo altro tempo",
+  RUBO_DOPO = "3, 2, 1... Ah no, aspetta",
+  STARE = "Potrebbe stare qua!",
+  PRIVI = "Che fai? Te ne privi?",
+  GENNARO = "Il miracolo",
+  GENNARO_SUB = "di San Gennaruzzo!",
 }
 
 -- Descrizioni per External Item Descriptions: "#" va a capo, {{...}} sono le icone di EID.
@@ -24,9 +30,22 @@ L.EID = {
   ROTTO = "Fa comparire accanto a te un oggetto glitchato",
   DEADGOD = "Ogni boss sconfitto dà, fino a un massimo di 10 boss:#↑ {{Damage}} +0.2 Danni#↑ {{Speed}} +0.03 Velocità#↑ {{Range}} +0.1 Gittata#↑ {{Tears}} -0.1 ritardo di tiro#Conta al massimo un boss per stanza",
   STREAK = "↑ {{Damage}} +0.5 Danni per ogni piano di fila finito senza essere colpito#Se vieni colpito la serie si azzera e il bonus sparisce al piano successivo",
+  RUBO = "Congela tutti i nemici della stanza per 3 secondi",
+  STARE = "A ogni nuovo piano:#{{SecretRoom}} {{SuperSecretRoom}} mostra le stanze segrete sulla mappa#{{Bomb}} +2 bombe",
+  PRIVI = "25% di probabilità di un pickup in più quando finisci una stanza:#{{Coin}} moneta, {{Bomb}} bomba, {{Key}} chiave o {{Heart}} cuore",
+  GENNARO = "{{AngelRoom}} +25% di probabilità di una stanza dell'angelo a ogni nuovo piano#{{EternalHeart}} Un cuore eterno alla prima visita di ogni stanza dell'angelo",
 }
 
-L.PRIO = { XL = 1, INTRO = 1, PICKUP = 2, TACCHINO = 2, ANSIA = 3, BOSSNAME = 3, BACIONE = 4, BEDUINS = 5 }
+L.PRIO = { XL = 1, INTRO = 1, PICKUP = 2, TACCHINO = 2, ITEM = 2, ANSIA = 3, BOSSNAME = 3, BACIONE = 4, BEDUINS = 5 }
+
+L.RUBO_FRAMES = 90 -- 3 secondi a 30 update al secondo
+L.STARE_BOMBS = 2
+L.GENNARO_ANGEL_CHANCE = 0.25
+
+-- roll in [0, 1), multiplier = GetTrinketMultiplier sommato sui player
+function L.priviProcs(roll, multiplier)
+  return roll < 0.25 * multiplier
+end
 
 function L.pickupText(quality, devilDeal)
   if devilDeal then return L.TEXT.FACCIAZZA end

@@ -9,6 +9,11 @@ assert(L.pickupText(2, false) == nil)
 assert(L.pickupText(1, true) == "Alla facciazza vostra!")
 assert(L.pickupText(4, true) == "Alla facciazza vostra!")
 
+-- priviProcs
+assert(L.priviProcs(0.24, 1) and not L.priviProcs(0.25, 1))
+assert(L.priviProcs(0.49, 2) and not L.priviProcs(0.5, 2))
+assert(not L.priviProcs(0, 0))
+
 -- xlText
 local t, s = L.xlText(true)
 assert(t == "È XL?" and s == "SÌ, È XL!")

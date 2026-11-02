@@ -6,6 +6,10 @@ local game = Game()
 local ITEM_ROTTO = Isaac.GetItemIdByName("Ho Rotto il Gioco")
 local ITEM_DEADGOD = Isaac.GetItemIdByName("-1 al Dead God")
 local TRINKET_STREAK = Isaac.GetTrinketIdByName("Win Streak")
+local ITEM_RUBO = Isaac.GetItemIdByName("Non Vi Rubo Altro Tempo")
+local ITEM_STARE = Isaac.GetItemIdByName("Potrebbe Stare Qua")
+local ITEM_GENNARO = Isaac.GetItemIdByName("Il Miracolo di San Gennaruzzo")
+local TRINKET_PRIVI = Isaac.GetTrinketIdByName("Che Fai, Te Ne Privi?")
 
 -- Descrizioni per External Item Descriptions, solo se l'altra mod è attiva
 if EID then
@@ -13,6 +17,10 @@ if EID then
   EID:addCollectible(ITEM_ROTTO, L.EID.ROTTO)
   EID:addCollectible(ITEM_DEADGOD, L.EID.DEADGOD)
   EID:addTrinket(TRINKET_STREAK, L.EID.STREAK)
+  EID:addCollectible(ITEM_RUBO, L.EID.RUBO)
+  EID:addCollectible(ITEM_STARE, L.EID.STARE)
+  EID:addCollectible(ITEM_GENNARO, L.EID.GENNARO)
+  EID:addTrinket(TRINKET_PRIVI, L.EID.PRIVI)
 end
 
 local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKills = 0, beastyShown = false, kubrickShown = false } end
@@ -182,4 +190,57 @@ mod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, function(_, npc)
     roomFlags.bacione = true
     say(T.BACIONE, T.BACIONE_SUB, 30, P.BACIONE)
   end
+end)
+
+-- ===== Oggetti dei tormentoni: effetto più scritta =====
+
+-- Non Vi Rubo Altro Tempo
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, function(_, _, _, player)
+  for _, e in ipairs(Isaac.GetRoomEntities()) do
+    if e:IsVulnerableEnemy() then e:AddFreeze(EntityRef(player), L.RUBO_FRAMES) end
+  end
+  say(T.RUBO, nil, 0, P.ITEM)
+  say(T.RUBO_DOPO, nil, 45, P.ITEM)
+  return true
+end, ITEM_RUBO)
+
+mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function()
+  local level = game:GetLevel()
+  -- Potrebbe Stare Qua: lo stesso effetto di Blue Map, più le bombe
+  if anyHas(function(p) return p:HasCollectible(ITEM_STARE) end) then
+    level:ApplyBlueMapEffect()
+    level:UpdateVisibility()
+    for _, p in ipairs(players()) do
+      if p:HasCollectible(ITEM_STARE) then p:AddBombs(L.STARE_BOMBS) end
+    end
+  end
+  -- Il Miracolo di San Gennaruzzo: se l'oggetto arriva a metà piano, vale dal piano dopo
+  if anyHas(function(p) return p:HasCollectible(ITEM_GENNARO) end) then
+    level:AddAngelRoomChance(L.GENNARO_ANGEL_CHANCE)
+  end
+end)
+
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
+  local room = game:GetRoom()
+  if not room:IsFirstVisit() then return end
+  local rt = room:GetType()
+  if (rt == RoomType.ROOM_SECRET or rt == RoomType.ROOM_SUPERSECRET)
+    and anyHas(function(p) return p:HasCollectible(ITEM_STARE) end) then
+    say(T.STARE, nil, 0, P.ITEM)
+  elseif rt == RoomType.ROOM_ANGEL and anyHas(function(p) return p:HasCollectible(ITEM_GENNARO) end) then
+    Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL,
+      Isaac.GetFreeNearPosition(room:GetCenterPos(), 40), Vector.Zero, nil)
+    say(T.GENNARO, T.GENNARO_SUB, 0, P.ITEM)
+  end
+end)
+
+-- Che Fai, Te Ne Privi?
+mod:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, function(_, rng, pos)
+  local mult = 0
+  for _, p in ipairs(players()) do mult = mult + p:GetTrinketMultiplier(TRINKET_PRIVI) end
+  if not L.priviProcs(rng:RandomFloat(), mult) then return end
+  local kinds = { PickupVariant.PICKUP_COIN, PickupVariant.PICKUP_BOMB, PickupVariant.PICKUP_KEY, PickupVariant.PICKUP_HEART }
+  Isaac.Spawn(EntityType.ENTITY_PICKUP, kinds[rng:RandomInt(#kinds) + 1], 0,
+    Isaac.GetFreeNearPosition(pos, 40), Vector.Zero, nil)
+  say(T.PRIVI, nil, 0, P.ITEM)
 end)
