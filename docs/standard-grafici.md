@@ -1,0 +1,135 @@
+# Standard Grafici e Pixel Art per The Binding of Isaac: Repentance+
+
+Guida di riferimento per la creazione e revisione degli sprite custom della mod `risacca-mod`.
+
+---
+
+## 1. Filosofia Visiva di Repentance+
+
+Lo stile grafico di The Binding of Isaac (in particolare da *Repentance* e *Repentance+*) è un pixel-art moderno a 16-bit con un'identità precisa definita da Edmund McMillen e dal team artistico:
+- **Forme corpulente e solide:** Gli oggetti hanno volume, peso e tridimensionalità. Non devono apparire come icone vettoriali stilizzate o piatte, ma come artefatti tangibili posati su un piedistallo o tenuti in mano.
+- **Tonalità grottesca/vintage/sacra:** L'universo di Isaac unisce iconografia biblica, reliquie religiose, orrore corporale, frammenti anatomici e giocattoli/oggetti retrò consumati.
+- **Leggibilità istantanea a 1x:** Il giocatore deve capire all'istante la silhouette e il materiale dell'oggetto mentre cammina velocemente nella Treasure Room o nel Devil Deal.
+
+---
+
+## 2. Dimensioni e Proporzioni (Canvas 32x32)
+
+Tutti i collezionabili e i trinket del gioco sono salvati come immagini PNG `32x32` con canale alfa (trasparenza).
+
+### Collezionabili (Attivi e Passivi su piedistallo)
+- **Ingombro ideale:** tra **20x20 px** e **26x26 px** (inclusi i contorni).
+- **Margine di sicurezza:** lasciare almeno 2-4 pixel trasparenti dai bordi del canvas (non toccare mai il bordo 0 o 31 se non per casi eccezionali come fiamme o punte sottili).
+- **Presenza su piedistallo:** il piedistallo di Isaac è largo 32px. Uno sprite più piccolo di 18x18 px scompare visivamente, sembrando una pillola o un micro-consumabile anziché un oggetto primario.
+
+### Trinket (Ninnoli)
+- **Ingombro tipico:** tra **16x16 px** e **20x20 px**.
+- Devono essere visivamente distinti dai collezionabili: spesso hanno una prospettiva isometrica/inclinata (monete con bordo spesso, pezzi di carta, ossa, spille, vermi, medaglie).
+
+---
+
+## 3. Contorni e Lineart (L'Outline di Isaac)
+
+Il contorno è l'elemento più caratteristico dello stile grafico del gioco.
+
+1. **Spessore:** Sempre **1 pixel continuo** attorno a tutta la silhouette esterna.
+2. **Colore contorno esterno:** **MAI nero digitale puro `#000000`**.  
+   Si usa una tonalità caldissima, scura e profonda:  
+   `PALETTE["K"] = (20, 14, 14)` (`#140e0e`).  
+   Il nero puro crea un effetto "ritaglio Photoshop" freddo; il carbone caldissimo si fonde invece con l'illuminazione organica del gioco.
+3. **Algoritmo di contorno a 4 vicini (Manhattan):**  
+   In `tools/sprites.py`, il contorno viene generato automaticamente verificando i 4 vicini cardinali (su, giù, sinistra, destra).
+   - **Attenzione ai buchi e alle righe vuote:** Se lasci una riga vuota tra due componenti (es. tra un'aureola e una bottiglia, o tra una miccia e una bomba), l'algoritmo chiuderà entrambi gli elementi con contorni neri separati, creando elementi orfani che fluttuano a mezz'aria.
+   - Se due parti appartengono allo stesso oggetto, collegale con steli, raccordi o tocchi di pixel per preservare la continuità della silhouette.
+4. **Bordi interni (Selout):**  
+   All'interno dell'oggetto non si usa quasi mai il nero contorno: si usano i toni scuri del materiale stesso (`b` per l'oro, `m`/`d` per il ferro, `r` per il sangue, `k` per le ossa).
+
+---
+
+## 4. Luce, Ombre e Palette (Cluster Shading)
+
+### Direzione della luce
+- La fonte di luce principale proviene sempre da **in alto a sinistra (Top-Left)**.
+- Il punto di massima luce e i riflessi speculari stanno in alto a sinistra; le ombre piene e i sottosquadri si concentrano in basso a destra.
+
+### Niente Pillow Shading
+- **Errore comune:** scurire concentricamente tutti i bordi dell'oggetto verso il centro.
+- **Regola:** la luce crea bande decise e cluster compatti. Il lato sinistro/superiore riceve la luce piena; il lato destro/inferiore raccoglie l'ombra.
+
+### Hue Shifting obbligatorio
+Nei giochi retrò ben disegnati e in Isaac, quando un colore diventa più scuro o più chiaro **non si cambia solo la luminosità**, si ruota la tonalità:
+- **Verso la luce (Highlight):** vira verso il giallo/oro caldo (tonalità calde).
+- **Verso l'ombra (Shadow):** vira verso il bronzo antico, il violaceo o il bluastro freddo.
+
+### Specular Highlights (`W`)
+- Punti luce bianchi puri (`W` = `#FFFFFF`) di 1-3 pixel posizionati nei punti di tangenza della luce su materiali lucidi:
+  - Vetro di fiale e orologi.
+  - Metallo riflettente o monete d'oro.
+  - Liquidi e occhi.
+
+### No Dithering a scacchiera
+- Isaac Repentance non usa texture a scacchiera (checkerboard dithering tipo Commodore 64).
+- Usa transizioni a gradini netti (cel-shading a blocchi) con 3-5 tonalità per materiale.
+
+---
+
+## 5. Ricettario dei Materiali
+
+| Materiale | Colori Palette (`tools/sprites.py`) | Caratteristiche visive |
+|---|---|---|
+| **Oro / Metallo sacro** | `L` (oro chiaro speculare), `Y` (oro brillante), `y` (oro caldo), `b` (bronzo scuro) | Bordo superiore brillante, ghiera sfaccettata, sottosquadro bronzo profondo. |
+| **Ferro / Acciaio (Bombe)** | `w` (luce plastica/ferro), `g` (grigio chiaro), `m` (grigio medio), `d` (ombra scanalature), `n` (ombra fredda) | Riflesso curvo sferico in alto a sinistra, fondo freddo bluastro. |
+| **Vetro trasparente** | `w` (luce vetro), `W` (riflesso speculare), `g`, `m` | Fascia diagonale bianca/chiara di riflesso speculare che attraversa la superficie. |
+| **Sangue e Liquidi sacri** | `l` (riflesso vermiglio chiaro), `R` (rosso sangue vivo), `r` (sangue scuro coagulato) | Stratificazione orizzontale con menisco, coagulo più denso sul fondo. |
+| **Parchment / Avorio / Ossa** | `t` (avorio chiaro), `s` (osso medio), `u` (ombra fessura), `k` (cavità profonda) | Tonalità calde leggermente ingiallite, tacche e crepe in `k`/`u`. |
+| **Fiamma viva** | `W`/`L` (nucleo caldissimo), `O` (arancione vivo intermedio), `F` (rosso esterno) | Strati concentrici dal centro chiaro alla periferia scarlatta. |
+| **Monete 3D** | `WW` (luce speculare), `LL`/`YY` (superficie), `y`/`b` (bordo inferiore) | Prospettiva inclinata: il bordo inferiore mostra lo spessore e la coniatura. Simboli interni incisi con ombra sotto e luce sopra. |
+
+---
+
+## 6. Checklist di Revisione per Nuovi Sprite
+
+Prima di confermare un nuovo sprite, verificare:
+
+- [ ] Lo sprite è centrato nel riquadro 32x32 con almeno 2px di respiro dai bordi?
+- [ ] L'ingombro è proporzionato alla categoria (attivo/passivo ~20-26px, trinket ~16-20px)?
+- [ ] La silhouette è leggibile a colpo d'occhio senza dover zoomare al 400%?
+- [ ] Il contorno esterno è uniforme a 1px continuo in `(20, 14, 14)` senza pixel sparsi o buchi accidentali?
+- [ ] La direzione della luce è coerente (dall'alto a sinistra verso il basso a destra)?
+- [ ] Sono presenti i punti luce speculari (`W`) dove opportuno (vetro, metallo)?
+- [ ] I simboli interni (numeri, punti interrogativi, crepe) sono leggibili a risoluzione 1x?
+- [ ] `python3 tools/sprites.py --selftest` viene superato senza errori?
+- [ ] Il confronto visivo in `docs/preview.png` risulta armonico con gli altri oggetti ufficiali?
+- [ ] È stato fatto un confronto diretto con gli item vanilla simili presenti nello spritesheet di reference ufficiale (`docs/PC _ Computer - The Binding of Isaac_ Rebirth - Items - Items (Repentance).png`)?
+
+---
+
+## 7. Workflow nel Repository
+
+Gli sprite della mod **non si disegnano né modificano mai manualmente nei file PNG**.
+Vengono compilati via codice da matrici di caratteri in `tools/sprites.py`:
+
+```bash
+# 1. Modifica la matrice in tools/sprites.py
+# 2. Esegui il selftest automatico (formato, dimensioni, trasparenza, densità pixel)
+python3 tools/sprites.py --selftest
+
+# 3. Rigenera tutti i file PNG in resources/ e aggiorna docs/preview.png
+python3 tools/sprites.py
+
+# 4. Apri docs/preview.png per controllare il risultato a 8x affiancato
+```
+
+---
+
+## 8. Tavola di Riferimento Visivo Ufficiale
+
+Nella cartella `docs/` è presente il foglio completo (spritesheet) ad alta fedeltà con tutti gli oggetti ufficiali di Repentance, da usare come benchmark costante e fonte di verità visiva per silhouette, shading, palette e spessore dei contorni:
+
+- **File di riferimento:** [`docs/PC _ Computer - The Binding of Isaac_ Rebirth - Items - Items (Repentance).png`]().png)
+
+Quando si progetta o si revisiona un oggetto custom, fare riferimento agli item ufficiali analoghi presenti nello spritesheet:
+- **Orologi e strumenti meccanici:** confrontare con *Broken Watch*, *Stop Watch*, *Glowing Hourglass*.
+- **Bombe speciali:** confrontare con *Sad Bombs*, *Bobby-Bomb*, *Hot Bombs*, *Blood Bombs*, *Glitter Bombs*.
+- **Ampolle, fiaschette e reliquie sacre:** confrontare con *Holy Water*, *The Relic*, *Jar of Flies*, *Blood of the Martyr*, *Eucharist*.
+- **Monete e gettoni (Trinket):** confrontare con *Counterfeit Penny*, *Lucky Penny*, *Pay to Play*, *Store Key*, *Silver Dollar*.
