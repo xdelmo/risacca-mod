@@ -44,6 +44,7 @@ Apri la console con il tasto `\` (quello sopra Invio, oppure `ò`/`ù` sulla tas
 - [ ] Con lo stesso oggetto, scendi di qualche piano e controlla che le stanze dell'angelo compaiano più spesso.
 - [ ] `giveitem Che Fai, Te Ne Privi?`, poi finisci qualche stanza: circa una volta su quattro compare un pickup in più con **"Che fai? Te ne privi?"**.
 - [ ] Le icone dei quattro oggetti nuovi si vedono e le loro descrizioni in External Item Descriptions sono giuste.
+- [ ] Le 7 icone sono state ridisegnate con il contorno da 2px: guardale sul piedistallo e nell'HUD, e controlla che siano leggibili accanto agli oggetti vanilla. Fai attenzione al "-1" di -1 al Dead God e a Il Miracolo di San Gennaruzzo, che potrebbe sembrare una pozione.
 
 Facoltativo, se ci arrivi: The Beast deve mostrare **"IL BEASTY BOY"**, Mega Satan **"MEGA STANLEY KUBRICK"**. Battere un boss finale (Satan, The Lamb, Mother…) deve mostrare **"Un bacione grande / dal vostro Risacca"**.
 

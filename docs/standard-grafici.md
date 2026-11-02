@@ -23,8 +23,17 @@ Tutti i collezionabili e i trinket del gioco sono salvati come immagini PNG `32x
 - **Presenza su piedistallo:** il piedistallo di Isaac è largo 32px. Uno sprite più piccolo di 18x18 px scompare visivamente, sembrando una pillola o un micro-consumabile anziché un oggetto primario.
 
 ### Trinket (Ninnoli)
-- **Ingombro tipico:** tra **16x16 px** e **20x20 px**.
-- Devono essere visivamente distinti dai collezionabili: spesso hanno una prospettiva isometrica/inclinata (monete con bordo spesso, pezzi di carta, ossa, spille, vermi, medaglie).
+- **Ingombro tipico:** mediana **20x20 px**, dal 10° al 90° percentile tra **16x15 px** e **25x25 px** (misurato su 128 trinket vanilla).
+- Le dimensioni sono quasi le stesse dei collezionabili: si distinguono per il soggetto (monete, pezzi di carta, ossa, spille, vermi, medaglie), non per la taglia.
+
+### Valori misurati sui PNG vanilla
+Misure su 548 collezionabili e 128 trinket estratti col ResourceExtractor dalla versione Afterbirth+ per macOS. La tavola di Repentance (724 oggetti) dà valori quasi uguali.
+
+| Misura | 10° percentile | Mediana | 90° percentile |
+|---|---|---|---|
+| Colori per sprite | 3 | 5 | 9 |
+| Pixel scuri sul totale | 38% | 51% | 66% |
+| Pixel opachi (collezionabili) | 179 | 283 | 413 |
 
 ---
 
@@ -32,17 +41,15 @@ Tutti i collezionabili e i trinket del gioco sono salvati come immagini PNG `32x
 
 Il contorno è l'elemento più caratteristico dello stile grafico del gioco.
 
-1. **Spessore:** Sempre **1 pixel continuo** attorno a tutta la silhouette esterna.
-2. **Colore contorno esterno:** **MAI nero digitale puro `#000000`** e mai grigi freddi.  
-   L'analisi campionaria sullo spritesheet ufficiale di Repentance (`docs/PC _ Computer - The Binding of Isaac_ Rebirth - Items - Items (Repentance).png`) rivela che oltre 39.000 pixel di contorno negli oltre 700 item originali utilizzano una tonalità caldissima, quasi nera ma con un residuo organico di rosso:  
-   `PALETTE["K"] = (8, 0, 0)` (`#080000`).  
-   Questo valore garantisce il contrasto netto e incisivo tipico del tratto a pennarello di Edmund McMillen.
+1. **Spessore:** **2 pixel** attorno a tutta la silhouette esterna. Ce l'hanno 493 collezionabili vanilla su 548 e 116 trinket su 128; solo 30 oggetti in tutto restano a 1 pixel.
+2. **Colore contorno esterno:** `PALETTE["K"] = (8, 0, 0)` (`#080000`), non il nero puro `#000000`. È il colore del bordo in 443 collezionabili vanilla su 548.
 3. **Algoritmo di contorno a 4 vicini (Manhattan):**  
-   In `tools/sprites.py`, il contorno viene generato automaticamente verificando i 4 vicini cardinali (su, giù, sinistra, destra).
-   - **Attenzione ai buchi e alle righe vuote:** Se lasci una riga vuota o uno stacco diagonale tra due componenti (es. tra campanelle e corpo sveglia, tra miccia e bomba, o tra manici e ampolla), l'algoritmo chiuderà entrambi gli elementi con contorni neri separati, creando antiestetici doppi contorni paralleli (`# #`) o elementi orfani che fluttuano a mezz'aria.
-   - Le parti secondarie devono sempre connettersi saldamente al corpo principale (con raccordi di almeno 2 pixel) in modo da formare una silhouette unificata e compatta.
+   In `tools/sprites.py`, `outline()` aggiunge uno strato di contorno verificando i 4 vicini cardinali (su, giù, sinistra, destra), e `render()` la chiama due volte.
+   - **Ogni lato cresce di 2 pixel:** le griglie vanno disegnate sui 16-20 pixel, così lo sprite finito sta sui 20-24.
+   - **Gli spazi stretti si chiudono:** uno spazio largo fino a 4 pixel tra due parti diventa tutto nero. È utile per separare parti come campanelle e corpo della sveglia, o i manici della coppa.
+   - **I dettagli sottili ingrassano:** una linea da 1 pixel, come una miccia, diventa larga 5 pixel. Vanno tenuti corti.
 4. **Bordi interni e simboli (Engravings & Features):**  
-   - Per sfumature interne di volume si usano i toni scuri del materiale stesso (`b` per l'oro, `m`/`d` per il ferro, `r` per il sangue, `u`/`k` per le ossa).
+   - Per sfumature interne di volume si usano i toni scuri del materiale stesso (`b` per l'oro, `m`/`d` per il ferro, `r` per il sangue, `u` per le ossa).
    - Per elementi grafici chiave che devono essere leggibili all'istante a risoluzione 1x (es. le lancette dell'orologio, il punto interrogativo `?` inciso sulla moneta, crepe e tratti facciali), l'originale usa tratti decisi nel colore contorno `K` (`#080000`), garantendo massima riconoscibilità senza impastare l'icona.
 
 ---
@@ -82,7 +89,7 @@ Nei giochi retrò ben disegnati e in Isaac, quando un colore diventa più scuro 
 | **Ferro / Acciaio (Bombe)** | `w` (luce plastica/ferro), `g` (grigio chiaro), `m` (grigio medio), `d` (ombra scanalature), `n` (ombra fredda) | Riflesso curvo sferico in alto a sinistra, fondo freddo bluastro. |
 | **Vetro trasparente** | `w` (luce vetro), `W` (riflesso speculare), `g`, `m` | Fascia diagonale bianca/chiara di riflesso speculare che attraversa la superficie. |
 | **Sangue e Liquidi sacri** | `l` (riflesso vermiglio chiaro), `R` (rosso sangue vivo), `r` (sangue scuro coagulato) | Stratificazione orizzontale con menisco, coagulo più denso sul fondo. |
-| **Parchment / Avorio / Ossa** | `t` (avorio chiaro), `s` (osso medio), `u` (ombra fessura), `k` (cavità profonda) | Tonalità calde leggermente ingiallite, tacche e crepe in `k`/`u`. |
+| **Parchment / Avorio / Ossa** | `t` (avorio chiaro), `s` (osso medio), `u` (ombra fessura) | Tonalità calde leggermente ingiallite, cavità in `K` e tacche in `u`. |
 | **Fiamma viva** | `W`/`L` (nucleo caldissimo), `O` (arancione vivo intermedio), `F` (rosso esterno) | Strati concentrici dal centro chiaro alla periferia scarlatta. |
 | **Monete 3D** | `WW` (luce speculare), `LL`/`YY` (superficie), `y`/`b` (bordo inferiore) | Prospettiva inclinata: il bordo inferiore mostra lo spessore e la coniatura. Simboli interni incisi con ombra sotto e luce sopra. |
 
@@ -93,9 +100,10 @@ Nei giochi retrò ben disegnati e in Isaac, quando un colore diventa più scuro 
 Prima di confermare un nuovo sprite, verificare:
 
 - [ ] Lo sprite è centrato nel riquadro 32x32 con almeno 2px di respiro dai bordi?
-- [ ] L'ingombro è proporzionato alla categoria (attivo/passivo ~20-26px, trinket ~16-20px)?
+- [ ] L'ingombro è proporzionato (lato massimo 26px, mediana vanilla attorno ai 20px)?
+- [ ] Lo sprite usa al massimo 9 colori, contorno compreso?
 - [ ] La silhouette è leggibile a colpo d'occhio senza dover zoomare al 400%?
-- [ ] Il contorno esterno è uniforme a 1px continuo in `(20, 14, 14)` senza pixel sparsi o buchi accidentali?
+- [ ] Il contorno esterno è da 2px in `(8, 0, 0)` senza pixel sparsi o buchi accidentali?
 - [ ] La direzione della luce è coerente (dall'alto a sinistra verso il basso a destra)?
 - [ ] Sono presenti i punti luce speculari (`W`) dove opportuno (vetro, metallo)?
 - [ ] I simboli interni (numeri, punti interrogativi, crepe) sono leggibili a risoluzione 1x?
@@ -112,7 +120,7 @@ Vengono compilati via codice da matrici di caratteri in `tools/sprites.py`:
 
 ```bash
 # 1. Modifica la matrice in tools/sprites.py
-# 2. Esegui il selftest automatico (formato, dimensioni, trasparenza, densità pixel)
+# 2. Esegui il selftest automatico (formato, margini, ingombro, numero di colori, contorno da 2px)
 python3 tools/sprites.py --selftest
 
 # 3. Rigenera tutti i file PNG in resources/ e aggiorna docs/preview.png
