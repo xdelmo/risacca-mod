@@ -33,16 +33,17 @@ Tutti i collezionabili e i trinket del gioco sono salvati come immagini PNG `32x
 Il contorno è l'elemento più caratteristico dello stile grafico del gioco.
 
 1. **Spessore:** Sempre **1 pixel continuo** attorno a tutta la silhouette esterna.
-2. **Colore contorno esterno:** **MAI nero digitale puro `#000000`**.  
-   Si usa una tonalità caldissima, scura e profonda:  
-   `PALETTE["K"] = (20, 14, 14)` (`#140e0e`).  
-   Il nero puro crea un effetto "ritaglio Photoshop" freddo; il carbone caldissimo si fonde invece con l'illuminazione organica del gioco.
+2. **Colore contorno esterno:** **MAI nero digitale puro `#000000`** e mai grigi freddi.  
+   L'analisi campionaria sullo spritesheet ufficiale di Repentance (`docs/PC _ Computer - The Binding of Isaac_ Rebirth - Items - Items (Repentance).png`) rivela che oltre 39.000 pixel di contorno negli oltre 700 item originali utilizzano una tonalità caldissima, quasi nera ma con un residuo organico di rosso:  
+   `PALETTE["K"] = (8, 0, 0)` (`#080000`).  
+   Questo valore garantisce il contrasto netto e incisivo tipico del tratto a pennarello di Edmund McMillen.
 3. **Algoritmo di contorno a 4 vicini (Manhattan):**  
    In `tools/sprites.py`, il contorno viene generato automaticamente verificando i 4 vicini cardinali (su, giù, sinistra, destra).
-   - **Attenzione ai buchi e alle righe vuote:** Se lasci una riga vuota tra due componenti (es. tra un'aureola e una bottiglia, o tra una miccia e una bomba), l'algoritmo chiuderà entrambi gli elementi con contorni neri separati, creando elementi orfani che fluttuano a mezz'aria.
-   - Se due parti appartengono allo stesso oggetto, collegale con steli, raccordi o tocchi di pixel per preservare la continuità della silhouette.
-4. **Bordi interni (Selout):**  
-   All'interno dell'oggetto non si usa quasi mai il nero contorno: si usano i toni scuri del materiale stesso (`b` per l'oro, `m`/`d` per il ferro, `r` per il sangue, `k` per le ossa).
+   - **Attenzione ai buchi e alle righe vuote:** Se lasci una riga vuota o uno stacco diagonale tra due componenti (es. tra campanelle e corpo sveglia, tra miccia e bomba, o tra manici e ampolla), l'algoritmo chiuderà entrambi gli elementi con contorni neri separati, creando antiestetici doppi contorni paralleli (`# #`) o elementi orfani che fluttuano a mezz'aria.
+   - Le parti secondarie devono sempre connettersi saldamente al corpo principale (con raccordi di almeno 2 pixel) in modo da formare una silhouette unificata e compatta.
+4. **Bordi interni e simboli (Engravings & Features):**  
+   - Per sfumature interne di volume si usano i toni scuri del materiale stesso (`b` per l'oro, `m`/`d` per il ferro, `r` per il sangue, `u`/`k` per le ossa).
+   - Per elementi grafici chiave che devono essere leggibili all'istante a risoluzione 1x (es. le lancette dell'orologio, il punto interrogativo `?` inciso sulla moneta, crepe e tratti facciali), l'originale usa tratti decisi nel colore contorno `K` (`#080000`), garantendo massima riconoscibilità senza impastare l'icona.
 
 ---
 
