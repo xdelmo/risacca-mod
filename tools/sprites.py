@@ -12,72 +12,109 @@ OUT = {
     "win_streak": "resources/gfx/items/trinkets/win_streak.png",
 }
 PALETTE = {
-    "K": (20, 14, 14), "g": (196, 196, 204), "D": (70, 70, 84), "R": (214, 40, 40),
-    "B": (52, 108, 222), "Y": (240, 196, 48), "y": (176, 128, 30), "L": (255, 244, 150),
-    "P": (236, 60, 220), "C": (60, 236, 236), "s": (150, 150, 158), "d": (96, 96, 106),
-    "G": (64, 150, 56), "F": (230, 70, 30), "O": (255, 150, 30), "W": (255, 255, 255),
+    "K": (20, 14, 14),      # Isaac dark outline / contorno profondo stile Isaac
+    "W": (255, 255, 255),  # Punto luce puro speculare
+    
+    # Cartuccia retrò (Ho Rotto il Gioco)
+    "w": (236, 238, 245),  # Luce plastica cartuccia
+    "g": (186, 190, 202),  # Grigio cartuccia
+    "m": (132, 138, 152),  # Ombra media scanalature
+    "d": (82, 86, 100),    # Ombra profonda / slot superiore
+    
+    # Glitch TMTRAINER
+    "C": (50, 245, 245),   # Ciano neon acceso
+    "c": (18, 155, 185),   # Ciano profondo
+    "P": (245, 50, 210),   # Magenta acceso
+    "p": (165, 25, 145),   # Magenta scuro
+    
+    # Ossa e corna (Teschio Dead God / The Beast)
+    "t": (235, 230, 216),  # Luce ossea / avorio chiaro
+    "s": (184, 178, 162),  # Tonalità osso principale
+    "u": (130, 124, 112),  # Ombra ossea / fessura
+    "k": (76, 70, 62),     # Ombra profonda cavità
+    
+    # Sangue / Incisione (-1)
+    "l": (255, 95, 95),    # Riflesso rosso sangue acceso
+    "R": (225, 35, 35),    # Rosso sangue vermiglio
+    "r": (135, 20, 25),    # Sangue scuro / ombra incisione
+    
+    # Oro e metallo (Win Streak / Etichetta e pin cartuccia)
+    "L": (255, 246, 160),  # Oro chiaro speculare
+    "Y": (246, 198, 42),   # Oro brillante
+    "y": (180, 126, 24),   # Oro caldo in ombra
+    "b": (116, 72, 16),    # Bronzo antico / sottosquadro
+    
+    # Fiamma sacra dello streak
+    "F": (230, 48, 26),    # Fiamma rossa esterna
+    "O": (255, 145, 28),   # Fiamma arancione viva
 }
 
 # Solo i riempimenti: il contorno nero stile Isaac lo aggiunge outline().
 SPRITES = {
-    "ho_rotto_il_gioco": [  # joypad crepato con pixel glitch
-        "   C                PP  ",
-        "  CC                PPP ",
-        "  ggggggggggKggggggggg  ",
-        " gggggggggggKgggggRRggg ",
-        "ggggDggggggKggggggRRgggg",
-        "ggggDggggggKggggYYggBBgg",
-        "ggDDDDDgggggKgggYYggBBgg",
-        "ggggDggggggggKggggGGgggg",
-        "ggggDgggggggKgggggGGgggg",
-        "gggggggggggKgggggggggggg",
-        "gggggggggggKgggggggggggg",
-        "gggggggg        gggggggg",
-        " gggggg          gggggg ",
-        " CCggg            gggPP ",
-        " CC    CC             P ",
+    "ho_rotto_il_gioco": [  # Cartuccia di gioco retrò spaccata con pixel glitch TMTRAINER
+        "   d m d m d      CC    ",
+        "  wddmddmddd    CCCCc   ",
+        "  wggggggggm     CCc    ",
+        "  wg wKww gg    P       ",
+        "  wg  wK   m   PPp      ",
+        "  wg YYYYY m   Ppp      ",
+        "  wg YRRYY m            ",
+        "  wg YRRYY m    CC      ",
+        "  wg YYYYY m    CCc     ",
+        "  wg mmmm  m     c      ",
+        "  wg  K    m            ",
+        "  wggm K g m            ",
+        "  wggm  K  m            ",
+        "  wggmm  K mm   PP      ",
+        "  wggggm  K g   PPp     ",
+        "  wddddd  Kdd    p      ",
+        "   YY YY   YY           ",
+        "   yy yy   yy           ",
     ],
-    "meno_uno_dead_god": [  # lapide con "-1"
-        "      ssssss      ",
-        "    sWssssssss    ",
-        "   sWssssssssss   ",
-        "  sWssssssssssss  ",
-        "  sssssssssRRsss  ",
-        "  ssssssssRRRsss  ",
-        "  sssssssRRRRsss  ",
-        "  ssRRRRssRRRsss  ",
-        "  ssRRRRssRRRsss  ",
-        "  ssssssssRRRsss  ",
-        "  ssssssssRRRsss  ",
-        "  sssssssRRRRRss  ",
-        "  ssssssssssssss  ",
-        "  sdssssssssssds  ",
-        "  ssssssssssssss  ",
-        "  ssssssssssssds  ",
-        " dddddddddddddddd ",
-        "GGGGGGGGGGGGGGGGGG",
-        "GGGGGGGGGGGGGGGGGG",
+    "meno_uno_dead_god": [  # Teschio cornuto del Dead God / Beast con "-1" inciso a sangue
+        "  s              s  ",
+        " tss            sst ",
+        " tss            sst ",
+        "  tsu          ust  ",
+        "  tsu  tttttt  ust  ",
+        "   tsutsssssstust   ",
+        "   tssurlllru rRssu ",
+        "    ssulRRRruurlRsu ",
+        "    ssurrrrru  rRsu ",
+        "    ssuuuuuuu  rRsu ",
+        "    ssuuuuuuu rRRsu ",
+        "   tssKKssKKsssssu  ",
+        "   tsKKKssKKKssssu  ",
+        "   tssKKssKKsssssu  ",
+        "    ssssKKsssssu    ",
+        "    tsstttsssstu    ",
+        "    susususususu    ",
+        "     k u k u k      ",
     ],
-    "win_streak": [  # coppa con fiammella
-        "        F         ",
-        "       FF         ",
-        "       FOF        ",
-        "      FOLOF       ",
-        "      FOLLOF      ",
-        "       FLLF       ",
-        "  YYYYYYYYYYYYYY  ",
-        "YY YWYYYYYYYYyY YY",
-        "Y  YWYYYYYYYYyY  Y",
-        "Y  YWYYYYYYYYyY  Y",
-        " Y YYYYYYYYYYyY Y ",
-        "  YYYYYYYYYYYyYY  ",
-        "    YYYYYYYYyY    ",
-        "      YYYYyY      ",
-        "        Yy        ",
-        "        Yy        ",
-        "       yYYy       ",
-        "     yyyyyyyy     ",
-        "     yyyyyyyy     ",
+    "win_streak": [  # Calice d'oro cesellato con manici sinuosi e fiamma dello streak ardente
+        "         F          ",
+        "        FFF         ",
+        "        FOF         ",
+        "       FOOOF        ",
+        "       FOLOF   FF   ",
+        "      FOLLLOF FOF   ",
+        "      FOLLWLOFOF    ",
+        "       FOWLLOFO     ",
+        "  LLLLLLOFFFOLLLLb  ",
+        " LWWWWWWLLLLLLLLLYb ",
+        "YY LWWYYYYYYYYYyY YY",
+        "Yb LWWYYYYYYYYYyY by",
+        "Yb  YYYYYYYYYYYyY by",
+        " Yb  YYYYYYYYYyY  y ",
+        "  y   YYYYYYYyY  y  ",
+        "       YYYYyYy      ",
+        "        YyYyb       ",
+        "        YyYyb       ",
+        "       LYYYYyb      ",
+        "      LYYYYYYyb     ",
+        "     LYYYYYYYYyb    ",
+        "    LYYYYYYYYYYyb   ",
+        "    bbbyyyyyybbbb   ",
     ],
 }
 
