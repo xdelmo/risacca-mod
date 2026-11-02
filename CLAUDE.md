@@ -31,9 +31,10 @@ Non c'è un test runner. I test sono script con `assert`: per provarne uno basta
   - le scritte in `L.TEXT`, le priorità in `L.PRIO` e le descrizioni per External Item Descriptions in `L.EID`;
   - le decisioni (`pickupText`, `ansia`, `isFinalBoss`, `deadGodBonus`, …);
   - la coda delle scritte `newQueue`.
-- **`main.lua`.** Fa solo da collegamento con le callback del gioco, e ha due sezioni:
+- **`main.lua`.** Fa solo da collegamento con le callback del gioco, e ha tre sezioni:
   - **oggetti nuovi:** Ho Rotto il Gioco, -1 al Dead God, Win Streak;
-  - **scritte a schermo:** ognuna fa `say(...)` → la coda → `HUD:ShowItemText` dentro `MC_POST_UPDATE`.
+  - **scritte a schermo:** ognuna fa `say(...)` → la coda → `HUD:ShowItemText` dentro `MC_POST_UPDATE`;
+  - **oggetti dei tormentoni:** Non Vi Rubo Altro Tempo, Potrebbe Stare Qua, Il Miracolo di San Gennaruzzo, Che Fai, Te Ne Privi?. Stanno in fondo perché usano anche `say`.
 
   La stessa callback può essere registrata due volte, una per sezione, ed è voluto.
 - **Coda delle scritte.**
@@ -48,7 +49,7 @@ Non c'è un test runner. I test sono script con `assert`: per provarne uno basta
   - un player finto e un HUD che registra le scritte.
 
   Alla fine controlla che ogni callback registrata sia stata chiamata. Se aggiungi una callback, aggiungi anche uno scenario che la chiama.
-- **Contenuti XML.** Gli oggetti nuovi stanno in `content/items.xml` e `content/itempools.xml`. Gli sprite si generano da griglie di caratteri in `tools/sprites.py`: non modificare i PNG a mano.
+- **Contenuti XML e Sprite.** Gli oggetti nuovi stanno in `content/items.xml` e `content/itempools.xml`. Gli sprite si generano da griglie di caratteri in `tools/sprites.py`: non modificare i PNG a mano. Le immagini degli oggetti devono seguire fedelmente lo stile The Binding of Isaac: Repentance+; la guida completa agli standard visivi (palette, proporzioni 32x32, contorno 2px `(8, 0, 0)`, luce in alto a sinistra, riflessi del vetro e checklist) è documentata in `docs/standard-grafici.md` e supportata dalle skill in `.agents/skills/`. Come tavola di riferimento visivo ufficiale di tutti gli item vanilla c'è `docs/PC _ Computer - The Binding of Isaac_ Rebirth - Items - Items (Repentance).png`.
 - **Rinomine dei vanilla.**
   - Esempi: chiavi → Chiaviz-Chiavoz, boss → Beppe Bossicchio, Bumbo → Bumbazzo, Greed → Ballerino di Flamenco.
   - Le genera `tools/rename.py` in `resources-dlc3/` (git-ignored, perché contiene i testi del gioco e la repo non deve ridistribuirli), partendo dagli originali messi in `extracted/` (git-ignored).

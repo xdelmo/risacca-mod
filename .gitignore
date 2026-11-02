@@ -5,3 +5,4 @@ extracted/
 /log*.txt
 resources-dlc3/
 *.local.code-workspace
+__pycache__/

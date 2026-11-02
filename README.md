@@ -25,8 +25,12 @@ Mod per **The Binding of Isaac: Repentance** dedicata a [Risacca](https://www.yo
 - **Ho Rotto il Gioco** (attivo, 6 cariche): fa comparire un oggetto glitchato, come con TMTRAINER.
 - **-1 al Dead God** (passivo): ogni boss sconfitto dà +0.2 danno, +0.03 velocità, +0.1 gittata e un tiro un po' più rapido. Il bonus arriva al massimo a 10 boss e conta un solo boss per stanza.
 - **Win Streak** (trinket): dà +0.5 danno per ogni piano finito senza essere colpiti. Basta un colpo per azzerare la serie.
+- **Non Vi Rubo Altro Tempo** (attivo, 4 cariche): congela i nemici della stanza per 3 secondi.
+- **Potrebbe Stare Qua** (passivo): a ogni nuovo piano mostra le stanze segrete sulla mappa e dà 2 bombe.
+- **Il Miracolo di San Gennaruzzo** (passivo, nelle stanze dell'angelo): +25% di probabilità di una stanza dell'angelo a ogni nuovo piano e un cuore eterno alla prima visita di ognuna.
+- **Che Fai, Te Ne Privi?** (trinket): 25% di probabilità di un pickup in più quando finisci una stanza.
 
-Con [External Item Descriptions](https://steamcommunity.com/sharedfiles/filedetails/?id=836319872) attiva, i tre oggetti mostrano anche la loro descrizione in italiano. Il riquadro Item Info del menu di pausa li mostra comunque come "Unknown": è un limite dell'API del gioco.
+Con [External Item Descriptions](https://steamcommunity.com/sharedfiles/filedetails/?id=836319872) attiva, gli oggetti mostrano anche la loro descrizione in italiano. Il riquadro Item Info del menu di pausa li mostra comunque come "Unknown": è un limite dell'API del gioco.
 
 ### Nomi alla Risacca
 
@@ -68,6 +72,8 @@ Per rigenerare le rinomine:
 1. Estrai `items.xml`, `pocketitems.xml` e `stringtable.sta` con il ResourceExtractor del gioco.
 2. Mettili in `extracted/`.
 3. Lancia `python3 tools/rename.py extracted`.
+
+Le immagini degli oggetti devono essere in pieno stile The Binding of Isaac: Repentance+. Si generano da griglie di caratteri con `python3 tools/sprites.py`, e per disegnarle si usano le skill in `.agents/skills/`.
 
 I dettagli sull'architettura sono in [CLAUDE.md](CLAUDE.md).
 

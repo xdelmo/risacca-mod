@@ -2,8 +2,16 @@
     <Pool Name="treasure">
         <Item Name="Ho Rotto il Gioco" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="-1 al Dead God" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Non Vi Rubo Altro Tempo" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Potrebbe Stare Qua" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     </Pool>
     <Pool Name="boss">
         <Item Name="-1 al Dead God" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    </Pool>
+    <Pool Name="shop">
+        <Item Name="Potrebbe Stare Qua" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    </Pool>
+    <Pool Name="angel">
+        <Item Name="Il Miracolo di San Gennaruzzo" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     </Pool>
 </ItemPools>
