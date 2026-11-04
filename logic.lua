@@ -31,6 +31,8 @@ L.TEXT = {
   SOGNARE = "Fammi sognare",
   TROLLATA = "M'ha trollato!",
   MANNAGGIA = "Mannaggia a lui!",
+  IDIOTA = "Sono un idiota!",
+  FERMI = "Fermi tutti!",
 }
 
 -- Descrizioni per External Item Descriptions: "#" va a capo, {{...}} sono le icone di EID.
@@ -46,6 +48,8 @@ L.EID = {
   TROLLATA = "Fa comparire una troll bomb addosso a ogni nemico della stanza#Se ti trovi vicino esplode anche su di te",
   FAICOSI = "Ogni seconda lacrima parte doppia",
   MANNAGGIA = "Quando vieni colpito, il nemico più vicino subisce 10 volte il tuo danno",
+  IDIOTA = "Non fa niente",
+  FERMI = "Non fa niente",
 }
 
 L.PRIO = { XL = 1, INTRO = 1, PICKUP = 2, TACCHINO = 2, ITEM = 2, ANSIA = 3, BOSSNAME = 3, BACIONE = 4, BEDUINS = 5, CRETINO = 3, NON_MUORE = 2, MANNAGGIA = 3 }
@@ -118,9 +122,10 @@ function L.deadGodBonus(kills)
 end
 
 local SUPPRESS_WINDOW = 15
+L.REPEAT_COOLDOWN = 900 -- la stessa scritta non torna prima di 30 secondi (30 update al secondo)
 
 function L.newQueue()
-  local q = { items = {}, seq = 0 }
+  local q = { items = {}, seq = 0, now = 0, last = {} }
 
   function q:push(title, sub, delay, prio)
     self.seq = self.seq + 1
@@ -128,9 +133,12 @@ function L.newQueue()
   end
 
   function q:tick()
+    self.now = self.now + 1
     local best
     for _, it in ipairs(self.items) do
-      if it.left <= 0 and (not best or it.prio > best.prio or (it.prio == best.prio and it.seq < best.seq)) then
+      local last = self.last[it.title]
+      local fresh = not last or self.now - last >= L.REPEAT_COOLDOWN
+      if it.left <= 0 and fresh and (not best or it.prio > best.prio or (it.prio == best.prio and it.seq < best.seq)) then
         best = it
       end
     end
@@ -143,7 +151,10 @@ function L.newQueue()
       end
     end
     self.items = keep
-    if best then return best.title, best.sub end
+    if best then
+      self.last[best.title] = self.now
+      return best.title, best.sub
+    end
     return nil
   end
 

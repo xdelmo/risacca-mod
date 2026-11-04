@@ -35,13 +35,14 @@ Non c'è un test runner. I test sono script con `assert`: per provarne uno basta
 - **`main.lua`.** Fa solo da collegamento con le callback del gioco, e ha tre sezioni:
   - **oggetti nuovi:** Ho Rotto il Gioco, -1 al Dead God, Win Streak;
   - **scritte a schermo:** ognuna fa `say(...)` → la coda → `HUD:ShowItemText` dentro `MC_POST_UPDATE`;
-  - **oggetti dei tormentoni:** Non Vi Rubo Altro Tempo, Potrebbe Stare Qua, Il Miracolo di San Gennaruzzo, Che Fai, Te Ne Privi?, La Mossa del Pro Player, La Trollata, Fai Così, Fai Così, Mannaggia a Lui. Stanno in fondo perché usano anche `say`.
+  - **oggetti dei tormentoni:** Non Vi Rubo Altro Tempo, Potrebbe Stare Qua, Il Miracolo di San Gennaruzzo, Che Fai, Te Ne Privi?, La Mossa del Pro Player, La Trollata, Fai Così, Fai Così, Mannaggia a Lui, e gli oggetti inutili Sono un Idiota e Fermi Tutti (solo la scritta al pickup). Stanno in fondo perché usano anche `say`.
 
   La stessa callback può essere registrata due volte, una per sezione, ed è voluto.
 - **Coda delle scritte.**
   - Mostra una sola scritta per tick: vince la priorità più alta e, a parità, quella aggiunta per prima. Le altre pronte nello stesso tick vengono scartate.
   - Quando esce una scritta, vengono scartate anche quelle con priorità minore che uscirebbero entro i 15 tick successivi.
   - Una scritta con delay N esce al tick N+1.
+  - La stessa scritta (stesso titolo) non esce di nuovo prima di `L.REPEAT_COOLDOWN` tick (30 secondi): se è pronta prima, viene scartata.
 
   Per questo, nello smoke test, gli eventi da distinguere vanno separati da `frames(n)`.
 - **Stato della run.** Sta nella tabella `run` di `main.lua` e si salva con `mod:SaveData(json.encode(run))` a inizio run, a ogni nuovo piano, a ogni boss contato da -1 al Dead God, quando compaiono The Beast o Mega Satan e quando si esce dal gioco. In `MC_POST_GAME_STARTED` si ricarica con `pcall(json.decode, ...)`, ma solo se la run è continuata. `roomFlags` invece si azzera a ogni nuova stanza.

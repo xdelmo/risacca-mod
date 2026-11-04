@@ -14,6 +14,8 @@ local ITEM_PRO = Isaac.GetItemIdByName("La Mossa del Pro Player")
 local ITEM_TROLLATA = Isaac.GetItemIdByName("La Trollata")
 local ITEM_FAICOSI = Isaac.GetItemIdByName("Fai Così, Fai Così")
 local TRINKET_MANNAGGIA = Isaac.GetTrinketIdByName("Mannaggia a Lui")
+local ITEM_IDIOTA = Isaac.GetItemIdByName("Sono un Idiota")
+local ITEM_FERMI = Isaac.GetItemIdByName("Fermi Tutti")
 
 -- Descrizioni per External Item Descriptions, solo se l'altra mod è attiva
 if EID then
@@ -29,6 +31,8 @@ if EID then
   EID:addCollectible(ITEM_TROLLATA, L.EID.TROLLATA)
   EID:addCollectible(ITEM_FAICOSI, L.EID.FAICOSI)
   EID:addTrinket(TRINKET_MANNAGGIA, L.EID.MANNAGGIA)
+  EID:addCollectible(ITEM_IDIOTA, L.EID.IDIOTA)
+  EID:addCollectible(ITEM_FERMI, L.EID.FERMI)
 end
 
 local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKills = 0, beastyShown = false, kubrickShown = false, pippolinsShown = false, bumbazzoShown = false } end
@@ -156,7 +160,9 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
 
   local qi = player.QueuedItem.Item
   if qi and not prevQueued[idx] and qi:IsCollectible() then
-    local t = L.pickupText(qi.Quality, devilPending[idx] == qi.ID)
+    -- gli oggetti inutili non fanno niente: solo la scritta quando li raccogli
+    local useless = { [ITEM_IDIOTA] = L.TEXT.IDIOTA, [ITEM_FERMI] = L.TEXT.FERMI }
+    local t = useless[qi.ID] or L.pickupText(qi.Quality, devilPending[idx] == qi.ID)
     devilPending[idx] = nil
     if t then say(t, nil, 45, P.PICKUP) end
   end

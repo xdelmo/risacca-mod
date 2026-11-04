@@ -54,6 +54,7 @@ local ids = {
   ["Non Vi Rubo Altro Tempo"] = 735, ["Potrebbe Stare Qua"] = 736, ["Il Miracolo di San Gennaruzzo"] = 737,
   ["Che Fai, Te Ne Privi?"] = 191, ["La Mossa del Pro Player"] = 738,
   ["La Trollata"] = 739, ["Fai Così, Fai Così"] = 740, ["Mannaggia a Lui"] = 192,
+  ["Sono un Idiota"] = 741, ["Fermi Tutti"] = 742,
 }
 local spawned, lastSpawn = 0, nil
 local roomEntities = {}
@@ -132,6 +133,14 @@ expect({ "Ciao a tutti, io sono Risacca / Benvenuti sul mio canale", "È XL? / N
 player.QueuedItem.Item = collectible(331, 4); frames(60)
 player.QueuedItem.Item = nil; frames(5)
 expect({ "GODOR MAXIMOR!" })
+
+-- oggetti inutili: solo la scritta
+player.QueuedItem.Item = collectible(741, 0); frames(60)
+player.QueuedItem.Item = nil; frames(5)
+expect({ "Sono un idiota!" })
+player.QueuedItem.Item = collectible(742, 0); frames(60)
+player.QueuedItem.Item = nil; frames(5)
+expect({ "Fermi tutti!" })
 
 -- patto col diavolo → Facciazza
 fire(ModCallbacks.MC_PRE_PICKUP_COLLISION, PickupVariant.PICKUP_COLLECTIBLE, { Price = -1, SubType = 50 }, player)
@@ -272,6 +281,9 @@ room.bosses = 1; room.frameCount = 1799; frames(5)
 expect({})
 room.frameCount = 1800; frames(20)
 expect({ "Non muore!" })
+fire(ModCallbacks.MC_POST_NEW_ROOM); frames(5)
+expect({}) -- la stessa scritta non torna prima di 30 secondi
+frames(900)
 fire(ModCallbacks.MC_POST_NEW_ROOM); frames(5)
 expect({ "Non muore!" })
 fire(ModCallbacks.MC_POST_NEW_ROOM)

@@ -7,6 +7,8 @@
     <passive name="Il Miracolo di San Gennaruzzo" description="Tante volte ci ha salvati" gfx="san_gennaruzzo.png" quality="3" />
     <active name="La Trollata" description="M'ha trollato!" gfx="la_trollata.png" maxcharges="4" quality="2" />
     <passive name="Fai Così, Fai Così" description="Ogni seconda lacrima è doppia" gfx="fai_cosi.png" quality="3" />
+    <passive name="Sono un Idiota" description="Non fa niente" gfx="sono_un_idiota.png" quality="0" />
+    <passive name="Fermi Tutti" description="Non fa niente" gfx="fermi_tutti.png" quality="0" />
     <trinket name="Win Streak" description="Non farti colpire" gfx="win_streak.png" />
     <trinket name="Che Fai, Te Ne Privi?" description="Un altro po' di roba" gfx="te_ne_privi.png" />
     <trinket name="Mannaggia a Lui" description="Chi ti colpisce la paga" gfx="mannaggia_a_lui.png" />
