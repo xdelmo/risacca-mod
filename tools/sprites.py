@@ -6,6 +6,7 @@ Uso: python3 tools/sprites.py [--selftest]
 import random
 import sys
 import tempfile
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 from PIL import Image, ImageDraw
@@ -392,6 +393,67 @@ def outline(im):
     return out
 
 
+# Costume della trasformazione Tacchino, a coordinate del foglio testa vanilla (32x32): (x, y, righe)
+COSTUME_DIR = "resources/gfx/characters"
+CRESTA = ["  l  l  ", " lR lRr ", " lRlRRr ", " RRRRRr ", "  RRrr  "]
+BARGIGLI = [" Rr ", "lRRr", "lRRr", " rr "]
+COSTUME_PARTS = {
+    "HeadDown": [(12, 2, CRESTA), (12, 17, [" LYYYYy ", "  YYYy  ", "   yy   "]), (14, 21, BARGIGLI)],
+    "HeadRight": [(10, 2, CRESTA), (23, 17, ["LYYYYy", "YYYYy ", "yyy   "]), (22, 21, BARGIGLI)],
+    "HeadUp": [(12, 2, CRESTA)],
+}
+# Posizione della testa nell'anm2, come nei costumi vanilla: da qui si corregge l'allineamento
+COSTUME_PIVOT = (16, 28)
+COSTUME_Y = -5
+ANM2_TINT = 'AlphaTint="255" BlueOffset="0" BlueTint="255" GreenOffset="0" GreenTint="255" Interpolated="false" RedOffset="0" RedTint="255" Rotation="0" Visible="true" XScale="100" YScale="100"'
+
+
+def render_costume_frame(parts):
+    im = Image.new("RGBA", (32, 32), (0, 0, 0, 0))
+    for ox, oy, rows in parts:
+        for y, row in enumerate(rows):
+            for x, ch in enumerate(row):
+                if ch != " ":
+                    im.putpixel((ox + x, oy + y), PALETTE[ch] + (255,))
+    return outline(im)  # una passata sola: due coprirebbero la faccia
+
+
+def write_costume(base):
+    right = render_costume_frame(COSTUME_PARTS["HeadRight"])
+    frames = {
+        "HeadDown": render_costume_frame(COSTUME_PARTS["HeadDown"]),
+        "HeadRight": right,
+        "HeadUp": render_costume_frame(COSTUME_PARTS["HeadUp"]),
+        "HeadLeft": right.transpose(Image.FLIP_LEFT_RIGHT),
+    }
+    sheet = Image.new("RGBA", (32 * len(frames), 32), (0, 0, 0, 0))
+    anims = []
+    for i, (name, frame) in enumerate(frames.items()):
+        sheet.paste(frame, (32 * i, 0))
+        # 4 tick come la testa vanilla: il costume resta uguale anche mentre si spara
+        anims.append(
+            f'    <Animation FrameNum="4" Loop="false" Name="{name}">\n'
+            f'      <RootAnimation><Frame {ANM2_TINT} Delay="4" XPosition="0" YPosition="0"/></RootAnimation>\n'
+            f'      <LayerAnimations><LayerAnimation LayerId="0" Visible="true">\n'
+            f'        <Frame {ANM2_TINT} Delay="4" Width="32" Height="32" XCrop="{32 * i}" YCrop="0" '
+            f'XPivot="{COSTUME_PIVOT[0]}" YPivot="{COSTUME_PIVOT[1]}" XPosition="0" YPosition="{COSTUME_Y}"/>\n'
+            f"      </LayerAnimation></LayerAnimations>\n"
+            f"      <NullAnimations/>\n      <Triggers/>\n    </Animation>\n"
+        )
+    anm2 = (
+        '<AnimatedActor>\n  <Info CreatedBy="tools/sprites.py" CreatedOn="" Fps="30" Version="1"/>\n  <Content>\n'
+        '    <Spritesheets><Spritesheet Id="0" Path="tacchino.png"/></Spritesheets>\n'
+        '    <Layers><Layer Id="0" Name="head0" SpritesheetId="0"/></Layers>\n'
+        '    <Nulls/>\n    <Events/>\n  </Content>\n  <Animations DefaultAnimation="HeadDown">\n'
+        + "".join(anims) + "  </Animations>\n</AnimatedActor>\n"
+    )
+    d = Path(base) / COSTUME_DIR
+    d.mkdir(parents=True, exist_ok=True)
+    sheet.save(d / "tacchino.png")
+    (d / "tacchino.anm2").write_text(anm2, encoding="utf-8")
+    return d / "tacchino.png", d / "tacchino.anm2"
+
+
 # Sostituiscono i PNG vanilla con lo stesso percorso: (righe, altezza delle lettere, spessore del tratto)
 BOSS_NAMES = {
     "resources/gfx/ui/boss/bossname_68.0_peep.png": (["PIPPOLINS"], 28, 6),
@@ -463,6 +525,7 @@ def write_boss_names(base):
 
 def write_all(base):
     write_boss_names(base)
+    write_costume(base)
     paths, imgs = [], []
     for name, rel in OUT.items():
         im = render(SPRITES[name])
@@ -514,6 +577,13 @@ def selftest():
             colors = [c for _, c in im.getcolors(65536)]
             assert {c[:3] for c in colors if c[3]} == {BOSS_NAME_COLOR}, p
             assert {c[3] for c in colors} == {0, 128, 255}, p
+        png, anm2 = write_costume(Path(d))
+        sheet = Image.open(png)
+        assert sheet.size == (128, 32) and sheet.mode == "RGBA", sheet.size
+        for i in range(4):
+            assert sheet.crop((32 * i, 0, 32 * i + 32, 32)).getchannel("A").getbbox(), i
+        root = ET.parse(anm2).getroot()
+        assert sorted(a.get("Name") for a in root.iter("Animation")) == ["HeadDown", "HeadLeft", "HeadRight", "HeadUp"]
     print("SELFTEST OK")
 
 

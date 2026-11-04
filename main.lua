@@ -22,6 +22,7 @@ local TACCHINO_ITEMS = {
 local ITEM_IDIOTA = Isaac.GetItemIdByName("Sono un Idiota")
 local ITEM_FERMI = Isaac.GetItemIdByName("Fermi Tutti")
 local SOUND_TACCHINO = Isaac.GetSoundIdByName("Risacca Tacchino")
+local COSTUME_TACCHINO = Isaac.GetCostumeIdByPath("gfx/characters/tacchino.anm2")
 
 for name, id in pairs({
   ["Ho Rotto il Gioco"] = ITEM_ROTTO,
@@ -425,6 +426,11 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
     player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
     player:AddCacheFlags(CacheFlag.CACHE_SPEED)
     player:EvaluateItems()
+    if now then
+      player:AddNullCostume(COSTUME_TACCHINO)
+    else
+      player:TryRemoveNullCostume(COSTUME_TACCHINO)
+    end
     if now and not run.tacchinoShown then
       run.tacchinoShown = true
       say(T.TACCHINO_TRASF, T.TACCHINO_TRASF_SUB, 0, P.BACIONE)
