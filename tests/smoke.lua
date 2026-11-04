@@ -59,13 +59,15 @@ local ids = {
 }
 local spawned, lastSpawn = 0, nil
 local roomEntities = {}
+local debugLogs = {}
 Isaac = {
-  GetItemIdByName = function(n) return ids[n] end,
-  GetTrinketIdByName = function(n) return ids[n] end,
+  GetItemIdByName = function(n) return ids[n] or -1 end,
+  GetTrinketIdByName = function(n) return ids[n] or -1 end,
   GetPlayer = function() return player end,
   Spawn = function(t, v, s) spawned = spawned + 1; lastSpawn = { t = t, v = v, s = s } end,
   GetFreeNearPosition = function(p) return p end,
   GetRoomEntities = function() return roomEntities end,
+  DebugString = function(s) debugLogs[#debugLogs + 1] = s end,
 }
 local hud = { ShowItemText = function(_, t, s) shown[#shown + 1] = s ~= "" and (t .. " / " .. s) or t end }
 local level = { blueMap = 0, visibility = 0, angelChance = 0 }
@@ -107,7 +109,17 @@ EID = {
 
 dofile("main.lua")
 assert(#cbs > 0, "nessuna callback registrata")
+assert(#debugLogs == 0, "oggetti con ID mancante all'avvio: " .. table.concat(debugLogs, ", "))
 for _, id in pairs(ids) do assert(eid[id], "descrizione EID mancante: " .. id) end
+
+-- Controllo coerenza nomi tra main.lua e content/items.xml (#49)
+local itemsXml = io.open("content/items.xml", "r")
+assert(itemsXml, "impossibile aprire content/items.xml")
+local xmlContent = itemsXml:read("*all")
+itemsXml:close()
+for name in pairs(ids) do
+  assert(xmlContent:find('name="' .. name .. '"', 1, true), "nome non presente in content/items.xml: " .. name)
+end
 
 local function frames(n)
   for _ = 1, n do
