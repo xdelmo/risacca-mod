@@ -79,8 +79,6 @@ Facoltativo, se ci arrivi: The Beast deve mostrare **"IL BEASTY BOY"**, Mega Sat
 - [ ] Quando incontri The Beast: se compare una schermata VS, deve mostrare **IL BEASTY BOY**. Il gioco non ha un'immagine del nome per questo boss, quindi è probabile che la schermata non ci sia: in quel caso segnalalo e basta. La scritta **IL BEASTY BOY** è confermata con `spawn 951`; la schermata VS resta da vedere, perché `goto` non apre la stanza del boss.
 - [x] Quando incontri Mega Satan: la schermata VS mostra **MEGA STANLEY**. Se per Peep o Mega Satan resta il nome originale, il gioco non sta usando il PNG della mod: dimmelo e provo a spostarlo in `resources-dlc3/`. Confermato con `goto s.boss.5000`; il banner in stanza dice **MEGA STANLEY KUBRICK**.
 - [x] Quando incontri Bumbino: la schermata VS e la scritta mostrano **BUMBAZZO**. Confermato con `goto s.boss.5270`; nella schermata VS il nome arriva fino al bordo destro.
-- [ ] Quando incontri Ultra Greed (modalità Greed): la schermata VS mostra **ULTRA BALLERINO DI FLAMENCO** su due righe, e la scritta lo stesso nome. Ultra Greedier usa la stessa immagine, quindi nella sua schermata VS comparirà questo nome: controlla che ti vada bene. La scritta è confermata con `spawn 406`; la schermata VS va vista in una run in modalità Greed.
-- [x] Quando incontri il mini-boss Greed: compare la scritta **BALLERINO DI FLAMENCO**. Controlla anche il banner del mini-boss, che dovrebbe restare "Greed" perché viene dalla `stringtable.sta` e la mod non la genera. Confermati con `goto s.miniboss.2040`: il banner dice "ISAAC VS GREED".
 
 Le chiavi e le bombe raccolte da terra non cambiano nome: le rinomine riguardano solo nomi e descrizioni di oggetti, trinket, carte e pillole.
 
