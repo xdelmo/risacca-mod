@@ -7,6 +7,8 @@
         <Item Name="Potrebbe Stare Qua" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="La Trollata" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Fai Così, Fai Così" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Sono un Idiota" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Fermi Tutti" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     </Pool>
     <Pool Name="boss">
         <Item Name="Tacchinardi" Weight="1" DecreaseBy="1" RemoveOn="0.1" />

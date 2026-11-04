@@ -19,6 +19,8 @@ local TACCHINO_ITEMS = {
   Isaac.GetItemIdByName("Tacchinibus"),
   Isaac.GetItemIdByName("Il Tacchino della Domenica"),
 }
+local ITEM_IDIOTA = Isaac.GetItemIdByName("Sono un Idiota")
+local ITEM_FERMI = Isaac.GetItemIdByName("Fermi Tutti")
 
 -- Descrizioni per External Item Descriptions, solo se l'altra mod è attiva
 if EID then
@@ -37,9 +39,11 @@ if EID then
   EID:addCollectible(TACCHINO_ITEMS[1], L.EID.TACCHINARDI)
   EID:addCollectible(TACCHINO_ITEMS[2], L.EID.TACCHINIBUS)
   EID:addCollectible(TACCHINO_ITEMS[3], L.EID.DOMENICA)
+  EID:addCollectible(ITEM_IDIOTA, L.EID.IDIOTA)
+  EID:addCollectible(ITEM_FERMI, L.EID.FERMI)
 end
 
-local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKills = 0, beastyShown = false, kubrickShown = false, pippolinsShown = false, bumbazzoShown = false, flamencoShown = false, ultraFlamencoShown = false, tacchinoShown = false } end
+local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKills = 0, beastyShown = false, kubrickShown = false, pippolinsShown = false, bumbazzoShown = false, tacchinoShown = false } end
 local run = freshRun()
 local roomFlags = {}
 
@@ -164,7 +168,9 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
 
   local qi = player.QueuedItem.Item
   if qi and not prevQueued[idx] and qi:IsCollectible() then
-    local t = L.pickupText(qi.Quality, devilPending[idx] == qi.ID)
+    -- gli oggetti inutili non fanno niente: solo la scritta quando li raccogli
+    local useless = { [ITEM_IDIOTA] = L.TEXT.IDIOTA, [ITEM_FERMI] = L.TEXT.FERMI }
+    local t = useless[qi.ID] or L.pickupText(qi.Quality, devilPending[idx] == qi.ID)
     devilPending[idx] = nil
     if t then say(t, nil, 45, P.PICKUP) end
   end
@@ -205,14 +211,6 @@ mod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, function(_, npc)
   elseif npc.Type == EntityType.ENTITY_BUMBINO and not run.bumbazzoShown then
     run.bumbazzoShown = true
     say(T.BUMBAZZO, nil, 30, P.BOSSNAME)
-    save()
-  elseif npc.Type == EntityType.ENTITY_GREED and not run.flamencoShown then -- variant 1 è Super Greed
-    run.flamencoShown = true
-    say(T.FLAMENCO, nil, 30, P.BOSSNAME)
-    save()
-  elseif npc.Type == EntityType.ENTITY_ULTRA_GREED and not run.ultraFlamencoShown then -- variant 1 è Ultra Greedier
-    run.ultraFlamencoShown = true
-    say(T.ULTRA_FLAMENCO, nil, 30, P.BOSSNAME)
     save()
   end
 end)
