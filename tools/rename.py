@@ -18,9 +18,17 @@ RULES = [(re.compile(p, re.I), r) for p, r in [
 ]]
 
 
+EXACT = {
+    "Incubus": "Il buddy più forte del gioco",
+    "Eye of Greed": "Come Cacchio Si Chiama",
+    "Car Battery": "Non Si Sa Mai",
+    "0 - The Fool": "Col vostro permessico",
+}
+
+
 def rename_text(s):
-    if s == "Incubus":
-        return "Il buddy più forte del gioco"
+    if s in EXACT:
+        return EXACT[s]
     for rx, rep in RULES:
         s = rx.sub(rep, s)
     return s
@@ -67,6 +75,9 @@ def selftest():
         "Bumbo's Heart": "Bumbazzo's Heart",
         "Greed's Gullet": "Ballerino di Flamenco's Gullet",
         "Ultra Greedier": "Ultra Greedier",
+        "Eye of Greed": "Come Cacchio Si Chiama",
+        "Car Battery": "Non Si Sa Mai",
+        "0 - The Fool": "Col vostro permessico",
     }
     for src, want in cases.items():
         got = rename_text(src)

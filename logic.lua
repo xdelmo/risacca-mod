@@ -28,6 +28,8 @@ L.TEXT = {
   CRETINO = "Sono un cretino",
   NON_MUORE = "Non muore!",
   SOGNARE = "Fammi sognare",
+  TROLLATA = "M'ha trollato!",
+  MANNAGGIA = "Mannaggia a lui!",
 }
 
 -- Descrizioni per External Item Descriptions: "#" va a capo, {{...}} sono le icone di EID.
@@ -40,15 +42,19 @@ L.EID = {
   PRIVI = "25% di probabilità di un pickup in più quando finisci una stanza:#{{Coin}} moneta, {{Bomb}} bomba, {{Key}} chiave o {{Heart}} cuore",
   PRO = "↑ {{Damage}} +2 Danni per la stanza#Se ti colpiscono perdi il bonus",
   GENNARO = "{{AngelRoom}} +25% di probabilità di una stanza dell'angelo a ogni nuovo piano#{{EternalHeart}} Un cuore eterno alla prima visita di ogni stanza dell'angelo",
+  TROLLATA = "Fa comparire una troll bomb addosso a ogni nemico della stanza#Se ti trovi vicino esplode anche su di te",
+  FAICOSI = "Ogni seconda lacrima parte doppia",
+  MANNAGGIA = "Quando vieni colpito, il nemico più vicino subisce 10 volte il tuo danno",
 }
 
-L.PRIO = { XL = 1, INTRO = 1, PICKUP = 2, TACCHINO = 2, ITEM = 2, ANSIA = 3, BOSSNAME = 3, BACIONE = 4, BEDUINS = 5, CRETINO = 3, NON_MUORE = 2 }
+L.PRIO = { XL = 1, INTRO = 1, PICKUP = 2, TACCHINO = 2, ITEM = 2, ANSIA = 3, BOSSNAME = 3, BACIONE = 4, BEDUINS = 5, CRETINO = 3, NON_MUORE = 2, MANNAGGIA = 3 }
 
 L.RUBO_FRAMES = 90 -- 3 secondi a 30 update al secondo
 L.STARE_BOMBS = 2
 L.GENNARO_ANGEL_CHANCE = 0.25
 L.PRO_DAMAGE = 2
 L.NON_MUORE_FRAMES = 1800 -- 60 secondi a 30 update al secondo
+L.MANNAGGIA_MULT = 10
 
 function L.nonMuore(roomFrames, aliveBosses)
   return aliveBosses > 0 and roomFrames >= L.NON_MUORE_FRAMES

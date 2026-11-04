@@ -11,6 +11,9 @@ local ITEM_STARE = Isaac.GetItemIdByName("Potrebbe Stare Qua")
 local ITEM_GENNARO = Isaac.GetItemIdByName("Il Miracolo di San Gennaruzzo")
 local TRINKET_PRIVI = Isaac.GetTrinketIdByName("Che Fai, Te Ne Privi?")
 local ITEM_PRO = Isaac.GetItemIdByName("La Mossa del Pro Player")
+local ITEM_TROLLATA = Isaac.GetItemIdByName("La Trollata")
+local ITEM_FAICOSI = Isaac.GetItemIdByName("Fai Così, Fai Così")
+local TRINKET_MANNAGGIA = Isaac.GetTrinketIdByName("Mannaggia a Lui")
 
 -- Descrizioni per External Item Descriptions, solo se l'altra mod è attiva
 if EID then
@@ -23,6 +26,9 @@ if EID then
   EID:addCollectible(ITEM_GENNARO, L.EID.GENNARO)
   EID:addTrinket(TRINKET_PRIVI, L.EID.PRIVI)
   EID:addCollectible(ITEM_PRO, L.EID.PRO)
+  EID:addCollectible(ITEM_TROLLATA, L.EID.TROLLATA)
+  EID:addCollectible(ITEM_FAICOSI, L.EID.FAICOSI)
+  EID:addTrinket(TRINKET_MANNAGGIA, L.EID.MANNAGGIA)
 end
 
 local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKills = 0, beastyShown = false, kubrickShown = false, pippolinsShown = false } end
@@ -295,3 +301,48 @@ mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
     refresh(CacheFlag.CACHE_DAMAGE)
   end
 end)
+
+-- La Trollata
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, function()
+  for _, e in ipairs(Isaac.GetRoomEntities()) do
+    if e:IsVulnerableEnemy() then
+      Isaac.Spawn(EntityType.ENTITY_BOMB, BombVariant.BOMB_TROLL, 0, e.Position, Vector.Zero, nil)
+    end
+  end
+  say(T.TROLLATA, nil, 0, P.ITEM)
+  return true
+end, ITEM_TROLLATA)
+
+-- Fai Così, Fai Così: doubling evita che la lacrima gemella conti come un nuovo tiro
+local tearCount, doubling = {}, false
+
+mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
+  if doubling or not tear.SpawnerEntity then return end
+  local player = tear.SpawnerEntity:ToPlayer()
+  if not player or not player:HasCollectible(ITEM_FAICOSI) then return end
+  local h = GetPtrHash(player)
+  tearCount[h] = (tearCount[h] or 0) + 1
+  if tearCount[h] % 2 == 0 then
+    doubling = true
+    player:FireTear(tear.Position, tear.Velocity:Rotated(8))
+    doubling = false
+  end
+end)
+
+-- Mannaggia a Lui
+mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity)
+  local player = entity:ToPlayer()
+  local mult = player and player:GetTrinketMultiplier(TRINKET_MANNAGGIA) or 0
+  if mult == 0 then return end
+  local target, best
+  for _, e in ipairs(Isaac.GetRoomEntities()) do
+    if e:IsVulnerableEnemy() then
+      local d = e.Position:Distance(player.Position)
+      if not best or d < best then target, best = e, d end
+    end
+  end
+  if target then
+    target:TakeDamage(player.Damage * L.MANNAGGIA_MULT * mult, 0, EntityRef(player), 0)
+    say(T.MANNAGGIA, nil, 0, P.MANNAGGIA)
+  end
+end, EntityType.ENTITY_PLAYER)

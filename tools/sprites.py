@@ -20,6 +20,9 @@ OUT = {
     "san_gennaruzzo": "resources/gfx/items/collectibles/san_gennaruzzo.png",
     "te_ne_privi": "resources/gfx/items/trinkets/te_ne_privi.png",
     "mossa_pro_player": "resources/gfx/items/collectibles/mossa_pro_player.png",
+    "la_trollata": "resources/gfx/items/collectibles/la_trollata.png",
+    "fai_cosi": "resources/gfx/items/collectibles/fai_cosi.png",
+    "mannaggia_a_lui": "resources/gfx/items/trinkets/mannaggia_a_lui.png",
 }
 PALETTE = {
     "K": (8, 0, 0),        # Contorno Isaac: colore del bordo in 443 collezionabili vanilla su 548
@@ -55,6 +58,11 @@ PALETTE = {
     # Fiamma
     "F": (230, 48, 26),
     "O": (255, 145, 28),
+
+    # Lacrime
+    "a": (176, 222, 245),
+    "A": (96, 164, 222),
+    "c": (48, 96, 160),
 }
 
 # Solo i riempimenti: il contorno da 2px stile Isaac lo aggiunge outline().
@@ -206,6 +214,54 @@ SPRITES = {
         " wwggggmmm  mmggmmm ",
         "  wgggmm      mggm  ",
         "   wgmm        mm   ",
+    ],
+    "la_trollata": [  # Troll bomb con occhi storti e ghigno rosso
+        "             OY  ",
+        "            OYWO ",
+        "           ssOY  ",
+        "          ss     ",
+        "      mddsddn    ",
+        "    mmddddddddn  ",
+        "   mWmddddddddnn ",
+        "  mWmdWWdddWWddnn",
+        "  mmddWKdddKWddnn",
+        "  mdddddddddddnnn",
+        "  dddRdddddddRdnn",
+        "  ddddRRRRRRRddnn",
+        "  dddddRWWWRddnnn",
+        "   dddddRRRdddnn ",
+        "    ndddddnnnnn  ",
+        "      nnnnnnn    ",
+    ],
+    "fai_cosi": [  # Due lacrime gemelle
+        "    aA              ",
+        "   aaAc             ",
+        "   aAAc      aA     ",
+        "  aaAAAc    aaAc    ",
+        " aWaAAAAc   aAAc    ",
+        " aWAAAAAc  aaAAAc   ",
+        " aAAAAAAc aWaAAAAc  ",
+        " aAAAAAcc aWAAAAAc  ",
+        "  AAAAcc  aAAAAAAc  ",
+        "   cccc   aAAAAAcc  ",
+        "           AAAAcc   ",
+        "            cccc    ",
+    ],
+    "mannaggia_a_lui": [  # Cornetto rosso con il tappo d'oro
+        "            lR  ",
+        "           lRr  ",
+        "          lRRr  ",
+        "         lRRr   ",
+        "        lRRRr   ",
+        "       lRRRRr   ",
+        "      lWRRRr    ",
+        "     lWRRRRr    ",
+        "    lRRRRRr     ",
+        "   lRRRRRrr     ",
+        "   lRRRRrr      ",
+        "  LYYYyyb       ",
+        " LYYYYyb        ",
+        "  YYyyb         ",
     ],
 }
 
