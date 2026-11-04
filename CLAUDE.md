@@ -19,6 +19,7 @@ python3 tools/sprites.py --selftest   # sprite (serve Pillow)
 python3 tools/build.py --selftest     # controllo del contenuto dello zip
 python3 tools/build.py                # → dist/risacca-mod.zip (da estrarre in ...\mods\)
 python3 tools/sprites.py              # rigenera i PNG in resources/
+python3 tools/leggibilita.py          # → dist/leggibilita.png: tutte le icone a 1x/2x, su HUD e piedistallo, e in grigi
 python3 tools/rename.py extracted     # genera resources-dlc3/ dai file del ResourceExtractor
 python3 tools/tormentoni.py           # rigenera docs/trascrizioni/tormentoni.md da tormentoni.txt
 ```
