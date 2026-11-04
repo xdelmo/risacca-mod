@@ -22,6 +22,27 @@ local TACCHINO_ITEMS = {
 local ITEM_IDIOTA = Isaac.GetItemIdByName("Sono un Idiota")
 local ITEM_FERMI = Isaac.GetItemIdByName("Fermi Tutti")
 
+for name, id in pairs({
+  ["Ho Rotto il Gioco"] = ITEM_ROTTO,
+  ["-1 al Dead God"] = ITEM_DEADGOD,
+  ["Win Streak"] = TRINKET_STREAK,
+  ["Non Vi Rubo Altro Tempo"] = ITEM_RUBO,
+  ["Potrebbe Stare Qua"] = ITEM_STARE,
+  ["Il Miracolo di San Gennaruzzo"] = ITEM_GENNARO,
+  ["Che Fai, Te Ne Privi?"] = TRINKET_PRIVI,
+  ["La Mossa del Pro Player"] = ITEM_PRO,
+  ["La Trollata"] = ITEM_TROLLATA,
+  ["Fai Così, Fai Così"] = ITEM_FAICOSI,
+  ["Mannaggia a Lui"] = TRINKET_MANNAGGIA,
+  ["Tacchinardi"] = TACCHINO_ITEMS[1],
+  ["Tacchinibus"] = TACCHINO_ITEMS[2],
+  ["Il Tacchino della Domenica"] = TACCHINO_ITEMS[3],
+  ["Sono un Idiota"] = ITEM_IDIOTA,
+  ["Fermi Tutti"] = ITEM_FERMI,
+}) do
+  if id == -1 then Isaac.DebugString("[Risacca] ID non trovato: " .. name) end
+end
+
 -- Descrizioni per External Item Descriptions, solo se l'altra mod è attiva
 if EID then
   EID:setModIndicatorName("Risacca Mod")
