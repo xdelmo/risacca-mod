@@ -51,3 +51,23 @@ non usato | Bello ma non balla | bello ma non balla |
 non usato | Trolloso scarsone | trolloso |
 non usato | Botta di straculo | straculo |
 non usato | Malegrittibus | malegritt |
+non usato | Non si sa mai | non si sa mai | Di solito prendendo un HP o un oggetto "per sicurezza"
+non usato | Fai così, fai così | fai così,? fai così |
+non usato | Dammi qua | dammi qua |
+non usato | Zitti tutti | zitti tutti | "Zitti tutti la bomba", "HP zitti tutti"
+non usato | Mu bien | mu[iy]? bien |
+non usato | Un very big problem | very big problem |
+non usato | Come ti sei permesso? | ti sei permess | Quando un nemico lo colpisce
+non usato | Io ve lo dico | io ve lo dico |
+non usato | Che male non ci fa | male non ci fa |
+non usato | Con calma e per favore | con calma e per favore |
+non usato | Non mi posso lamentare | non mi posso lamentare |
+non usato | Non scherziamo con le cose serie | scherziamo con le cose serie | Quando prende un oggetto forte
+non usato | Siamo messi malissimo | messi malissimo |
+non usato | La R di oggi | la r di oggi | La run del giorno, "partiamo con la R di oggi"
+non usato | Abissare | ab+is+a[rt] | Assorbire un oggetto (abyss)
+non usato | Ci facciamo il bossettino | bossettin |
+non usato | Brutto eretico maledetto | eretic |
+non usato | Ho fatto una cretinata | cretinat |
+non usato | Porcone! | porcone |
+non usato | Caruccio | caruccio |

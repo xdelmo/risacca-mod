@@ -5,6 +5,26 @@ L'ordine è quello del canale, dal video più recente. I titoli sono quelli rest
 
 | File | Titolo | Durata | Video |
 |---|---|---|---|
+| [`PUYwEuaZPaA.txt`](<PUYwEuaZPaA.txt>) | qualcuno ha detto R-KEY? | 2:17:31 | [YouTube](https://www.youtube.com/watch?v=PUYwEuaZPaA) |
+| [`RnDAFIzaE_Q.txt`](<RnDAFIzaE_Q.txt>) | This COMBO is always SO SATISFYING | 57:20 | [YouTube](https://www.youtube.com/watch?v=RnDAFIzaE_Q) |
+| [`iuNlt8a_vj8.txt`](<iuNlt8a_vj8.txt>) | TECH X INFINITY | 56:45 | [YouTube](https://www.youtube.com/watch?v=iuNlt8a_vj8) |
+| [`AB2WE_VRF_A.txt`](<AB2WE_VRF_A.txt>) | using DIPLOPIA at the RIGHT time | 1:10:08 | [YouTube](https://www.youtube.com/watch?v=AB2WE_VRF_A) |
+| [`BjX_lHMYbI8.txt`](<BjX_lHMYbI8.txt>) | this item is INSANE | 54:23 | [YouTube](https://www.youtube.com/watch?v=BjX_lHMYbI8) |
+| [`-srJhobGDi8.txt`](<-srJhobGDi8.txt>) | Brimstone, how could you pass that up? | 58:18 | [YouTube](https://www.youtube.com/watch?v=-srJhobGDi8) |
+| [`iFA5yw-76Cc.txt`](<iFA5yw-76Cc.txt>) | "This will be a TOUGH FIGHT" quote. | 50:30 | [YouTube](https://www.youtube.com/watch?v=iFA5yw-76Cc) |
+| [`ZwLU8aZtSqg.txt`](<ZwLU8aZtSqg.txt>) | this run doesn't need a title | 1:19:55 | [YouTube](https://www.youtube.com/watch?v=ZwLU8aZtSqg) |
+| [`7qxtdtPgT30.txt`](<7qxtdtPgT30.txt>) | The Binding of Isaac & Chill! | 53:11 | [YouTube](https://www.youtube.com/watch?v=7qxtdtPgT30) |
+| [`gM91cI8VmQI.txt`](<gM91cI8VmQI.txt>) | The HARDEST DELIRIUM FIGHT on the channel! | 1:05:58 | [YouTube](https://www.youtube.com/watch?v=gM91cI8VmQI) |
+| [`C-Y7Zjy-E_k.txt`](<C-Y7Zjy-E_k.txt>) | Tainted Keeper never disappoints! | 53:05 | [YouTube](https://www.youtube.com/watch?v=C-Y7Zjy-E_k) |
+| [`36xuuQZpCmo.txt`](<36xuuQZpCmo.txt>) | MANITA di Completion Marks in una run PREPOTENTE | 54:18 | [YouTube](https://www.youtube.com/watch?v=36xuuQZpCmo) |
+| [`9r8pHkX8-EQ.txt`](<9r8pHkX8-EQ.txt>) | one of the hardest Completion Marks in the game? | 1:04:22 | [YouTube](https://www.youtube.com/watch?v=9r8pHkX8-EQ) |
+| [`Vpif88Ruqt8.txt`](<Vpif88Ruqt8.txt>) | I find GENESIS, but I don't use it… HERE'S WHY | 51:01 | [YouTube](https://www.youtube.com/watch?v=Vpif88Ruqt8) |
+| [`KT5-ehHcpdM.txt`](<KT5-ehHcpdM.txt>) | The FUSION between Azazel and Tainted Azazel is POWERFUL! | 45:23 | [YouTube](https://www.youtube.com/watch?v=KT5-ehHcpdM) |
+| [`KH_wXxhQbi4.txt`](<KH_wXxhQbi4.txt>) | The best character to find BIRTHRIGHT with? | 48:53 | [YouTube](https://www.youtube.com/watch?v=KH_wXxhQbi4) |
+| [`-Z30gJc1CRc.txt`](<-Z30gJc1CRc.txt>) | I'm suffering like a dog because of this item | 1:02:48 | [YouTube](https://www.youtube.com/watch?v=-Z30gJc1CRc) |
+| [`CSRyvMdmyGQ.txt`](<CSRyvMdmyGQ.txt>) | I got trolled by the game… | 56:15 | [YouTube](https://www.youtube.com/watch?v=CSRyvMdmyGQ) |
+| [`pnqTEBrphd8.txt`](<pnqTEBrphd8.txt>) | Using DOCTOR FETUS for the first time | 53:11 | [YouTube](https://www.youtube.com/watch?v=pnqTEBrphd8) |
+| [`-AsV379j894.txt`](<-AsV379j894.txt>) | FIREWORKS on The Binding of Isaac | 1:16:50 | [YouTube](https://www.youtube.com/watch?v=-AsV379j894) |
 | [`q4r3qL9sWs0.txt`](<q4r3qL9sWs0.txt>) | 10/10 Eden spawn. | 1:18:35 | [YouTube](https://www.youtube.com/watch?v=q4r3qL9sWs0) |
 | [`1u-XGHDwHfk.txt`](<1u-XGHDwHfk.txt>) | how to turn around a DESPERATE RUN \| IMPOSSIBLE SEED | 1:20:16 | [YouTube](https://www.youtube.com/watch?v=1u-XGHDwHfk) |
 | [`NuwiH0nN_Jg.txt`](<NuwiH0nN_Jg.txt>) | Tainted Jacob's CRAZY TRAIN! | 56:34 | [YouTube](https://www.youtube.com/watch?v=NuwiH0nN_Jg) |
