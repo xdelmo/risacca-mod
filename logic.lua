@@ -33,6 +33,8 @@ L.TEXT = {
   SOGNARE = "Fammi sognare",
   TROLLATA = "M'ha trollato!",
   MANNAGGIA = "Mannaggia a lui!",
+  TACCHINO_TRASF = "SEI UN TACCHINO!",
+  TACCHINO_TRASF_SUB = "Tacchinardi, tacchinibus",
 }
 
 -- Descrizioni per External Item Descriptions: "#" va a capo, {{...}} sono le icone di EID.
@@ -48,6 +50,9 @@ L.EID = {
   TROLLATA = "Fa comparire una troll bomb addosso a ogni nemico della stanza#Se ti trovi vicino esplode anche su di te",
   FAICOSI = "Ogni seconda lacrima parte doppia",
   MANNAGGIA = "Quando vieni colpito, il nemico più vicino subisce 10 volte il tuo danno",
+  TACCHINARDI = "↑ {{Heart}} +1 Contenitore cuore#Trasformazione Tacchino (1/3)",
+  TACCHINIBUS = "↑ {{SoulHeart}} +2 Cuori anima#Trasformazione Tacchino (1/3)",
+  DOMENICA = "{{Heart}} Cura tutti i cuori#Trasformazione Tacchino (1/3)",
 }
 
 L.PRIO = { XL = 1, INTRO = 1, PICKUP = 2, TACCHINO = 2, ITEM = 2, ANSIA = 3, BOSSNAME = 3, BACIONE = 4, BEDUINS = 5, CRETINO = 3, NON_MUORE = 2, MANNAGGIA = 3 }
@@ -58,6 +63,11 @@ L.GENNARO_ANGEL_CHANCE = 0.25
 L.PRO_DAMAGE = 2
 L.NON_MUORE_FRAMES = 1800 -- 60 secondi a 30 update al secondo
 L.MANNAGGIA_MULT = 10
+L.TACCHINO_DAMAGE = 1   -- trasformazione Tacchino: più forte...
+L.TACCHINO_SPEED = -0.1 -- ...ma più lento
+
+-- la trasformazione Tacchino scatta con tutti e 3 gli oggetti
+function L.isTacchino(count) return count >= 3 end
 
 function L.nonMuore(roomFrames, aliveBosses)
   return aliveBosses > 0 and roomFrames >= L.NON_MUORE_FRAMES

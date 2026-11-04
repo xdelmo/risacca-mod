@@ -14,6 +14,11 @@ local ITEM_PRO = Isaac.GetItemIdByName("La Mossa del Pro Player")
 local ITEM_TROLLATA = Isaac.GetItemIdByName("La Trollata")
 local ITEM_FAICOSI = Isaac.GetItemIdByName("Fai Così, Fai Così")
 local TRINKET_MANNAGGIA = Isaac.GetTrinketIdByName("Mannaggia a Lui")
+local TACCHINO_ITEMS = {
+  Isaac.GetItemIdByName("Tacchinardi"),
+  Isaac.GetItemIdByName("Tacchinibus"),
+  Isaac.GetItemIdByName("Il Tacchino della Domenica"),
+}
 
 -- Descrizioni per External Item Descriptions, solo se l'altra mod è attiva
 if EID then
@@ -29,9 +34,12 @@ if EID then
   EID:addCollectible(ITEM_TROLLATA, L.EID.TROLLATA)
   EID:addCollectible(ITEM_FAICOSI, L.EID.FAICOSI)
   EID:addTrinket(TRINKET_MANNAGGIA, L.EID.MANNAGGIA)
+  EID:addCollectible(TACCHINO_ITEMS[1], L.EID.TACCHINARDI)
+  EID:addCollectible(TACCHINO_ITEMS[2], L.EID.TACCHINIBUS)
+  EID:addCollectible(TACCHINO_ITEMS[3], L.EID.DOMENICA)
 end
 
-local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKills = 0, beastyShown = false, kubrickShown = false, pippolinsShown = false, bumbazzoShown = false, flamencoShown = false, ultraFlamencoShown = false } end
+local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKills = 0, beastyShown = false, kubrickShown = false, pippolinsShown = false, bumbazzoShown = false, flamencoShown = false, ultraFlamencoShown = false, tacchinoShown = false } end
 local run = freshRun()
 local roomFlags = {}
 
@@ -358,3 +366,39 @@ mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity)
     say(T.MANNAGGIA, nil, 0, P.MANNAGGIA)
   end
 end, EntityType.ENTITY_PLAYER)
+
+-- Trasformazione Tacchino: con tutti e 3 gli oggetti del tacchino, più danno e meno velocità
+local function isTacchino(player)
+  local n = 0
+  for _, id in ipairs(TACCHINO_ITEMS) do
+    if player:HasCollectible(id) then n = n + 1 end
+  end
+  return L.isTacchino(n)
+end
+
+local wasTacchino = {}
+
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
+  local idx = GetPtrHash(player)
+  local now = isTacchino(player)
+  if now ~= (wasTacchino[idx] or false) then
+    player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+    player:AddCacheFlags(CacheFlag.CACHE_SPEED)
+    player:EvaluateItems()
+    if now and not run.tacchinoShown then
+      run.tacchinoShown = true
+      say(T.TACCHINO_TRASF, T.TACCHINO_TRASF_SUB, 0, P.BACIONE)
+      save()
+    end
+  end
+  wasTacchino[idx] = now
+end)
+
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player, flag)
+  if not isTacchino(player) then return end
+  if flag == CacheFlag.CACHE_DAMAGE then
+    player.Damage = player.Damage + L.TACCHINO_DAMAGE
+  elseif flag == CacheFlag.CACHE_SPEED then
+    player.MoveSpeed = player.MoveSpeed + L.TACCHINO_SPEED
+  end
+end)

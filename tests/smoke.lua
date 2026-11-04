@@ -54,6 +54,7 @@ local ids = {
   ["Non Vi Rubo Altro Tempo"] = 735, ["Potrebbe Stare Qua"] = 736, ["Il Miracolo di San Gennaruzzo"] = 737,
   ["Che Fai, Te Ne Privi?"] = 191, ["La Mossa del Pro Player"] = 738,
   ["La Trollata"] = 739, ["Fai Così, Fai Così"] = 740, ["Mannaggia a Lui"] = 192,
+  ["Tacchinardi"] = 743, ["Tacchinibus"] = 744, ["Il Tacchino della Domenica"] = 745,
 }
 local spawned, lastSpawn = 0, nil
 local roomEntities = {}
@@ -345,6 +346,28 @@ expect({ "Mannaggia a lui!" })
 roomEntities = {}
 fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 1); frames(5)
 expect({})
+
+-- Trasformazione Tacchino: con 2 oggetti su 3 niente, con 3 scritta e bonus, una volta per run
+local function speedBonus()
+  local base = player.MoveSpeed
+  fire(ModCallbacks.MC_EVALUATE_CACHE, nil, player, CacheFlag.CACHE_SPEED)
+  local d = player.MoveSpeed - base
+  player.MoveSpeed = base
+  return d
+end
+local dmg0, spd0 = damageBonus(), speedBonus()
+items[743], items[744] = true, true; frames(5)
+expect({})
+assert(math.abs(damageBonus() - dmg0) < 1e-9, "bonus Tacchino con 2 oggetti")
+evaluations = 0
+items[745] = true; frames(5)
+expect({ "SEI UN TACCHINO! / Tacchinardi, tacchinibus" })
+assert(evaluations == 1, "statistiche non ricalcolate alla trasformazione")
+assert(math.abs(damageBonus() - dmg0 - 1) < 1e-9 and math.abs(speedBonus() - spd0 + 0.1) < 1e-9, "bonus Tacchino errato")
+items[745] = nil; frames(5)
+items[745] = true; frames(5)
+expect({}) -- la scritta esce una volta per run
+items[743], items[744], items[745] = nil, nil, nil; frames(5)
 
 -- ogni callback registrata deve essere stata chiamata almeno una volta
 for i, c in ipairs(cbs) do assert(called[c], "callback #" .. i .. " mai chiamata") end
