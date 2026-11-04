@@ -11,8 +11,6 @@ L.TEXT = {
   KUBRICK = "MEGA STANLEY KUBRICK",
   PIPPOLINS = "PIPPOLINS",
   BUMBAZZO = "BUMBAZZO",
-  INTRO = "Ciao a tutti, io sono Risacca",
-  INTRO_SUB = "Benvenuti sul mio canale",
   ANSIA = "C'ho l'ansia",
   TACCHINO = "Tacchino!",
   FACCIAZZA = "Alla facciazza vostra!",
@@ -57,7 +55,7 @@ L.EID = {
   FERMI = "Non fa niente",
 }
 
-L.PRIO = { XL = 1, INTRO = 1, PICKUP = 2, TACCHINO = 2, ITEM = 2, ANSIA = 3, BOSSNAME = 3, BACIONE = 4, BEDUINS = 5, CRETINO = 3, NON_MUORE = 2, MANNAGGIA = 3 }
+L.PRIO = { XL = 1, PICKUP = 2, TACCHINO = 2, ITEM = 2, ANSIA = 3, BOSSNAME = 3, BACIONE = 4, BEDUINS = 5, CRETINO = 3, NON_MUORE = 2, MANNAGGIA = 3 }
 
 L.RUBO_FRAMES = 90 -- 3 secondi a 30 update al secondo
 L.STARE_BOMBS = 2

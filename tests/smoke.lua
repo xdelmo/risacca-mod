@@ -154,13 +154,13 @@ local function expect(want)
   shown = {}
 end
 
--- nuova run: intro, poi "È XL?", e registrazione tardiva di EID
+-- nuova run: "È XL?", e registrazione tardiva di EID
 fire(ModCallbacks.MC_POST_GAME_STARTED, nil, false)
 for _, id in pairs(ids) do assert(eid[id], "descrizione EID mancante: " .. id) end
 fire(ModCallbacks.MC_POST_NEW_LEVEL)
 fire(ModCallbacks.MC_POST_NEW_ROOM)
 frames(100)
-expect({ "Ciao a tutti, io sono Risacca / Benvenuti sul mio canale", "È XL? / No... non è XL" })
+expect({ "È XL? / No... non è XL" })
 
 -- raccolta oggetto Q4 → MAXIMOR
 player.QueuedItem.Item = collectible(331, 4); frames(60)

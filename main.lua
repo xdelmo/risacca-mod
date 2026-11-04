@@ -190,10 +190,6 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
   if t then game:GetHUD():ShowItemText(t, s or "") end
 end)
 
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, isContinued)
-  if not isContinued then say(T.INTRO, T.INTRO_SUB, 30, P.INTRO) end
-end)
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function()
   local isXL = (game:GetLevel():GetCurses() & LevelCurse.CURSE_OF_LABYRINTH) ~= 0
   local t, s = L.xlText(isXL)
