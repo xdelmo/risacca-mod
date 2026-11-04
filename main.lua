@@ -21,6 +21,7 @@ local TACCHINO_ITEMS = {
 }
 local ITEM_IDIOTA = Isaac.GetItemIdByName("Sono un Idiota")
 local ITEM_FERMI = Isaac.GetItemIdByName("Fermi Tutti")
+local SOUND_TACCHINO = Isaac.GetSoundIdByName("Risacca Tacchino")
 
 -- Descrizioni per External Item Descriptions, solo se l'altra mod è attiva
 if EID then
@@ -386,6 +387,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
     if now and not run.tacchinoShown then
       run.tacchinoShown = true
       say(T.TACCHINO_TRASF, T.TACCHINO_TRASF_SUB, 0, P.BACIONE)
+      SFXManager():Play(SOUND_TACCHINO)
       save()
     end
   end

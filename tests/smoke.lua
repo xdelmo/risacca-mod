@@ -61,12 +61,15 @@ local spawned, lastSpawn = 0, nil
 local roomEntities = {}
 Isaac = {
   GetItemIdByName = function(n) return ids[n] end,
+  GetSoundIdByName = function(n) return n == "Risacca Tacchino" and 900 or -1 end,
   GetTrinketIdByName = function(n) return ids[n] end,
   GetPlayer = function() return player end,
   Spawn = function(t, v, s) spawned = spawned + 1; lastSpawn = { t = t, v = v, s = s } end,
   GetFreeNearPosition = function(p) return p end,
   GetRoomEntities = function() return roomEntities end,
 }
+local played = {}
+function SFXManager() return { Play = function(_, id) played[#played + 1] = id end } end
 local hud = { ShowItemText = function(_, t, s) shown[#shown + 1] = s ~= "" and (t .. " / " .. s) or t end }
 local level = { blueMap = 0, visibility = 0, angelChance = 0 }
 function level.GetCurses() return 0 end
@@ -378,11 +381,20 @@ evaluations = 0
 items[745] = true; frames(5)
 expect({ "SEI UN TACCHINO! / Tacchinardi, tacchinibus" })
 assert(evaluations == 1, "statistiche non ricalcolate alla trasformazione")
+assert(#played == 1 and played[1] == 900, "verso del tacchino non suonato")
 assert(math.abs(damageBonus() - dmg0 - 1) < 1e-9 and math.abs(speedBonus() - spd0 + 0.1) < 1e-9, "bonus Tacchino errato")
 items[745] = nil; frames(5)
 items[745] = true; frames(5)
 expect({}) -- la scritta esce una volta per run
+assert(#played == 1, "verso del tacchino ripetuto nella stessa run")
 items[743], items[744], items[745] = nil, nil, nil; frames(5)
+
+-- il suono dichiarato deve esistere e finire nella mod
+local soundsXml = assert(io.open("content/sounds.xml", "r"), "manca content/sounds.xml")
+local soundsContent = soundsXml:read("*all")
+soundsXml:close()
+assert(soundsContent:find('name="Risacca Tacchino"', 1, true) and soundsContent:find('path="tacchino.wav"', 1, true), "sounds.xml incoerente")
+assert(io.open("resources/sfx/tacchino.wav", "rb"), "manca resources/sfx/tacchino.wav"):close()
 
 -- ogni callback registrata deve essere stata chiamata almeno una volta
 for i, c in ipairs(cbs) do assert(called[c], "callback #" .. i .. " mai chiamata") end
