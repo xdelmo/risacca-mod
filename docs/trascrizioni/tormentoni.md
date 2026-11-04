@@ -10,9 +10,11 @@ Conteggi su 75 trascrizioni. Sono ricerche nel testo dei sottotitoli automatici,
 |---|---|---|---|---|
 | Trollato / la trollata | 233 | 65 | Oggetto La Trollata | `VtdB6XtNDbc`: …Bene, godo. E niente. Oh, come prima. Ma porco Giuda! M'ha trollato di nuovo, eh. Prendiamolo per il cuore. Ti devo dire, ti d… |
 | Tacchino | 224 | 61 | Scritta "Tacchino!" | `-AsV379j894`: …le run. Fatemi sapere nei commenti, mi raccomando, non fate tacchinardi perché altrimenti vi vengo a cercare a casa. Per tutti… |
+| Sono un idiota | 217 | 66 | Oggetto inutile Sono un Idiota (issue #29) | `rmSqsd3jVfk`: …to. Abbiamo capito. Abbiamo preso tre volte il danno perché sono un idiota. Ok. Attenzione. Ti prego, dammi la Angel, non mi fare sche… |
+| Fermi tutti | 144 | 59 | Oggetto inutile Fermi Tutti (issue #29) | `PUYwEuaZPaA`: …biamo la doppia. È vero, ma io ci devo entrare nelle curst. Fermi tutti. [musica] Io ci devo entrare nelle curst. Abbiamo le curs m… |
 | Fai così, fai così | 123 | 43 | Oggetto Fai Così, Fai Così | `9r8pHkX8-EQ`: …rdissimo. È tardissimo. Ok, non so cosa volevo fare là, eh. Fai così, fai così, fai così. Questo lo prendo. Aspetta, prendo tutto. Ciao. P… |
 | Mannaggia a lui | 98 | 46 | Trinket Mannaggia a Lui | `IytPOo7mU3A`: …s, però più di così non riesco ad andare perché sono lento. Mannagia a lui. Il raggy pazzo. No, l'ho colpito. Sì, ma no. What the fuck… |
-| Non muore | 93 | 42 | Scritta "Non muore!" | `mpRVZjaYw50`: …erio? Però adesso li lasciamo. Non penso avremo problemi di Non muore. Wow! Là dentro non ci possiamo entrare al momento perché s… |
+| Non muore | 93 | 42 | Scritta "Non muore!" | `PaBKSW5VdOY`: …tenzione. Ok. Quanto sta di HP? Madre mia, madre santa. Ok, non muore, eh. Devo giocare ultra concentrato qua. Ok, vai, vai, smar… |
 | Ciao a tutti, io sono Risacca | 74 | 74 | Scritta a inizio run | `-1Q8zR4NU9g`: …Ciao a tutti, io sono Risacca. Benvenuti sul mio canale, bentornati in questo nuovo episo… |
 | C'ho l'ansia | 74 | 32 | Scritta "C'ho l'ansia" | `JeM5q4cjwXs`: …e me ne vado. Oddio, le pillole le potevo prendere. Oddio, c'ho l'ansia. Madonna, ho l'ansia. Allora, mi confermi che non posso pre… |
 | Potrebbe stare qua | 74 | 32 | Oggetto Potrebbe Stare Qua | `q4r3qL9sWs0`: …agon, come cacchio si dice? Però però no, eh. Mega mushroom potrebbe stare qua la Ry. Eccola. Eccolo. Dogma c'è. C'è speed damage. Grand f… |
@@ -46,9 +48,7 @@ Conteggi su 75 trascrizioni. Sono ricerche nel testo dei sottotitoli automatici,
 
 | Frase | Volte | Video | Nota | Citazione |
 |---|---|---|---|---|
-| Sono un idiota | 217 | 66 | Scritta "Sono un idiota", non scelta nella issue #6 | `rmSqsd3jVfk`: …to. Abbiamo capito. Abbiamo preso tre volte il danno perché sono un idiota. Ok. Attenzione. Ti prego, dammi la Angel, non mi fare sche… |
 | Cortesemente | 165 | 65 | Scritta "Puoi morire, cortesemente?", non scelta nella issue #6 | `Am2P9XucHkg`: …. Assaie. No, ma mia, è partito una pallonata. Oh, schiatta cortesemente. Dai, tacchinibus. Ok, perché il doppio item. Ok, preso Lit… |
-| Fermi tutti | 144 | 59 | Scritta "Fermi tutti!", non scelta nella issue #6 | `oeccXtdu4SA`: …iso il personaggio. Oh, cazzo, che giochiamo oggi, ragazzi? Fermi tutti, fermi tutti, fermi tutti, fermi tutti, fermi tutti, fermi… |
 | Che culo | 68 | 34 | Trinket Che Culo, non scelto nella issue #6 | `XlY7Qx9Cang`: …nello shop e qualcosa di buono nella Curst. Ah, prima qua. Che culo, che culo, che culo, che culo. Abbiamo ristabilito il tiars… |
 | Spacchettare | 64 | 33 | Oggetto Spacchettiamo, non scelto nella issue #6 | `PLbe-5qwwwg`: …agazzi. Qua dobbiamo dobbiamo usare il tutto per tutto. Ok, spacchettiamo tutto. Non dobbiamo prendere danno, però perché sennò p… |
 | Uno è andato | 58 | 41 | Scritta "E uno è andato!", non scelta nella issue #6 | `7qxtdtPgT30`: …Non mi interessa, amico mio. Uno mi ha itato. Non mi ha ok. Uno è andato giù, l'altro forse pure. Ok, uno. Ok, il danno non è male,… |

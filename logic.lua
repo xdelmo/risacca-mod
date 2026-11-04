@@ -11,8 +11,6 @@ L.TEXT = {
   KUBRICK = "MEGA STANLEY KUBRICK",
   PIPPOLINS = "PIPPOLINS",
   BUMBAZZO = "BUMBAZZO",
-  FLAMENCO = "BALLERINO DI FLAMENCO",
-  ULTRA_FLAMENCO = "ULTRA BALLERINO DI FLAMENCO",
   INTRO = "Ciao a tutti, io sono Risacca",
   INTRO_SUB = "Benvenuti sul mio canale",
   ANSIA = "C'ho l'ansia",
@@ -33,6 +31,8 @@ L.TEXT = {
   SOGNARE = "Fammi sognare",
   TROLLATA = "M'ha trollato!",
   MANNAGGIA = "Mannaggia a lui!",
+  IDIOTA = "Sono un idiota!",
+  FERMI = "Fermi tutti!",
 }
 
 -- Descrizioni per External Item Descriptions: "#" va a capo, {{...}} sono le icone di EID.
@@ -47,7 +47,9 @@ L.EID = {
   GENNARO = "{{AngelRoom}} +25% di probabilità di una stanza dell'angelo a ogni nuovo piano#{{EternalHeart}} Un cuore eterno alla prima visita di ogni stanza dell'angelo",
   TROLLATA = "Fa comparire una troll bomb addosso a ogni nemico della stanza#Se ti trovi vicino esplode anche su di te",
   FAICOSI = "Ogni seconda lacrima parte doppia",
-  MANNAGGIA = "Quando vieni colpito, il nemico più vicino subisce 10 volte il tuo danno",
+  MANNAGGIA = "Quando vieni colpito, il nemico più vicino subisce 4 volte il tuo danno",
+  IDIOTA = "Non fa niente",
+  FERMI = "Non fa niente",
 }
 
 L.PRIO = { XL = 1, INTRO = 1, PICKUP = 2, TACCHINO = 2, ITEM = 2, ANSIA = 3, BOSSNAME = 3, BACIONE = 4, BEDUINS = 5, CRETINO = 3, NON_MUORE = 2, MANNAGGIA = 3 }
@@ -57,7 +59,7 @@ L.STARE_BOMBS = 2
 L.GENNARO_ANGEL_CHANCE = 0.25
 L.PRO_DAMAGE = 2
 L.NON_MUORE_FRAMES = 1800 -- 60 secondi a 30 update al secondo
-L.MANNAGGIA_MULT = 10
+L.MANNAGGIA_MULT = 4 -- era 10: Monstro moriva solo con i contatti (issue #26)
 
 function L.nonMuore(roomFrames, aliveBosses)
   return aliveBosses > 0 and roomFrames >= L.NON_MUORE_FRAMES
@@ -120,9 +122,10 @@ function L.deadGodBonus(kills)
 end
 
 local SUPPRESS_WINDOW = 15
+L.REPEAT_COOLDOWN = 900 -- la stessa scritta non torna prima di 30 secondi (30 update al secondo)
 
 function L.newQueue()
-  local q = { items = {}, seq = 0 }
+  local q = { items = {}, seq = 0, now = 0, last = {} }
 
   function q:push(title, sub, delay, prio)
     self.seq = self.seq + 1
@@ -130,9 +133,12 @@ function L.newQueue()
   end
 
   function q:tick()
+    self.now = self.now + 1
     local best
     for _, it in ipairs(self.items) do
-      if it.left <= 0 and (not best or it.prio > best.prio or (it.prio == best.prio and it.seq < best.seq)) then
+      local last = self.last[it.title]
+      local fresh = not last or self.now - last >= L.REPEAT_COOLDOWN
+      if it.left <= 0 and fresh and (not best or it.prio > best.prio or (it.prio == best.prio and it.seq < best.seq)) then
         best = it
       end
     end
@@ -145,7 +151,10 @@ function L.newQueue()
       end
     end
     self.items = keep
-    if best then return best.title, best.sub end
+    if best then
+      self.last[best.title] = self.now
+      return best.title, best.sub
+    end
     return nil
   end
 

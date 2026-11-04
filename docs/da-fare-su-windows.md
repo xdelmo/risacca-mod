@@ -24,6 +24,8 @@ Nuova run, con un personaggio qualsiasi:
 - [x] Scendi a mezzo cuore: compare **"C'ho l'ansia"**.
 - [x] Muori: compare **"Beduins"**.
 
+- [ ] **Meno scritte:** raccogli due oggetti della stessa qualità entro 30 secondi: la scritta compare solo la prima volta. Controlla che le scritte non siano più troppe.
+
 ## 3. Provare gli oggetti nuovi
 
 Apri la console con il tasto `\` (quello sopra Invio, oppure `ò`/`ù` sulla tastiera italiana). Puoi usare **Tab** per completare il nome dell'oggetto.
@@ -49,10 +51,11 @@ Apri la console con il tasto `\` (quello sopra Invio, oppure `ò`/`ù` sulla tas
 - [x] `giveitem c105`, poi usa il D6 su un piedistallo: l'oggetto cambia come sempre e compare **"Fammi sognare"**.
 - [x] `giveitem La Trollata`, poi usalo in una stanza con nemici: appare una troll bomb su ogni nemico e compare **"M'ha trollato!"**. Controlla che le bombe restino addosso ai nemici abbastanza da colpirli.
 - [x] `giveitem Fai Così, Fai Così`: una lacrima su due parte doppia. Controlla che la "ì" si veda bene nel nome e che il comando trovi l'oggetto; prova anche con un'arma che non spara lacrime (Brimstone), che non ha effetto. La "ì" è stata controllata in External Item Descriptions, il comando con l'id `c740`.
-- [ ] `giveitem Mannaggia a Lui`, poi fatti colpire: il nemico più vicino subisce 10 volte il tuo danno e compare **"Mannaggia a lui!"**. Controlla il bilanciamento, soprattutto sui boss. Effetto e scritta confermati. Resta da decidere il bilanciamento: Monstro è morto solo con i contatti.
+- [ ] `giveitem Mannaggia a Lui`, poi fatti colpire: il nemico più vicino subisce 4 volte il tuo danno e compare **"Mannaggia a lui!"**. Effetto e scritta confermati con il valore 10, che era troppo forte (Monstro è morto solo con i contatti): ricontrolla il bilanciamento con 4.
 - [x] Le icone degli altri cinque oggetti (Non Vi Rubo Altro Tempo, Potrebbe Stare Qua, Il Miracolo di San Gennaruzzo, Che Fai, Te Ne Privi?, La Mossa del Pro Player) si vedono e le loro descrizioni in External Item Descriptions sono giuste.
 - [x] Le icone di La Trollata, Fai Così, Fai Così e Mannaggia a Lui si vedono.
-- [ ] Le 11 icone hanno il contorno da 2px: guardale sul piedistallo e nell'HUD, e controlla che siano leggibili accanto agli oggetti vanilla. Fai attenzione al "-1" di -1 al Dead God e a Il Miracolo di San Gennaruzzo, che potrebbe sembrare una pozione.
+- [ ] `giveitem Sono un Idiota` e `giveitem Fermi Tutti`: compaiono *Sono un idiota!* e *Fermi tutti!*, e le statistiche non cambiano.
+- [ ] Le 13 icone hanno il contorno da 2px: guardale sul piedistallo e nell'HUD, e controlla che siano leggibili accanto agli oggetti vanilla. Fai attenzione al "-1" di -1 al Dead God e a Il Miracolo di San Gennaruzzo, che potrebbe sembrare una pozione.
 
 Facoltativo, se ci arrivi: The Beast deve mostrare **"IL BEASTY BOY"**, Mega Satan **"MEGA STANLEY KUBRICK"**, Peep **"PIPPOLINS"** (The Bloat invece niente). Battere un boss finale (Satan, The Lamb, Mother…) deve mostrare **"Un bacione grande / dal vostro Risacca"**.
 
@@ -76,8 +79,6 @@ Facoltativo, se ci arrivi: The Beast deve mostrare **"IL BEASTY BOY"**, Mega Sat
 - [ ] Quando incontri The Beast: se compare una schermata VS, deve mostrare **IL BEASTY BOY**. Il gioco non ha un'immagine del nome per questo boss, quindi è probabile che la schermata non ci sia: in quel caso segnalalo e basta. La scritta **IL BEASTY BOY** è confermata con `spawn 951`; la schermata VS resta da vedere, perché `goto` non apre la stanza del boss.
 - [x] Quando incontri Mega Satan: la schermata VS mostra **MEGA STANLEY**. Se per Peep o Mega Satan resta il nome originale, il gioco non sta usando il PNG della mod: dimmelo e provo a spostarlo in `resources-dlc3/`. Confermato con `goto s.boss.5000`; il banner in stanza dice **MEGA STANLEY KUBRICK**.
 - [x] Quando incontri Bumbino: la schermata VS e la scritta mostrano **BUMBAZZO**. Confermato con `goto s.boss.5270`; nella schermata VS il nome arriva fino al bordo destro.
-- [ ] Quando incontri Ultra Greed (modalità Greed): la schermata VS mostra **ULTRA BALLERINO DI FLAMENCO** su due righe, e la scritta lo stesso nome. Ultra Greedier usa la stessa immagine, quindi nella sua schermata VS comparirà questo nome: controlla che ti vada bene. La scritta è confermata con `spawn 406`; la schermata VS va vista in una run in modalità Greed.
-- [x] Quando incontri il mini-boss Greed: compare la scritta **BALLERINO DI FLAMENCO**. Controlla anche il banner del mini-boss, che dovrebbe restare "Greed" perché viene dalla `stringtable.sta` e la mod non la genera. Confermati con `goto s.miniboss.2040`: il banner dice "ISAAC VS GREED".
 
 Le chiavi e le bombe raccolte da terra non cambiano nome: le rinomine riguardano solo nomi e descrizioni di oggetti, trinket, carte e pillole.
 

@@ -23,6 +23,8 @@ OUT = {
     "la_trollata": "resources/gfx/items/collectibles/la_trollata.png",
     "fai_cosi": "resources/gfx/items/collectibles/fai_cosi.png",
     "mannaggia_a_lui": "resources/gfx/items/trinkets/mannaggia_a_lui.png",
+    "sono_un_idiota": "resources/gfx/items/collectibles/sono_un_idiota.png",
+    "fermi_tutti": "resources/gfx/items/collectibles/fermi_tutti.png",
 }
 PALETTE = {
     "K": (8, 0, 0),        # Contorno Isaac: colore del bordo in 443 collezionabili vanilla su 548
@@ -267,6 +269,45 @@ SPRITES = {
         " LYYYYyb        ",
         "  YYyyb         ",
     ],
+    "sono_un_idiota": [  # Cappello da asino di carta, con la fascia rossa
+        "       Wt       ",
+        "       tts      ",
+        "      Wtts      ",
+        "      ttss      ",
+        "     Wttssu     ",
+        "     tttssu     ",
+        "    lRRRRRr     ",
+        "    RRRRRrr     ",
+        "   Wtttsssu     ",
+        "   ttttsssuu    ",
+        "  Wttttsssuu    ",
+        "  tttttssssuu   ",
+        " lRRRRRRRRrrr   ",
+        " RRRRRRRRRrrrr  ",
+        "Wtttttssssssuuu ",
+        "tttttttssssssuuu",
+        " ssssssssuuuuuu ",
+    ],
+    "fermi_tutti": [  # Cartello di stop
+        "     llllll     ",
+        "    lRRRRRRr    ",
+        "   lRRRRRRRRr   ",
+        "  lRRRRRRRRRRr  ",
+        " lRRRRRRRRRRRRr ",
+        "lRRRRRRRRRRRRRRr",
+        "lRWWWWWWWWWWWWRr",
+        "lRWWWWWWWWWWWwRr",
+        "lRwwwwwwwwwwwwRr",
+        "lRRRRRRRRRRRRRRr",
+        "lRRRRRRRRRRRRRrr",
+        " RRRRRRRRRRRRrr ",
+        "  RRRRRRRRRRrr  ",
+        "   RRRRRRRRrr   ",
+        "    rrrrrrrr    ",
+        "       uu       ",
+        "       uu       ",
+        "      suuu      ",
+    ],
 }
 
 
@@ -301,7 +342,6 @@ BOSS_NAMES = {
     "resources/gfx/ui/boss/bossname_274.0_megasatan.png": (["MEGA STANLEY"], 20, 4),
     "resources/gfx/ui/boss/bossname_thebeast.png": (["IL BEASTY BOY"], 20, 4),  # il vanilla non ha questo PNG, il nome viene da bossportraits.xml
     "resources/gfx/ui/boss/bossname_bumbino.png": (["BUMBAZZO"], 28, 6),
-    "resources/gfx/ui/boss/bossname_406.0_ultragreed.png": (["ULTRA BALLERINO", "DI FLAMENCO"], 16, 3),  # il vanilla lo usa anche per Ultra Greedier
 }
 BOSS_NAME_COLOR = (199, 178, 153)  # l'unico colore dei bossname vanilla
 BOSS_NAME_SIZE = (256, 64)         # il ritaglio di BossName in versusscreen.anm2

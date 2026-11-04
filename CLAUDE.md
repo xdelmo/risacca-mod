@@ -35,13 +35,14 @@ Non c'è un test runner. I test sono script con `assert`: per provarne uno basta
 - **`main.lua`.** Fa solo da collegamento con le callback del gioco, e ha tre sezioni:
   - **oggetti nuovi:** Ho Rotto il Gioco, -1 al Dead God, Win Streak;
   - **scritte a schermo:** ognuna fa `say(...)` → la coda → `HUD:ShowItemText` dentro `MC_POST_UPDATE`;
-  - **oggetti dei tormentoni:** Non Vi Rubo Altro Tempo, Potrebbe Stare Qua, Il Miracolo di San Gennaruzzo, Che Fai, Te Ne Privi?, La Mossa del Pro Player, La Trollata, Fai Così, Fai Così, Mannaggia a Lui. Stanno in fondo perché usano anche `say`.
+  - **oggetti dei tormentoni:** Non Vi Rubo Altro Tempo, Potrebbe Stare Qua, Il Miracolo di San Gennaruzzo, Che Fai, Te Ne Privi?, La Mossa del Pro Player, La Trollata, Fai Così, Fai Così, Mannaggia a Lui, e gli oggetti inutili Sono un Idiota e Fermi Tutti (solo la scritta al pickup). Stanno in fondo perché usano anche `say`.
 
   La stessa callback può essere registrata due volte, una per sezione, ed è voluto.
 - **Coda delle scritte.**
   - Mostra una sola scritta per tick: vince la priorità più alta e, a parità, quella aggiunta per prima. Le altre pronte nello stesso tick vengono scartate.
   - Quando esce una scritta, vengono scartate anche quelle con priorità minore che uscirebbero entro i 15 tick successivi.
   - Una scritta con delay N esce al tick N+1.
+  - La stessa scritta (stesso titolo) non esce di nuovo prima di `L.REPEAT_COOLDOWN` tick (30 secondi): se è pronta prima, viene scartata.
 
   Per questo, nello smoke test, gli eventi da distinguere vanno separati da `frames(n)`.
 - **Stato della run.** Sta nella tabella `run` di `main.lua` e si salva con `mod:SaveData(json.encode(run))` a inizio run, a ogni nuovo piano, a ogni boss contato da -1 al Dead God, quando compaiono The Beast o Mega Satan e quando si esce dal gioco. In `MC_POST_GAME_STARTED` si ricarica con `pcall(json.decode, ...)`, ma solo se la run è continuata. `roomFlags` invece si azzera a ogni nuova stanza.
@@ -52,11 +53,11 @@ Non c'è un test runner. I test sono script con `assert`: per provarne uno basta
   Alla fine controlla che ogni callback registrata sia stata chiamata. Se aggiungi una callback, aggiungi anche uno scenario che la chiama.
 - **Contenuti XML e Sprite.** Gli oggetti nuovi stanno in `content/items.xml` e `content/itempools.xml`. Gli sprite si generano da griglie di caratteri in `tools/sprites.py`: non modificare i PNG a mano. Le immagini degli oggetti devono seguire fedelmente lo stile The Binding of Isaac: Repentance+; la guida completa agli standard visivi (palette, proporzioni 32x32, contorno 2px `(8, 0, 0)`, luce in alto a sinistra, riflessi del vetro e checklist) è documentata in `docs/standard-grafici.md` e supportata dalle skill in `.agents/skills/`. Come tavola di riferimento visivo ufficiale di tutti gli item vanilla c'è `docs/PC _ Computer - The Binding of Isaac_ Rebirth - Items - Items (Repentance).png`.
 - **Rinomine dei vanilla.**
-  - Esempi: chiavi → Chiaviz-Chiavoz, boss → Beppe Bossicchio, Bumbo → Bumbazzo, Greed → Ballerino di Flamenco. I nomi interi (Eye of Greed → Come Cacchio Si Chiama, Car Battery → Non Si Sa Mai, 0 - The Fool → Col vostro permessico) stanno in `EXACT` e hanno la precedenza sulle regole.
+  - Esempi: chiavi → Chiaviz-Chiavoz, boss → Beppe Bossicchio, Bumbo → Bumbazzo. I nomi interi (Eye of Greed → Come Cacchio Si Chiama, Car Battery → Non Si Sa Mai, 0 - The Fool → Col vostro permessico) stanno in `EXACT` e hanno la precedenza sulle regole.
   - Le genera `tools/rename.py` in `resources-dlc3/` (git-ignored, perché contiene i testi del gioco e la repo non deve ridistribuirli), partendo dagli originali messi in `extracted/` (git-ignored).
   - Gli originali sono `items.xml`, `pocketitems.xml`, `info_display.xml` e `stringtable.sta`, presi dal ResourceExtractor dell'utente.
   - "boss" e "treasure room" compaiono solo in `info_display.xml` (la descrizione degli oggetti nel menu di pausa). La `stringtable.sta` serve solo a risolvere i riferimenti `#` e non viene generata.
-- **Boss rinominati.** Pippolins (Peep), Mega Stanley (Mega Satan), Il Beasty Boy (The Beast), Bumbazzo (Bumbino) e Ultra Ballerino di Flamenco (Ultra Greed, stesso PNG di Ultra Greedier) non passano da `tools/rename.py`: il nome nella schermata VS è un'immagine. `tools/sprites.py` genera `resources/gfx/ui/boss/bossname_*.png` con lo stesso nome dei file vanilla, disegnando le lettere con i tratti di `GLYPHS`. Per un altro boss basta aggiungerlo a `BOSS_NAMES`, con le eventuali lettere mancanti.
+- **Boss rinominati.** Pippolins (Peep), Mega Stanley (Mega Satan), Il Beasty Boy (The Beast) e Bumbazzo (Bumbino) non passano da `tools/rename.py`: il nome nella schermata VS è un'immagine. `tools/sprites.py` genera `resources/gfx/ui/boss/bossname_*.png` con lo stesso nome dei file vanilla, disegnando le lettere con i tratti di `GLYPHS`. Per un altro boss basta aggiungerlo a `BOSS_NAMES`, con le eventuali lettere mancanti.
 - **Pacchetto.** `tools/build.py` mette nello zip solo `metadata.xml`, `main.lua`, `logic.lua`, `content/`, `resources/` e `resources-dlc3/`, sotto `risacca-mod/`, più `readme.txt` (la guida all'installazione) alla radice dello zip. Esclude `docs/`, `tools/`, `tests/`, `extracted/` e i file nascosti.
 - **Pubblicazione.** In `metadata.xml` la visibilità resta `Private` finché l'utente non dà l'ok alla pubblicazione.
 - **Repo e release.** La repo GitHub è privata. Lo zip allegato alle release contiene `resources-dlc3/`, quindi i testi del gioco: se la repo diventa pubblica, gli allegati diventano pubblici con lei.
