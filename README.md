@@ -1,6 +1,6 @@
 # Risacca Mod
 
-Mod per **The Binding of Isaac: Repentance** dedicata a [Risacca](https://www.youtube.com/@Risaacca), che ogni giorno carica una run di Repentance.
+Mod per **The Binding of Isaac: Repentance** dedicata a [Risacca](https://www.youtube.com/@Risaacca).
 
 ![preview](docs/preview.png)
 
