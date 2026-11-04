@@ -24,6 +24,8 @@ Nuova run, con un personaggio qualsiasi:
 - [x] Scendi a mezzo cuore: compare **"C'ho l'ansia"**.
 - [x] Muori: compare **"Beduins"**.
 
+- [ ] **Meno scritte:** raccogli due oggetti della stessa qualità entro 30 secondi: la scritta compare solo la prima volta. Controlla che le scritte non siano più troppe.
+
 ## 3. Provare gli oggetti nuovi
 
 Apri la console con il tasto `\` (quello sopra Invio, oppure `ò`/`ù` sulla tastiera italiana). Puoi usare **Tab** per completare il nome dell'oggetto.

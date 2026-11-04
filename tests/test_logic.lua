@@ -79,4 +79,16 @@ local got
 for _ = 1, 45 do got = q:tick() or got end
 assert(got == "FAR")
 
+-- la stessa scritta non si ripete entro REPEAT_COOLDOWN, le altre sì
+q = L.newQueue()
+q:push("A", nil, 0, 2)
+assert(q:tick() == "A")
+q:push("A", nil, 0, 2)
+assert(q:tick() == nil)
+q:push("B", nil, 0, 2)
+assert(q:tick() == "B")
+for _ = 1, L.REPEAT_COOLDOWN do q:tick() end
+q:push("A", nil, 0, 2)
+assert(q:tick() == "A")
+
 print("OK")

@@ -42,6 +42,7 @@ Non c'è un test runner. I test sono script con `assert`: per provarne uno basta
   - Mostra una sola scritta per tick: vince la priorità più alta e, a parità, quella aggiunta per prima. Le altre pronte nello stesso tick vengono scartate.
   - Quando esce una scritta, vengono scartate anche quelle con priorità minore che uscirebbero entro i 15 tick successivi.
   - Una scritta con delay N esce al tick N+1.
+  - La stessa scritta (stesso titolo) non esce di nuovo prima di `L.REPEAT_COOLDOWN` tick (30 secondi): se è pronta prima, viene scartata.
 
   Per questo, nello smoke test, gli eventi da distinguere vanno separati da `frames(n)`.
 - **Stato della run.** Sta nella tabella `run` di `main.lua` e si salva con `mod:SaveData(json.encode(run))` a inizio run, a ogni nuovo piano, a ogni boss contato da -1 al Dead God, quando compaiono The Beast o Mega Satan e quando si esce dal gioco. In `MC_POST_GAME_STARTED` si ricarica con `pcall(json.decode, ...)`, ma solo se la run è continuata. `roomFlags` invece si azzera a ogni nuova stanza.
