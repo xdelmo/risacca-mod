@@ -23,14 +23,14 @@ $p = Get-Process isaac-ng | Select-Object -First 1
 [K3]::SetForegroundWindow($p.MainWindowHandle) | Out-Null
 Start-Sleep -Milliseconds 200
 function Focus-OK { if ([K3]::GetForegroundWindow() -ne $p.MainWindowHandle) { "FERMO: il gioco non e' in primo piano"; exit 2 } }
-if ($Thaw) { Focus-OK; [K3]::Hold(0x01, 60); Start-Sleep -Milliseconds 100 }
+if ($Thaw) { Focus-OK; [K3]::Hold(0x01, 60); Start-Sleep -Milliseconds 700 }
 foreach ($c in $Commands) {
   Focus-OK
   [K3]::Hold(0x29, 60); Start-Sleep -Milliseconds 200
   Focus-OK
   [K3]::Text($c); Start-Sleep -Milliseconds 80
   [K3]::Hold(0x1C, 60); Start-Sleep -Milliseconds 150
-  [K3]::Hold(0x01, 60); Start-Sleep -Milliseconds 100
+  [K3]::Hold(0x01, 60); Start-Sleep -Milliseconds 700
   "inviato: $c"
 }
 foreach ($k in $Keys) { Focus-OK; [K3]::Hold([uint16]$k, $HoldMs) }

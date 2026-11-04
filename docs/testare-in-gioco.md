@@ -41,10 +41,22 @@ Gli screenshot finiscono in `tools/gioco/` e sono ignorati da git. Vanno guardat
 - `giveitem c735` oggetto, `giveitem t191` trinket, `spawn 5.100.1` piedistallo con oggetto, `goto s.angel.0` stanza speciale, `restart` nuova run, `debug 3` invulnerabilità (si disattiva ripetendolo).
 - Id attuali: Non Vi Rubo c735, Mossa c736, Potrebbe Stare Qua c737, San Gennaruzzo c738, Trollata c739, Fai Così c740, Che Fai t191, Mannaggia t192. Gli id possono cambiare se si aggiungono oggetti: verificali con `peek.ps1`.
 - Con `debug 3` attivo non scattano le prove sui colpi subiti (Tacchino, Sono un cretino, Mannaggia a Lui, C'ho l'ansia).
+- `debug N` è un interruttore e `restart` azzera `debug 3`: leggi in console "Enabled/Disabled debug flag". `debug 10` uccide subito i nemici.
+- Stanze boss: Peep `goto s.boss.2020`, Mega Satan `goto s.boss.5000`. La schermata VS dura circa 2 secondi: scatta subito (`-FirstMs 300 -EveryMs 500`).
+- `run.ps1 -Name x -Shots 1 -Freeze` senza `-Thaw` fotografa la console già aperta, con le risposte ai comandi.
+
+## Menu ed EID
+
+- W non muove il cursore nei menu; le frecce sì, con `Send(s,9)` per premere e `Send(s,11)` per rilasciare (su `0x48`, giù `0x50`, sinistra `0x4B`, destra `0x4D`).
+- Descrizioni del gioco: Esc, freccia su su "My Stuff!", Invio, poi frecce sulla griglia. Esc due volte per uscire.
+- EID: tieni premuto Tab (`Send(0x0F,8)`, rilascio `Send(0x0F,10)`) e cambia pagina con le frecce destra e sinistra. La pagina scelta resta memorizzata.
+- Il dot-source di `run.ps1` sovrascrive `$i`: nei cicli usa un altro nome.
 
 ## Effetti collaterali
 
-- Morire e ricominciare può cambiare le statistiche del profilo dell'utente, come la Win Streak nella selezione personaggio. Con `debug 3` si evita. Segnala all'utente ogni morte di prova.
+- Morire e ricominciare può cambiare le statistiche del profilo dell'utente, come la Win Streak nella selezione personaggio. `debug 3` lo riduce ma non basta: controlla i cuori e che sia davvero attivo. Segnala all'utente ogni morte di prova.
+- Raccogliere oggetti o battere boss in una run vera può sbloccare achievement reali nel profilo, e non si tornano indietro. Non uccidere i boss finali: esci subito dalla stanza.
+- Mannaggia a Lui può uccidere un boss durante le attese: toglilo se devi tenerlo vivo.
 - Non chiudere il gioco e non modificare i salvataggi senza chiedere.
 - La mod gira dalla cartella `...\mods\risacca-mod\`: le modifiche in un worktree non sono caricate dal gioco finché non arrivano lì.
 - Il log è `Documents\My Games\Binding of Isaac Repentance+\log.txt`: cercaci gli errori Lua dopo ogni prova.
