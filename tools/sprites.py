@@ -240,6 +240,8 @@ BOSS_NAMES = {
     "resources/gfx/ui/boss/bossname_68.0_peep.png": (["PIPPOLINS"], 28, 6),
     "resources/gfx/ui/boss/bossname_274.0_megasatan.png": (["MEGA STANLEY"], 20, 4),
     "resources/gfx/ui/boss/bossname_thebeast.png": (["IL BEASTY BOY"], 20, 4),  # il vanilla non ha questo PNG, il nome viene da bossportraits.xml
+    "resources/gfx/ui/boss/bossname_bumbino.png": (["BUMBAZZO"], 28, 6),
+    "resources/gfx/ui/boss/bossname_406.0_ultragreed.png": (["ULTRA BALLERINO", "DI FLAMENCO"], 16, 3),  # il vanilla lo usa anche per Ultra Greedier
 }
 BOSS_NAME_COLOR = (199, 178, 153)  # l'unico colore dei bossname vanilla
 BOSS_NAME_SIZE = (256, 64)         # il ritaglio di BossName in versusscreen.anm2
@@ -247,7 +249,10 @@ BOSS_NAME_CENTER = 104             # i nomi vanilla più larghi vanno da x=0 a x
 GLYPHS = {  # tratti su una griglia alta 6
     "A": [[(0, 6), (2, 0), (4, 6)], [(1, 4), (3, 4)]],
     "B": [[(0, 0), (0, 6), (3, 6), (4, 5), (4, 4), (3, 3), (0, 3)], [(0, 0), (3, 0), (4, 1), (4, 2), (3, 3)]],
+    "C": [[(4, 1), (3, 0), (1, 0), (0, 1), (0, 5), (1, 6), (3, 6), (4, 5)]],
+    "D": [[(0, 0), (0, 6), (3, 6), (4, 5), (4, 1), (3, 0), (0, 0)]],
     "E":[[(4, 0), (0, 0), (0, 6), (4, 6)], [(0, 3), (3, 3)]],
+    "F": [[(4, 0), (0, 0), (0, 6)], [(0, 3), (3, 3)]],
     "G": [[(4, 1), (3, 0), (1, 0), (0, 1), (0, 5), (1, 6), (3, 6), (4, 5), (4, 3), (2, 3)]],
     "I": [[(0, 0), (2, 0)], [(1, 0), (1, 6)], [(0, 6), (2, 6)]],  # con le stanghette, o si fonde con la L
     "L": [[(0, 0), (0, 6), (4, 6)]],
@@ -255,9 +260,12 @@ GLYPHS = {  # tratti su una griglia alta 6
     "N": [[(0, 6), (0, 0), (4, 6), (4, 0)]],
     "O": [[(1, 0), (3, 0), (4, 1), (4, 5), (3, 6), (1, 6), (0, 5), (0, 1), (1, 0)]],
     "P": [[(0, 6), (0, 0), (3, 0), (4, 1), (4, 2), (3, 3), (0, 3)]],
+    "R": [[(0, 6), (0, 0), (3, 0), (4, 1), (4, 2), (3, 3), (0, 3)], [(2, 3), (4, 6)]],
     "S": [[(4, 1), (3, 0), (1, 0), (0, 1), (0, 2), (1, 3), (3, 3), (4, 4), (4, 5), (3, 6), (1, 6), (0, 5)]],
     "T": [[(0, 0), (4, 0)], [(2, 0), (2, 6)]],
+    "U": [[(0, 0), (0, 5), (1, 6), (3, 6), (4, 5), (4, 0)]],
     "Y": [[(0, 0), (2, 3), (4, 0)], [(2, 3), (2, 6)]],
+    "Z": [[(0, 0), (4, 0), (0, 6), (4, 6)]],
 }
 
 

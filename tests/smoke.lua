@@ -158,6 +158,21 @@ fire(ModCallbacks.MC_POST_NPC_INIT, nil, npc(EntityType.ENTITY_PEEP, 0))
 frames(40)
 expect({ "PIPPOLINS" })
 
+-- Bumbino e Greed: una volta per run, Super Greed e Ultra Greedier (variant 1) no
+for _, boss in ipairs({
+  { EntityType.ENTITY_BUMBINO, "BUMBAZZO" },
+  { EntityType.ENTITY_GREED, "BALLERINO DI FLAMENCO" },
+  { EntityType.ENTITY_ULTRA_GREED, "ULTRA BALLERINO DI FLAMENCO" },
+}) do
+  fire(ModCallbacks.MC_POST_NPC_INIT, nil, npc(boss[1], 1))
+  frames(40)
+  expect({})
+  fire(ModCallbacks.MC_POST_NPC_INIT, nil, npc(boss[1], 0))
+  fire(ModCallbacks.MC_POST_NPC_INIT, nil, npc(boss[1], 0))
+  frames(40)
+  expect({ boss[2] })
+end
+
 -- Satan ucciso due volte nella stessa stanza → un solo bacione
 fire(ModCallbacks.MC_POST_NEW_ROOM)
 fire(ModCallbacks.MC_POST_NPC_DEATH, nil, npc(84, 0))
