@@ -54,8 +54,9 @@ Apri la console con il tasto `\` (quello sopra Invio, oppure `ò`/`ù` sulla tas
 - [ ] `giveitem Mannaggia a Lui`, poi fatti colpire: il nemico più vicino subisce 4 volte il tuo danno e compare **"Mannaggia a lui!"**. Effetto e scritta confermati con il valore 10, che era troppo forte (Monstro è morto solo con i contatti): ricontrolla il bilanciamento con 4.
 - [x] Le icone degli altri cinque oggetti (Non Vi Rubo Altro Tempo, Potrebbe Stare Qua, Il Miracolo di San Gennaruzzo, Che Fai, Te Ne Privi?, La Mossa del Pro Player) si vedono e le loro descrizioni in External Item Descriptions sono giuste.
 - [x] Le icone di La Trollata, Fai Così, Fai Così e Mannaggia a Lui si vedono.
+- [ ] `giveitem Tacchinardi`, `giveitem Tacchinibus`, `giveitem Il Tacchino della Domenica`: ognuno dà i suoi cuori; al terzo compare **"SEI UN TACCHINO!"** e il danno sale di 1, la velocità scende di 0.1.
 - [ ] `giveitem Sono un Idiota` e `giveitem Fermi Tutti`: compaiono *Sono un idiota!* e *Fermi tutti!*, e le statistiche non cambiano.
-- [ ] Le 13 icone hanno il contorno da 2px: guardale sul piedistallo e nell'HUD, e controlla che siano leggibili accanto agli oggetti vanilla. Fai attenzione al "-1" di -1 al Dead God e a Il Miracolo di San Gennaruzzo, che potrebbe sembrare una pozione.
+- [ ] Le 16 icone hanno il contorno da 2px: guardale sul piedistallo e nell'HUD, e controlla che siano leggibili accanto agli oggetti vanilla. Fai attenzione al "-1" di -1 al Dead God e a Il Miracolo di San Gennaruzzo, che potrebbe sembrare una pozione.
 
 Facoltativo, se ci arrivi: The Beast deve mostrare **"IL BEASTY BOY"**, Mega Satan **"MEGA STANLEY KUBRICK"**, Peep **"PIPPOLINS"** (The Bloat invece niente). Battere un boss finale (Satan, The Lamb, Mother…) deve mostrare **"Un bacione grande / dal vostro Risacca"**.
 

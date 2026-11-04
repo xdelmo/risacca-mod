@@ -32,6 +32,7 @@ Mod per **The Binding of Isaac: Repentance** dedicata a [Risacca](https://www.yo
 - **Potrebbe Stare Qua** (passivo): a ogni nuovo piano mostra le stanze segrete sulla mappa e dà 2 bombe. Scritta alla prima visita di una stanza segreta: *Potrebbe stare qua!*.
 - **Il Miracolo di San Gennaruzzo** (passivo, nelle stanze dell'angelo): +25% di probabilità di una stanza dell'angelo a ogni nuovo piano e un cuore eterno alla prima visita di ognuna, con la scritta *Il miracolo di San Gennaruzzo!*.
 - **Che Fai, Te Ne Privi?** (trinket): 25% di probabilità di un pickup in più quando finisci una stanza, con la scritta *Che fai? Te ne privi?*.
+- **Tacchinardi** (+1 contenitore cuore), **Tacchinibus** (+2 cuori anima) e **Il Tacchino della Domenica** (cura tutti i cuori), passivi nelle stanze del boss. Con tutti e tre scatta la **trasformazione Tacchino**: +1 danno, -0.1 velocità e la scritta *SEI UN TACCHINO!*.
 - **Sono un Idiota** e **Fermi Tutti** (passivi, qualità 0): non fanno niente. Quando li raccogli compaiono *Sono un idiota!* e *Fermi tutti!*.
 
 Con [External Item Descriptions](https://steamcommunity.com/sharedfiles/filedetails/?id=836319872) attiva, gli oggetti mostrano anche la loro descrizione in italiano. Il riquadro Item Info del menu di pausa li mostra comunque come "Unknown": è un limite dell'API del gioco.

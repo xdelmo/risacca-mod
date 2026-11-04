@@ -31,6 +31,8 @@ L.TEXT = {
   SOGNARE = "Fammi sognare",
   TROLLATA = "M'ha trollato!",
   MANNAGGIA = "Mannaggia a lui!",
+  TACCHINO_TRASF = "SEI UN TACCHINO!",
+  TACCHINO_TRASF_SUB = "Tacchinardi, tacchinibus",
   IDIOTA = "Sono un idiota!",
   FERMI = "Fermi tutti!",
 }
@@ -47,6 +49,9 @@ L.EID = {
   GENNARO = "{{AngelRoom}} +25% di probabilità di una stanza dell'angelo a ogni nuovo piano#{{EternalHeart}} Un cuore eterno alla prima visita di ogni stanza dell'angelo",
   TROLLATA = "Fa comparire una troll bomb addosso a ogni nemico della stanza#Se ti trovi vicino esplode anche su di te",
   FAICOSI = "Ogni seconda lacrima parte doppia",
+  TACCHINARDI = "↑ {{Heart}} +1 Contenitore cuore#Trasformazione Tacchino (1/3)",
+  TACCHINIBUS = "↑ {{SoulHeart}} +2 Cuori anima#Trasformazione Tacchino (1/3)",
+  DOMENICA = "{{Heart}} Cura tutti i cuori#Trasformazione Tacchino (1/3)",
   MANNAGGIA = "Quando vieni colpito, il nemico più vicino subisce 4 volte il tuo danno",
   IDIOTA = "Non fa niente",
   FERMI = "Non fa niente",
@@ -59,6 +64,11 @@ L.STARE_BOMBS = 2
 L.GENNARO_ANGEL_CHANCE = 0.25
 L.PRO_DAMAGE = 2
 L.NON_MUORE_FRAMES = 1800 -- 60 secondi a 30 update al secondo
+L.TACCHINO_DAMAGE = 1   -- trasformazione Tacchino: più forte...
+L.TACCHINO_SPEED = -0.1 -- ...ma più lento
+
+-- la trasformazione Tacchino scatta con tutti e 3 gli oggetti
+function L.isTacchino(count) return count >= 3 end
 L.MANNAGGIA_MULT = 4 -- era 10: Monstro moriva solo con i contatti (issue #26)
 
 function L.nonMuore(roomFrames, aliveBosses)

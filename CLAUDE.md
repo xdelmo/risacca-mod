@@ -35,7 +35,7 @@ Non c'è un test runner. I test sono script con `assert`: per provarne uno basta
 - **`main.lua`.** Fa solo da collegamento con le callback del gioco, e ha tre sezioni:
   - **oggetti nuovi:** Ho Rotto il Gioco, -1 al Dead God, Win Streak;
   - **scritte a schermo:** ognuna fa `say(...)` → la coda → `HUD:ShowItemText` dentro `MC_POST_UPDATE`;
-  - **oggetti dei tormentoni:** Non Vi Rubo Altro Tempo, Potrebbe Stare Qua, Il Miracolo di San Gennaruzzo, Che Fai, Te Ne Privi?, La Mossa del Pro Player, La Trollata, Fai Così, Fai Così, Mannaggia a Lui, e gli oggetti inutili Sono un Idiota e Fermi Tutti (solo la scritta al pickup). Stanno in fondo perché usano anche `say`.
+  - **oggetti dei tormentoni:** Non Vi Rubo Altro Tempo, Potrebbe Stare Qua, Il Miracolo di San Gennaruzzo, Che Fai, Te Ne Privi?, La Mossa del Pro Player, La Trollata, Fai Così, Fai Così, Mannaggia a Lui, e la trasformazione Tacchino (Tacchinardi, Tacchinibus, Il Tacchino della Domenica: l'effetto dei singoli oggetti è solo negli attributi di `content/items.xml`). Ci sono anche gli oggetti inutili Sono un Idiota e Fermi Tutti (solo la scritta al pickup). Stanno in fondo perché usano anche `say`.
 
   La stessa callback può essere registrata due volte, una per sezione, ed è voluto.
 - **Coda delle scritte.**
