@@ -19,7 +19,8 @@ python3 tools/sprites.py --selftest   # sprite (serve Pillow)
 python3 tools/build.py --selftest     # controllo del contenuto dello zip
 python3 tools/build.py                # → dist/risacca-mod.zip (da estrarre in ...\mods\)
 python3 tools/sprites.py              # rigenera i PNG in resources/
-python3 tools/leggibilita.py          # → dist/leggibilita.png: tutte le icone a 1x/2x, su HUD e piedistallo, e in grigi
+python3 tools/leggibilita.py          # → dist/leggibilita.png e report dei sosia; esce con 1 se una coppia è da rivedere
+python3 tools/leggibilita.py --selftest
 python3 tools/rename.py extracted     # genera resources-dlc3/ dai file del ResourceExtractor
 python3 tools/tormentoni.py           # rigenera docs/trascrizioni/tormentoni.md da tormentoni.txt
 ```
@@ -52,7 +53,7 @@ Non c'è un test runner. I test sono script con `assert`: per provarne uno basta
   - un player finto e un HUD che registra le scritte.
 
   Alla fine controlla che ogni callback registrata sia stata chiamata. Se aggiungi una callback, aggiungi anche uno scenario che la chiama.
-- **Contenuti XML e Sprite.** Gli oggetti nuovi stanno in `content/items.xml` e `content/itempools.xml`. Gli sprite si generano da griglie di caratteri in `tools/sprites.py`: non modificare i PNG a mano. Le immagini degli oggetti devono seguire fedelmente lo stile The Binding of Isaac: Repentance+; la guida completa agli standard visivi (palette, proporzioni 32x32, contorno 2px `(8, 0, 0)`, luce in alto a sinistra, riflessi del vetro e checklist) è documentata in `docs/standard-grafici.md` e supportata dalle skill in `.agents/skills/`. Come tavola di riferimento visivo ufficiale di tutti gli item vanilla c'è `docs/PC _ Computer - The Binding of Isaac_ Rebirth - Items - Items (Repentance).png`.
+- **Contenuti XML e Sprite.** Gli oggetti nuovi stanno in `content/items.xml` e `content/itempools.xml`. Gli sprite si generano da griglie di caratteri in `tools/sprites.py`: non modificare i PNG a mano. Le immagini degli oggetti devono seguire fedelmente lo stile The Binding of Isaac: Repentance+; la guida completa agli standard visivi (palette, proporzioni 32x32, contorno 2px `(8, 0, 0)`, luce in alto a sinistra, riflessi del vetro, checklist e procedura per un'icona nuova) è documentata in `docs/standard-grafici.md` e supportata dalle skill in `.agents/skills/`. Come tavola di riferimento visivo ufficiale di tutti gli item vanilla c'è `docs/PC _ Computer - The Binding of Isaac_ Rebirth - Items - Items (Repentance).png`.
 - **Rinomine dei vanilla.**
   - Esempi: chiavi → Chiaviz-Chiavoz, boss → Beppe Bossicchio, Bumbo → Bumbazzo. I nomi interi (Eye of Greed → Come Cacchio Si Chiama, Car Battery → Non Si Sa Mai, 0 - The Fool → Col vostro permessico) stanno in `EXACT` e hanno la precedenza sulle regole.
   - Le genera `tools/rename.py` in `resources-dlc3/` (git-ignored, perché contiene i testi del gioco e la repo non deve ridistribuirli), partendo dagli originali messi in `extracted/` (git-ignored).

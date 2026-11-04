@@ -110,10 +110,39 @@ Prima di confermare un nuovo sprite, verificare:
 - [ ] `python3 tools/sprites.py --selftest` viene superato senza errori?
 - [ ] Il confronto visivo in `docs/preview.png` risulta armonico con gli altri oggetti ufficiali?
 - [ ] È stato fatto un confronto diretto con gli item vanilla simili presenti nello spritesheet di reference ufficiale (`docs/PC _ Computer - The Binding of Isaac_ Rebirth - Items - Items (Repentance).png`)?
+- [ ] `python3 tools/leggibilita.py` non segna l'icona `DA RIVEDERE`?
+- [ ] In `dist/leggibilita.png` l'icona si capisce a 1x e il simbolo si vede ancora nella colonna in grigi?
+- [ ] Coprendo il nome, si capisce di quale oggetto si tratta e lo si distingue dagli altri della mod?
 
 ---
 
-## 7. Workflow nel Repository
+## 7. Come Creare un'Icona Nuova
+
+1. **Scegli un'idea sola.** L'icona mostra un oggetto concreto che richiama il tormentone. Le scritte non servono: a 32x32 non si leggono, al massimo un numero o un simbolo di 1-2 caratteri.
+2. **Cerca una forma libera.** Controlla la tavola di riferimento e le icone della mod: se la forma è già presa, cambiala. Un dettaglio interno diverso non basta: `la_trollata` e `potrebbe_stare_qua` sono la stessa bomba con una faccia o un `?`, e a 1x si confondono.
+3. **Disegna prima la silhouette.** Riempila con un colore solo nella griglia di `SPRITES` (16-20 pixel per lato, il contorno ne aggiunge 2 per parte). Se così non si riconosce, nessun dettaglio la salverà.
+4. **Assegna una tinta dominante.** Sceglila dal ricettario della sezione 5, diversa da quella delle icone con forma simile.
+5. **Aggiungi volume e un solo dettaglio chiave.** Luce in alto a sinistra e ombra in basso a destra. Il dettaglio chiave deve differire dallo sfondo per luminosità, non solo per tinta: il rosso sulla pelle sparisce in grigi.
+6. **Rigenera e controlla:**
+
+   ```bash
+   python3 tools/sprites.py --selftest   # regole tecniche: formato, margini, ingombro, colori, contorno
+   python3 tools/sprites.py              # rigenera i PNG
+   python3 tools/leggibilita.py          # sosia nella mod e tra i vanilla, più dist/leggibilita.png
+   ```
+
+7. **Guarda la tavola, poi prova in gioco.** I numeri non dicono se un'icona si capisce: decide l'occhio, a 1x, e poi la prova su piedistallo e HUD.
+
+### Come leggere `tools/leggibilita.py`
+
+- **Colonne della tavola:** 1x e 2x su HUD, 1x e 2x su piedistallo, 2x in grigi, sosia vanilla a 2x.
+- **Punteggio:** va da 0 a 1 e misura quanto si sovrappongono le forme centrate, ridotto dalla differenza di colore. Non vede il significato dell'oggetto.
+- **`DA RIVEDERE`:** compare da 0,7 con un'icona della mod e da 0,8 con un oggetto vanilla, e lo script esce con 1. È un motivo per guardare la coppia, non un verdetto: anche tra i vanilla ci sono famiglie volutamente simili. Se la somiglianza è voluta, lascia l'icona com'è e scrivi il motivo nella PR.
+- **Riferimento vanilla:** la tavola non ha i nomi degli oggetti, quindi il report indica riga e colonna della cella. Il confronto vale solo per gli oggetti presenti nel foglio.
+
+---
+
+## 8. Workflow nel Repository
 
 Gli sprite della mod **non si disegnano né modificano mai manualmente nei file PNG**.
 Vengono compilati via codice da matrici di caratteri in `tools/sprites.py`:
@@ -131,7 +160,7 @@ python3 tools/sprites.py
 
 ---
 
-## 8. Tavola di Riferimento Visivo Ufficiale
+## 9. Tavola di Riferimento Visivo Ufficiale
 
 Nella cartella `docs/` è presente il foglio completo (spritesheet) ad alta fedeltà con tutti gli oggetti ufficiali di Repentance, da usare come benchmark costante e fonte di verità visiva per silhouette, shading, palette e spessore dei contorni:
 
