@@ -15,9 +15,9 @@ Prima di provare, chiudi e riapri il gioco: le modifiche alla mod si vedono solo
 
 Nuova run, con un personaggio qualsiasi:
 
-- [ ] All'inizio compare **"Ciao a tutti, io sono Risacca / Benvenuti sul mio canale"**.
-- [ ] Poco dopo compare **"È XL?"**, poi **"No... non è XL"**. In un piano XL deve uscire **"SÌ, È XL!"**.
-- [ ] **Controlla le lettere accentate:** guarda se "È" e "Ì" si vedono bene. Se vedi quadratini o lettere sbagliate, fai uno screenshot.
+- [x] All'inizio compare **"Ciao a tutti, io sono Risacca / Benvenuti sul mio canale"**.
+- [ ] Poco dopo compare **"È XL?"**, poi **"No... non è XL"**. In un piano XL deve uscire **"SÌ, È XL!"**. Confermato "No... non è XL" (in un'unica scritta con "È XL?"); il caso del piano XL è ancora da vedere.
+- [ ] **Controlla le lettere accentate:** guarda se "È" e "Ì" si vedono bene. Se vedi quadratini o lettere sbagliate, fai uno screenshot. "È" ed "è" si vedono bene; "Ì" è ancora da vedere.
 - [ ] Raccogli un oggetto di qualità 3 o 4: compare **"IL GODOR!"** o **"GODOR MAXIMOR!"**.
 - [ ] Prendi un oggetto con un patto col diavolo, pagandolo in cuori: compare **"Alla facciazza vostra!"**.
 - [ ] Prendi un colpo da un cuore intero: compare **"Tacchino!"**.
@@ -61,14 +61,14 @@ Facoltativo, se ci arrivi: The Beast deve mostrare **"IL BEASTY BOY"**, Mega Sat
 - [x] Il ResourceExtractor è stato lanciato: i file originali sono in `extracted_resources\`, nella cartella del gioco, e quelli che servono sono copiati in `extracted\`.
 - [x] `resources-dlc3\` è stata generata e il gioco la carica.
 - [x] `giveitem c17`: **Skeleton Chiaviz-Chiavoz**.
-- [ ] `giveitem c125`: **Bobby-Bombiz-Bomboz**.
-- [ ] `giveitem c360`: **Il buddy più forte del gioco**. Controlla che la "ù" si veda bene.
-- [ ] `giveitem c385`: **Bumbazzo**.
+- [x] `giveitem c125`: **Bobby-Bombiz-Bomboz**.
+- [x] `giveitem c360`: **Il buddy più forte del gioco**. Controlla che la "ù" si veda bene.
+- [x] `giveitem c385`: **Bumbazzo**.
 - [ ] `giveitem c249`, poi apri il riquadro Item Info nel menu di pausa: deve comparire **"Beppe Bossicchi drop 2 items"**. Se resta "Bosses drop 2 items", il gioco non sta caricando `info_display.xml` dalla mod.
 - [ ] `giveitem c414`, stesso riquadro: **"1 additional item will appear in Stanza d'Auro"**.
-- [ ] `giveitem c450`: **Come Cacchio Si Chiama**.
-- [ ] `giveitem c356`: **Non Si Sa Mai**.
-- [ ] `giveitem k1`: **Col vostro permessico**. L'annunciatore continua a dire "The Fool": la voce non cambia con la rinomina.
+- [x] `giveitem c450`: **Come Cacchio Si Chiama**.
+- [x] `giveitem c356`: **Non Si Sa Mai**.
+- [x] `giveitem k1`: **Col vostro permessico**. L'annunciatore continua a dire "The Fool": la voce non cambia con la rinomina.
 
 - [ ] Quando incontri Peep (piani Caves/Catacombs): la schermata VS mostra **PIPPOLINS** al posto del nome originale, leggibile e dentro lo schermo.
 - [ ] Quando incontri The Beast: se compare una schermata VS, deve mostrare **IL BEASTY BOY**. Il gioco non ha un'immagine del nome per questo boss, quindi è probabile che la schermata non ci sia: in quel caso segnalalo e basta.
