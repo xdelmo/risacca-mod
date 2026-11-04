@@ -50,7 +50,17 @@ L'ordine è quello del canale, dal video più recente. I titoli sono quelli rest
 | [`Am2P9XucHkg.txt`](<Am2P9XucHkg.txt>) | playing TAINTED EDEN is PURE MADNESS | 1:04:11 | [YouTube](https://www.youtube.com/watch?v=Am2P9XucHkg) |
 | [`ygivTrxYv54.txt`](<ygivTrxYv54.txt>) | How to CANCEL the Tainted Eden REROLL | 1:06:07 | [YouTube](https://www.youtube.com/watch?v=ygivTrxYv54) |
 | [`rvuiCTHLz6A.txt`](<rvuiCTHLz6A.txt>) | How to find the ULTRA SECRET ROOM in The Binding of Isaac | 1:14:52 | [YouTube](https://www.youtube.com/watch?v=rvuiCTHLz6A) |
+| [`1wIlDZBvyOQ.txt`](<1wIlDZBvyOQ.txt>) | DELIRIUM defeats THE BEAST for me | 1:01:01 | [YouTube](https://www.youtube.com/watch?v=1wIlDZBvyOQ) |
+| [`YMTkHtZvlJ8.txt`](<YMTkHtZvlJ8.txt>) | Star of Bethlehem = EASY WIN? | 55:22 | [YouTube](https://www.youtube.com/watch?v=YMTkHtZvlJ8) |
+| [`HpsTjihjUhU.txt`](<HpsTjihjUhU.txt>) | the INFINITE DAMAGE build | 55:13 | [YouTube](https://www.youtube.com/watch?v=HpsTjihjUhU) |
+| [`41sgkXlrSy4.txt`](<41sgkXlrSy4.txt>) | with this COMBO there is (almost) no taste | 1:01:09 | [YouTube](https://www.youtube.com/watch?v=41sgkXlrSy4) |
+| [`wVz7gVrb9EA.txt`](<wVz7gVrb9EA.txt>) | The BEST ITEM for Tainted Maggy | 51:20 | [YouTube](https://www.youtube.com/watch?v=wVz7gVrb9EA) |
+| [`iBvstGnDjc0.txt`](<iBvstGnDjc0.txt>) | Here is why you should ALWAYS use the SACRIFICE ROOM | 57:06 | [YouTube](https://www.youtube.com/watch?v=iBvstGnDjc0) |
+| [`nCclJtAM1Ps.txt`](<nCclJtAM1Ps.txt>) | TICK-TICK BOOM-BOOM with Tainted Blue Baby | 1:00:01 | [YouTube](https://www.youtube.com/watch?v=nCclJtAM1Ps) |
+| [`oeccXtdu4SA.txt`](<oeccXtdu4SA.txt>) | RAVE PARTY in The Binding of Isaac | 56:43 | [YouTube](https://www.youtube.com/watch?v=oeccXtdu4SA) |
+| [`AroKNeOcwyU.txt`](<AroKNeOcwyU.txt>) | all VERY NICE, but then… | 55:40 | [YouTube](https://www.youtube.com/watch?v=AroKNeOcwyU) |
+| [`kYNYemEOrOA.txt`](<kYNYemEOrOA.txt>) | The UNEXPECTED Play to become GUPPY | 54:20 | [YouTube](https://www.youtube.com/watch?v=kYNYemEOrOA) |
 
 `sMFBfUme4pE` ("-3 al DEAD GOD", 31:19) è saltato perché YouTube non ha sottotitoli per quel video.
 
-I tormentoni estratti da questo gruppo di video sono in [`tormentoni-issue-6.md`](tormentoni-issue-6.md).
+Il riepilogo dei tormentoni, con conteggi e stato (nella mod, proposto, scartato, non usato), è in [`tormentoni.md`](tormentoni.md). Si rigenera con `python3 tools/tormentoni.py` da [`tormentoni.txt`](tormentoni.txt).

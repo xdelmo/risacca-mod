@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Mod per The Binding of Isaac: Repentance dedicata allo YouTuber Risacca, provata su Repentance+. È un regalo da pubblicare sullo Steam Workshop. Comunica con l'utente in italiano. Il codice si scrive su macOS o sul PC Windows, dove la repo è anche la cartella della mod (`...\The Binding of Isaac Rebirth\mods\risacca-mod\`). Le prove in gioco le fa l'utente, e quelle ancora da fare sono in `docs/da-fare-su-windows.md`.
 
-Il design è in `docs/superpowers/specs/2026-11-01-risacca-mod-design.md`, il piano in `docs/superpowers/plans/2026-11-01-risacca-mod.md`. I tormentoni vengono dalle trascrizioni dei video in `docs/trascrizioni/`.
+Il design è in `docs/superpowers/specs/2026-11-01-risacca-mod-design.md`, il piano in `docs/superpowers/plans/2026-11-01-risacca-mod.md`. I tormentoni vengono dalle trascrizioni dei video in `docs/trascrizioni/`: il riepilogo con conteggi e stato è in `docs/trascrizioni/tormentoni.md`, generato da `tormentoni.txt`.
 
 ## Comandi
 
@@ -20,6 +20,7 @@ python3 tools/build.py --selftest     # controllo del contenuto dello zip
 python3 tools/build.py                # → dist/risacca-mod.zip (da estrarre in ...\mods\)
 python3 tools/sprites.py              # rigenera i PNG in resources/
 python3 tools/rename.py extracted     # genera resources-dlc3/ dai file del ResourceExtractor
+python3 tools/tormentoni.py           # rigenera docs/trascrizioni/tormentoni.md da tormentoni.txt
 ```
 
 Non c'è un test runner. I test sono script con `assert`: per provarne uno basta lanciare il file. Sul PC Windows `lua` e Pillow non sono installati: i test Lua si possono lanciare con il Lua 5.3 del pacchetto Python `lupa`.
