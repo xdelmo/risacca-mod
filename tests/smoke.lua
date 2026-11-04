@@ -54,6 +54,7 @@ local ids = {
   ["Non Vi Rubo Altro Tempo"] = 735, ["Potrebbe Stare Qua"] = 736, ["Il Miracolo di San Gennaruzzo"] = 737,
   ["Che Fai, Te Ne Privi?"] = 191, ["La Mossa del Pro Player"] = 738,
   ["La Trollata"] = 739, ["Fai Così, Fai Così"] = 740, ["Mannaggia a Lui"] = 192,
+  ["Sono un Idiota"] = 741, ["Fermi Tutti"] = 742,
 }
 local spawned, lastSpawn = 0, nil
 local roomEntities = {}
@@ -133,6 +134,14 @@ player.QueuedItem.Item = collectible(331, 4); frames(60)
 player.QueuedItem.Item = nil; frames(5)
 expect({ "GODOR MAXIMOR!" })
 
+-- oggetti inutili: solo la scritta
+player.QueuedItem.Item = collectible(741, 0); frames(60)
+player.QueuedItem.Item = nil; frames(5)
+expect({ "Sono un idiota!" })
+player.QueuedItem.Item = collectible(742, 0); frames(60)
+player.QueuedItem.Item = nil; frames(5)
+expect({ "Fermi tutti!" })
+
 -- patto col diavolo → Facciazza
 fire(ModCallbacks.MC_PRE_PICKUP_COLLISION, PickupVariant.PICKUP_COLLECTIBLE, { Price = -1, SubType = 50 }, player)
 player.QueuedItem.Item = collectible(50, 1); frames(60)
@@ -159,11 +168,9 @@ fire(ModCallbacks.MC_POST_NPC_INIT, nil, npc(EntityType.ENTITY_PEEP, 0))
 frames(40)
 expect({ "PIPPOLINS" })
 
--- Bumbino e Greed: una volta per run, Super Greed e Ultra Greedier (variant 1) no
+-- Bumbino: una volta per run, la variant 1 no
 for _, boss in ipairs({
   { EntityType.ENTITY_BUMBINO, "BUMBAZZO" },
-  { EntityType.ENTITY_GREED, "BALLERINO DI FLAMENCO" },
-  { EntityType.ENTITY_ULTRA_GREED, "ULTRA BALLERINO DI FLAMENCO" },
 }) do
   fire(ModCallbacks.MC_POST_NPC_INIT, nil, npc(boss[1], 1))
   frames(40)
@@ -173,6 +180,11 @@ for _, boss in ipairs({
   frames(40)
   expect({ boss[2] })
 end
+-- Greed e Ultra Greed tengono il nome vanilla: nessuna scritta
+fire(ModCallbacks.MC_POST_NPC_INIT, nil, npc(EntityType.ENTITY_GREED, 0))
+fire(ModCallbacks.MC_POST_NPC_INIT, nil, npc(EntityType.ENTITY_ULTRA_GREED, 0))
+frames(40)
+expect({})
 
 -- Satan ucciso due volte nella stessa stanza → un solo bacione
 fire(ModCallbacks.MC_POST_NEW_ROOM)
@@ -269,6 +281,9 @@ room.bosses = 1; room.frameCount = 1799; frames(5)
 expect({})
 room.frameCount = 1800; frames(20)
 expect({ "Non muore!" })
+fire(ModCallbacks.MC_POST_NEW_ROOM); frames(5)
+expect({}) -- la stessa scritta non torna prima di 30 secondi
+frames(900)
 fire(ModCallbacks.MC_POST_NEW_ROOM); frames(5)
 expect({ "Non muore!" })
 fire(ModCallbacks.MC_POST_NEW_ROOM)
