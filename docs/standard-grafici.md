@@ -119,7 +119,7 @@ Prima di confermare un nuovo sprite, verificare:
 ## 7. Come Creare un'Icona Nuova
 
 1. **Scegli un'idea sola.** L'icona mostra un oggetto concreto che richiama il tormentone. Le scritte non servono: a 32x32 non si leggono, al massimo un numero o un simbolo di 1-2 caratteri.
-2. **Cerca una forma libera.** Controlla la tavola di riferimento e le icone della mod: se la forma è già presa, cambiala. Un dettaglio interno diverso non basta: `la_trollata` e `potrebbe_stare_qua` sono la stessa bomba con una faccia o un `?`, e a 1x si confondono.
+2. **Cerca una forma libera.** Controlla la tavola di riferimento e le icone della mod: se la forma è già presa, cambiala. Un dettaglio interno diverso non basta: `la_trollata` e `potrebbe_stare_qua` erano la stessa bomba con una faccia o un `?` e a 1x si confondevano, così `la_trollata` è diventata un detonatore.
 3. **Disegna prima la silhouette.** Riempila con un colore solo nella griglia di `SPRITES` (16-20 pixel per lato, il contorno ne aggiunge 2 per parte). Se così non si riconosce, nessun dettaglio la salverà.
 4. **Assegna una tinta dominante.** Sceglila dal ricettario della sezione 5, diversa da quella delle icone con forma simile.
 5. **Aggiungi volume e un solo dettaglio chiave.** Luce in alto a sinistra e ombra in basso a destra. Il dettaglio chiave deve differire dallo sfondo per luminosità, non solo per tinta: il rosso sulla pelle sparisce in grigi.
