@@ -14,7 +14,6 @@ RULES = [(re.compile(p, re.I), r) for p, r in [
     (r"\bbosses\b", "Beppe Bossicchi"),
     (r"\bboss\b", "Beppe Bossicchio"),
     (r"\bBumbo\b", "Bumbazzo"),
-    (r"\bGreed\b", "Ballerino di Flamenco"),
 ]]
 
 
@@ -75,7 +74,7 @@ def selftest():
         "Incubus": "Il buddy più forte del gioco",
         "Bumbo": "Bumbazzo",
         "Bumbo's Heart": "Bumbazzo's Heart",
-        "Greed's Gullet": "Ballerino di Flamenco's Gullet",
+        "Greed's Gullet": "Greed's Gullet",
         "Ultra Greedier": "Ultra Greedier",
         "Eye of Greed": "Come Cacchio Si Chiama",
         "Car Battery": "Non Si Sa Mai",

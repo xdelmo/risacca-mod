@@ -297,7 +297,6 @@ BOSS_NAMES = {
     "resources/gfx/ui/boss/bossname_274.0_megasatan.png": (["MEGA STANLEY"], 20, 4),
     "resources/gfx/ui/boss/bossname_thebeast.png": (["IL BEASTY BOY"], 20, 4),  # il vanilla non ha questo PNG, il nome viene da bossportraits.xml
     "resources/gfx/ui/boss/bossname_bumbino.png": (["BUMBAZZO"], 28, 6),
-    "resources/gfx/ui/boss/bossname_406.0_ultragreed.png": (["ULTRA BALLERINO", "DI FLAMENCO"], 16, 3),  # il vanilla lo usa anche per Ultra Greedier
 }
 BOSS_NAME_COLOR = (199, 178, 153)  # l'unico colore dei bossname vanilla
 BOSS_NAME_SIZE = (256, 64)         # il ritaglio di BossName in versusscreen.anm2
