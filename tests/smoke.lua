@@ -355,7 +355,7 @@ assert(near.damage == nil, "danno senza il trinket")
 expect({})
 trinkets[192] = true
 fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 1); frames(5)
-assert(near.damage == player.Damage * 10 and far.damage == nil, "contraccolpo errato")
+assert(near.damage == player.Damage * 4 and far.damage == nil, "contraccolpo errato")
 expect({ "Mannaggia a lui!" })
 roomEntities = {}
 fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 1); frames(5)

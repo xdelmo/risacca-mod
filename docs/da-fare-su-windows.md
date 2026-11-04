@@ -51,7 +51,7 @@ Apri la console con il tasto `\` (quello sopra Invio, oppure `ò`/`ù` sulla tas
 - [x] `giveitem c105`, poi usa il D6 su un piedistallo: l'oggetto cambia come sempre e compare **"Fammi sognare"**.
 - [x] `giveitem La Trollata`, poi usalo in una stanza con nemici: appare una troll bomb su ogni nemico e compare **"M'ha trollato!"**. Controlla che le bombe restino addosso ai nemici abbastanza da colpirli.
 - [x] `giveitem Fai Così, Fai Così`: una lacrima su due parte doppia. Controlla che la "ì" si veda bene nel nome e che il comando trovi l'oggetto; prova anche con un'arma che non spara lacrime (Brimstone), che non ha effetto. La "ì" è stata controllata in External Item Descriptions, il comando con l'id `c740`.
-- [ ] `giveitem Mannaggia a Lui`, poi fatti colpire: il nemico più vicino subisce 10 volte il tuo danno e compare **"Mannaggia a lui!"**. Controlla il bilanciamento, soprattutto sui boss. Effetto e scritta confermati. Resta da decidere il bilanciamento: Monstro è morto solo con i contatti.
+- [ ] `giveitem Mannaggia a Lui`, poi fatti colpire: il nemico più vicino subisce 4 volte il tuo danno e compare **"Mannaggia a lui!"**. Effetto e scritta confermati con il valore 10, che era troppo forte (Monstro è morto solo con i contatti): ricontrolla il bilanciamento con 4.
 - [x] Le icone degli altri cinque oggetti (Non Vi Rubo Altro Tempo, Potrebbe Stare Qua, Il Miracolo di San Gennaruzzo, Che Fai, Te Ne Privi?, La Mossa del Pro Player) si vedono e le loro descrizioni in External Item Descriptions sono giuste.
 - [x] Le icone di La Trollata, Fai Così, Fai Così e Mannaggia a Lui si vedono.
 - [ ] `giveitem Sono un Idiota` e `giveitem Fermi Tutti`: compaiono *Sono un idiota!* e *Fermi tutti!*, e le statistiche non cambiano.
