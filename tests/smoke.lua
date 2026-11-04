@@ -10,6 +10,10 @@ local function enum()
 end
 ModCallbacks, EntityType, PickupVariant, CacheFlag, LevelCurse, CollectibleType = enum(), enum(), enum(), enum(), enum(), enum()
 RoomType, HeartSubType, BombVariant = enum(), enum(), enum()
+DamageFlag = {
+  DAMAGE_NO_PENALTIES = 1 << 14,
+  DAMAGE_RED_HEARTS = 1 << 17,
+}
 function EntityRef(e) return { Entity = e } end
 
 Vector = setmetatable({ Zero = { X = 0, Y = 0 } }, { __call = function(_, x, y) return { X = x, Y = y } end })
@@ -59,14 +63,16 @@ local ids = {
 }
 local spawned, lastSpawn = 0, nil
 local roomEntities = {}
+local debugLogs = {}
 Isaac = {
-  GetItemIdByName = function(n) return ids[n] end,
+  GetItemIdByName = function(n) return ids[n] or -1 end,
   GetSoundIdByName = function(n) return n == "Risacca Tacchino" and 900 or -1 end,
-  GetTrinketIdByName = function(n) return ids[n] end,
+  GetTrinketIdByName = function(n) return ids[n] or -1 end,
   GetPlayer = function() return player end,
   Spawn = function(t, v, s) spawned = spawned + 1; lastSpawn = { t = t, v = v, s = s } end,
   GetFreeNearPosition = function(p) return p end,
   GetRoomEntities = function() return roomEntities end,
+  DebugString = function(s) debugLogs[#debugLogs + 1] = s end,
 }
 local played = {}
 function SFXManager() return { Play = function(_, id) played[#played + 1] = id end } end
@@ -110,7 +116,17 @@ EID = {
 
 dofile("main.lua")
 assert(#cbs > 0, "nessuna callback registrata")
+assert(#debugLogs == 0, "oggetti con ID mancante all'avvio: " .. table.concat(debugLogs, ", "))
 for _, id in pairs(ids) do assert(eid[id], "descrizione EID mancante: " .. id) end
+
+-- Controllo coerenza nomi tra main.lua e content/items.xml (#49)
+local itemsXml = io.open("content/items.xml", "r")
+assert(itemsXml, "impossibile aprire content/items.xml")
+local xmlContent = itemsXml:read("*all")
+itemsXml:close()
+for name in pairs(ids) do
+  assert(xmlContent:find('name="' .. name .. '"', 1, true), "nome non presente in content/items.xml: " .. name)
+end
 
 local function frames(n)
   for _ = 1, n do
@@ -318,7 +334,10 @@ expect({ "La mossa del pro player!" })
 fire(ModCallbacks.MC_POST_NEW_ROOM)
 assert(math.abs(damageBonus() - noBonus) < 1e-9, "bonus rimasto dopo il cambio stanza")
 fire(ModCallbacks.MC_USE_ITEM, 738, 738, nil, player); frames(5); shown = {}
-fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 2); frames(20)
+fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 1, DamageFlag.DAMAGE_NO_PENALTIES); frames(5)
+assert(damageBonus() > noBonus, "bonus Pro Player perso con danno senza penalita")
+expect({})
+fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 2, 0); frames(20)
 assert(math.abs(damageBonus() - noBonus) < 1e-9, "bonus rimasto dopo il colpo")
 expect({ "Sono un cretino" }) -- il cretino batte il tacchino dello stesso colpo
 
@@ -358,7 +377,10 @@ fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 1); fram
 assert(near.damage == nil, "danno senza il trinket")
 expect({})
 trinkets[192] = true
-fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 1); frames(5)
+fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 1, DamageFlag.DAMAGE_NO_PENALTIES); frames(5)
+assert(near.damage == nil, "Mannaggia a Lui ha colpito con danno senza penalita")
+expect({})
+fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 1, 0); frames(5)
 assert(near.damage == player.Damage * 4 and far.damage == nil, "contraccolpo errato")
 expect({ "Mannaggia a lui!" })
 roomEntities = {}
@@ -395,6 +417,24 @@ local soundsContent = soundsXml:read("*all")
 soundsXml:close()
 assert(soundsContent:find('name="Risacca Tacchino"', 1, true) and soundsContent:find('path="tacchino.wav"', 1, true), "sounds.xml incoerente")
 assert(io.open("resources/sfx/tacchino.wav", "rb"), "manca resources/sfx/tacchino.wav"):close()
+
+-- Nuova run: azzeramento dello stato per-player (#48)
+items[740] = true
+fire(ModCallbacks.MC_POST_FIRE_TEAR, nil, tear)
+assert(twins == 2, "lacrima dispari non deve sdoppiare")
+fire(ModCallbacks.MC_USE_ITEM, 738, 738, nil, player)
+assert(damageBonus() > noBonus, "bonus Pro Player non attivo prima del reset")
+shown = {}
+fire(ModCallbacks.MC_POST_GAME_STARTED, nil, false)
+frames(35)
+shown = {}
+assert(damageBonus() < 1e-9, "bonus Pro Player ereditato nella nuova run")
+local twinsBefore = twins
+fire(ModCallbacks.MC_POST_FIRE_TEAR, nil, tear)
+assert(twins == twinsBefore, "Fai Cosi ha ereditato il conteggio colpi della run precedente")
+fire(ModCallbacks.MC_POST_FIRE_TEAR, nil, tear)
+assert(twins == twinsBefore + 1, "Fai Cosi non ha raddoppiato al 2 colpo della nuova run")
+items[740] = nil
 
 -- ogni callback registrata deve essere stata chiamata almeno una volta
 for i, c in ipairs(cbs) do assert(called[c], "callback #" .. i .. " mai chiamata") end
