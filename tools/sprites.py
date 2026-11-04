@@ -458,8 +458,8 @@ def write_costume(base):
 # Sostituiscono i PNG vanilla con lo stesso percorso: (righe, altezza delle lettere, spessore del tratto, distanza tra le lettere in tratti)
 BOSS_NAMES = {
     "resources/gfx/ui/boss/bossname_68.0_peep.png": (["PIPPOLINS"], 27, 6, 1),
-    "resources/gfx/ui/boss/bossname_274.0_megasatan.png": (["MEGA STANLEY"], 21, 4.5, 0.75),
-    "resources/gfx/ui/boss/bossname_thebeast.png": (["IL BEASTY BOY"], 21, 4.8, 0.8),  # il vanilla non ha questo PNG, il nome viene da bossportraits.xml
+    "resources/gfx/ui/boss/bossname_274.0_megasatan.png": (["MEGA STANLEY"], 23, 5.2, 0.5),
+    "resources/gfx/ui/boss/bossname_thebeast.png": (["IL BEASTY BOY"], 23, 5.2, 0.55),  # il vanilla non ha questo PNG, il nome viene da bossportraits.xml
     "resources/gfx/ui/boss/bossname_bumbino.png": (["BUMBAZZO"], 27, 5.6, 1),
 }
 BOSS_NAME_COLOR = (199, 178, 153)  # l'unico colore dei bossname vanilla
