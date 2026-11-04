@@ -47,10 +47,9 @@ Gli oggetti originali del gioco vengono rinominati nei nomi e nelle descrizioni:
 | bosses | Beppe Bossicchi |
 | Treasure Room | Stanza d'Auro |
 | Bumbo | Bumbazzo |
-| Greed | Ballerino di Flamenco |
 | Incubus | Il buddy più forte del gioco |
 
-Anche alcuni boss cambiano nome: Peep diventa **Pippolins** e Bumbino diventa **Bumbazzo**, sia nella schermata VS sia nella scritta a inizio scontro. Ultra Greed diventa **Ultra Ballerino di Flamenco** negli stessi due punti, e il mini-boss Greed diventa **Ballerino di Flamenco** nella scritta. Mega Satan diventa **Mega Stanley** nella schermata VS e **Mega Stanley Kubrick** nella scritta. The Beast diventa **Il Beasty Boy** nella scritta e nell'immagine del nome.
+Anche alcuni boss cambiano nome: Peep diventa **Pippolins** e Bumbino diventa **Bumbazzo**, sia nella schermata VS sia nella scritta a inizio scontro. Mega Satan diventa **Mega Stanley** nella schermata VS e **Mega Stanley Kubrick** nella scritta. The Beast diventa **Il Beasty Boy** nella scritta e nell'immagine del nome.
 
 ## Installazione
 

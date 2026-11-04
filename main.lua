@@ -31,7 +31,7 @@ if EID then
   EID:addTrinket(TRINKET_MANNAGGIA, L.EID.MANNAGGIA)
 end
 
-local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKills = 0, beastyShown = false, kubrickShown = false, pippolinsShown = false, bumbazzoShown = false, flamencoShown = false, ultraFlamencoShown = false } end
+local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKills = 0, beastyShown = false, kubrickShown = false, pippolinsShown = false, bumbazzoShown = false } end
 local run = freshRun()
 local roomFlags = {}
 
@@ -197,14 +197,6 @@ mod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, function(_, npc)
   elseif npc.Type == EntityType.ENTITY_BUMBINO and not run.bumbazzoShown then
     run.bumbazzoShown = true
     say(T.BUMBAZZO, nil, 30, P.BOSSNAME)
-    save()
-  elseif npc.Type == EntityType.ENTITY_GREED and not run.flamencoShown then -- variant 1 è Super Greed
-    run.flamencoShown = true
-    say(T.FLAMENCO, nil, 30, P.BOSSNAME)
-    save()
-  elseif npc.Type == EntityType.ENTITY_ULTRA_GREED and not run.ultraFlamencoShown then -- variant 1 è Ultra Greedier
-    run.ultraFlamencoShown = true
-    say(T.ULTRA_FLAMENCO, nil, 30, P.BOSSNAME)
     save()
   end
 end)
