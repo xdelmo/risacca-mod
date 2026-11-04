@@ -68,6 +68,8 @@ Facoltativo, se ci arrivi: The Beast deve mostrare **"IL BEASTY BOY"**, Mega Sat
 - [ ] `giveitem c414`, stesso riquadro: **"1 additional item will appear in Stanza d'Auro"**.
 - [ ] `giveitem c450`: **Come Cacchio Si Chiama**.
 - [ ] `giveitem c356`: **Non Si Sa Mai**.
+- [ ] `giveitem c247`: **Miglior Investimento**.
+- [ ] `giveitem c232`: **Run Vinta**.
 - [ ] `giveitem k1`: **Col vostro permessico**. L'annunciatore continua a dire "The Fool": la voce non cambia con la rinomina.
 
 - [ ] Quando incontri Peep (piani Caves/Catacombs): la schermata VS mostra **PIPPOLINS** al posto del nome originale, leggibile e dentro lo schermo.

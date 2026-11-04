@@ -23,6 +23,8 @@ EXACT = {
     "Eye of Greed": "Come Cacchio Si Chiama",
     "Car Battery": "Non Si Sa Mai",
     "0 - The Fool": "Col vostro permessico",
+    "BFFS!": "Miglior Investimento",
+    "Stop Watch": "Run Vinta",
 }
 
 
@@ -78,6 +80,8 @@ def selftest():
         "Eye of Greed": "Come Cacchio Si Chiama",
         "Car Battery": "Non Si Sa Mai",
         "0 - The Fool": "Col vostro permessico",
+        "BFFS!": "Miglior Investimento",
+        "Stop Watch": "Run Vinta",
     }
     for src, want in cases.items():
         got = rename_text(src)
