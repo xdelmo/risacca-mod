@@ -9,6 +9,7 @@ Prima di provare, chiudi e riapri il gioco: le modifiche alla mod si vedono solo
 - [x] La mod è in `C:\Program Files (x86)\Steam\steamapps\common\The Binding of Isaac Rebirth\mods\risacca-mod\`, ed è la repo stessa: non serve estrarre lo zip.
 - [x] La console di debug è attiva (`EnableDebugConsole=1` in `Documenti\My Games\Binding of Isaac Repentance+\options.ini`).
 - [x] Il gioco carica la mod senza errori Lua.
+- [ ] Installazione da zero seguendo solo il `readme.txt` dello zip (prima sposta altrove la cartella della repo): la mod compare nel menu **Mods** e si attiva. Controlla anche se la cartella `mods` esiste già e se Windows chiede l'autorizzazione a copiare.
 
 ## 2. Provare le scritte
 
