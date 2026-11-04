@@ -68,11 +68,16 @@ Facoltativo, se ci arrivi: The Beast deve mostrare **"IL BEASTY BOY"**, Mega Sat
 - [ ] `giveitem c414`, stesso riquadro: **"1 additional item will appear in Stanza d'Auro"**. **Stesso bug:** resta "treasure rooms".
 - [x] `giveitem c450`: **Come Cacchio Si Chiama**.
 - [x] `giveitem c356`: **Non Si Sa Mai**.
+- [ ] `giveitem c247`: **Miglior Investimento**.
+- [ ] `giveitem c232`: **Run Vinta**.
 - [x] `giveitem k1`: **Col vostro permessico**. L'annunciatore continua a dire "The Fool": la voce non cambia con la rinomina.
 
 - [x] Quando incontri Peep (piani Caves/Catacombs): la schermata VS mostra **PIPPOLINS** al posto del nome originale, leggibile e dentro lo schermo. Durante lo scorrimento il nome tocca il bordo destro, poi rientra: visto in una finestra quasi quadrata e con `goto s.boss.2020`.
 - [ ] Quando incontri The Beast: se compare una schermata VS, deve mostrare **IL BEASTY BOY**. Il gioco non ha un'immagine del nome per questo boss, quindi è probabile che la schermata non ci sia: in quel caso segnalalo e basta.
 - [x] Quando incontri Mega Satan: la schermata VS mostra **MEGA STANLEY**. Se per Peep o Mega Satan resta il nome originale, il gioco non sta usando il PNG della mod: dimmelo e provo a spostarlo in `resources-dlc3/`. Confermato con `goto s.boss.5000`; il banner in stanza dice **MEGA STANLEY KUBRICK**.
+- [ ] Quando incontri Bumbino: la schermata VS e la scritta mostrano **BUMBAZZO**.
+- [ ] Quando incontri Ultra Greed (modalità Greed): la schermata VS mostra **ULTRA BALLERINO DI FLAMENCO** su due righe, e la scritta lo stesso nome. Ultra Greedier usa la stessa immagine, quindi nella sua schermata VS comparirà questo nome: controlla che ti vada bene.
+- [ ] Quando incontri il mini-boss Greed: compare la scritta **BALLERINO DI FLAMENCO**. Controlla anche il banner del mini-boss, che dovrebbe restare "Greed" perché viene dalla `stringtable.sta` e la mod non la genera.
 
 Le chiavi e le bombe raccolte da terra non cambiano nome: le rinomine riguardano solo nomi e descrizioni di oggetti, trinket, carte e pillole.
 
