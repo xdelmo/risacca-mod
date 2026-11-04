@@ -43,7 +43,8 @@ Gli oggetti originali del gioco vengono rinominati nei nomi e nelle descrizioni:
 |---|---|
 | key / keys | Chiaviz-Chiavoz |
 | bomb / bombs | Bombiz-Bomboz |
-| boss / bosses | Beppe Bossicchio |
+| boss | Beppe Bossicchio |
+| bosses | Beppe Bossicchi |
 | Treasure Room | Stanza d'Auro |
 | Bumbo | Bumbazzo |
 | Greed | Ballerino di Flamenco |

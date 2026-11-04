@@ -11,7 +11,8 @@ RULES = [(re.compile(p, re.I), r) for p, r in [
     (r"\btreasure rooms?\b", "Stanza d'Auro"),
     (r"\bkeys?\b", "Chiaviz-Chiavoz"),
     (r"\bbombs?\b", "Bombiz-Bomboz"),
-    (r"\bboss(es)?\b", "Beppe Bossicchio"),
+    (r"\bbosses\b", "Beppe Bossicchi"),
+    (r"\bboss\b", "Beppe Bossicchio"),
     (r"\bBumbo\b", "Bumbazzo"),
     (r"\bGreed\b", "Ballerino di Flamenco"),
 ]]
@@ -59,7 +60,7 @@ def selftest():
         "Boss Rush": "Beppe Bossicchio Rush",
         "Treasure Room": "Stanza d'Auro",
         "1 additional item will appear in treasure rooms": "1 additional item will appear in Stanza d'Auro",
-        "Bosses drop 2 items": "Beppe Bossicchio drop 2 items",
+        "Bosses drop 2 items": "Beppe Bossicchi drop 2 items",
         "Treasure Map": "Treasure Map",
         "Incubus": "Il buddy più forte del gioco",
         "Bumbo": "Bumbazzo",

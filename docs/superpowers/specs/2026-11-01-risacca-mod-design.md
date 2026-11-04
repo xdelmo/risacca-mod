@@ -19,7 +19,7 @@ Riferimenti presi dai titoli del canale: "ho rotto il gioco", Win Streak, "-N al
 4. **Rinomine dei testi vanilla** (nomi + descrizioni di oggetti, trinket, carte, pillole; testi inglesi, Risacca gioca in inglese) — scelte dell'utente:
    - key / keys → **Chiaviz-Chiavoz**
    - bomb / bombs → **Bombiz-Bomboz**
-   - boss / bosses → **Beppe Bossicchio** (solo la parola nei testi, NON schermata VS)
+   - boss → **Beppe Bossicchio**, bosses → **Beppe Bossicchi** (solo la parola nei testi, NON schermata VS)
    - Incubus → **Il buddy più forte del gioco**
    - Bumbo → **Bumbazzo** (parola intera, ovunque nei testi)
    - Greed → **Ballerino di Flamenco** (parola intera, ovunque nei testi; "Greedier" resta)
