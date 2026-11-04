@@ -1,0 +1,53 @@
+# Elenco dei tormentoni. Da qui tools/tormentoni.py genera tormentoni.md.
+# Una riga per tormentone: stato | frase | regex | nota
+# stato: nella mod, proposto, scartato, non usato
+# regex: Python, senza distinzione tra maiuscole e minuscole, cercata nel testo delle trascrizioni.
+
+nella mod | Il godor | \bgodor | Scritta "IL GODOR!" / "GODOR MAXIMOR!"
+nella mod | È XL? | \bè xl\b | Scritte "È XL?" / "SÌ, È XL!"
+nella mod | Ciao a tutti, io sono Risacca | io sono risacca | Scritta a inizio run
+nella mod | C'ho l'ansia | c'ho l'ansia | Scritta "C'ho l'ansia"
+nella mod | Tacchino | \btacchin | Scritta "Tacchino!"
+nella mod | Alla facciazza vostra | facciazza | Scritta "Alla facciazza vostra!"
+nella mod | Un bacione grande | bacione | Scritta "Un bacione grande dal vostro Risacca"
+nella mod | Non vi rubo altro tempo | non vi rubo altro tempo | Oggetto Non Vi Rubo Altro Tempo
+nella mod | Potrebbe stare qua | potrebbe stare qua | Oggetto Potrebbe Stare Qua
+nella mod | Che fai? Te ne privi? | te ne privi | Trinket Che Fai, Te Ne Privi?
+nella mod | San Gennaro | san gennar | Oggetto Il Miracolo di San Gennaruzzo
+nella mod | Pro player | pro player | Oggetto La Mossa del Pro Player
+nella mod | Sono un cretino | sono un cretino | Scritta di La Mossa del Pro Player
+nella mod | Non muore | non muore | Scritta "Non muore!"
+nella mod | Fammi sognare | fammi sognare | Scritta "Fammi sognare"
+nella mod | Ho rotto il gioco | rotto il gioco | Oggetto Ho Rotto il Gioco
+nella mod | Win streak | win streak | Oggetto Win Streak
+scartato | Spacchettare | spacchett | Oggetto Spacchettiamo, non scelto nella issue #6
+scartato | Mi stai viziando | mi stai viziando | Oggetto Mi Stai Viziando, non scelto nella issue #6
+scartato | Che culo | che culo | Trinket Che Culo, non scelto nella issue #6
+scartato | Non mi trollare | non mi trollare | Trinket e scritta Non Mi Trollare, non scelti nella issue #6
+scartato | Sei un fenomeno | sei un fenomeno | Scritta "Bravo, sei un fenomeno", non scelta nella issue #6
+scartato | Sono un idiota | sono un idiota | Scritta "Sono un idiota", non scelta nella issue #6
+scartato | Cortesemente | cortesemente | Scritta "Puoi morire, cortesemente?", non scelta nella issue #6
+scartato | Uno è andato | uno è andato | Scritta "E uno è andato!", non scelta nella issue #6
+scartato | Fermi tutti | fermi tutti | Scritta "Fermi tutti!", non scelta nella issue #6
+proposto | Non ti permettere mai più | permettere mai più | Scritta e trinket Non Ti Permettere Mai Più (issue #13)
+proposto | Qua che c'è di bello? | che c'è di bello | Scritta all'entrata nella stanza del tesoro (issue #13)
+proposto | Facciamo il boss | facciamo il boss | Scritta all'entrata nella stanza del boss (issue #13)
+proposto | Veloce veloce veloce | veloce veloce veloce | Oggetto attivo Veloce Veloce Veloce (issue #13)
+proposto | You are a phenomen | you are a phenomen | Scritta e oggetto You Are a Phenomen (issue #13)
+non usato | Trollato / la trollata | trolla[tr] |
+non usato | Porco lui | porco lui |
+non usato | Mannaggia a lui | mann?agg?ia a lui |
+non usato | C'ho paura | c'ho paura |
+non usato | Non ci voglio credere | non ci voglio credere |
+non usato | Come cacchio si chiama | come cacchio si chiama |
+non usato | Tutte pare cose | tutte pare cose |
+non usato | Tutto pazzo | tutto pazzo |
+non usato | Risacco | \brisacco\b | Parla a sé stesso
+non usato | Dammi l'item | dammi l'item |
+non usato | Bravo lui | bravo lui |
+non usato | Risaccone | risaccone |
+non usato | Schiattate | schiattate |
+non usato | Bello ma non balla | bello ma non balla |
+non usato | Trolloso scarsone | trolloso |
+non usato | Botta di straculo | straculo |
+non usato | Malegrittibus | malegritt |
