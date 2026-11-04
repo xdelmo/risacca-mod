@@ -22,7 +22,7 @@ Nuova run, con un personaggio qualsiasi:
 - [ ] Prendi un oggetto con un patto col diavolo, pagandolo in cuori: compare **"Alla facciazza vostra!"**.
 - [ ] Prendi un colpo da un cuore intero: compare **"Tacchino!"**.
 - [ ] Scendi a mezzo cuore: compare **"C'ho l'ansia"**.
-- [ ] Muori: compare **"Beduins"**.
+- [x] Muori: compare **"Beduins"**.
 
 ## 3. Provare gli oggetti nuovi
 
@@ -39,15 +39,15 @@ Apri la console con il tasto `\` (quello sopra Invio, oppure `ò`/`ù` sulla tas
 - [x] External Item Descriptions mostra la descrizione di Win Streak.
 - [ ] Controlla la descrizione di **Ho Rotto il Gioco** e di **-1 al Dead God**, compresa la "à" di "Velocità".
 - [x] **"Unknown" nel menu di pausa** (riquadro Item Info del gioco): compare solo sugli oggetti della mod e resta anche dopo averli raccolti. È un limite noto: l'API Lua del gioco non offre un modo per identificarli. Le descrizioni complete si leggono con External Item Descriptions.
-- [ ] `giveitem Non Vi Rubo Altro Tempo`, poi usalo in una stanza con nemici: restano fermi per circa 3 secondi, compare **"Non vi rubo altro tempo"** e poi **"3, 2, 1... Ah no, aspetta"**. Prova anche su un boss.
+- [ ] `giveitem Non Vi Rubo Altro Tempo`, poi usalo in una stanza con nemici: restano fermi per circa 3 secondi, compare **"Non vi rubo altro tempo"** e poi **"3, 2, 1... Ah no, aspetta"**. Prova anche su un boss. Confermato sui nemici normali; manca la prova sul boss.
 - [ ] `giveitem Potrebbe Stare Qua`, poi scendi di piano: le stanze segrete e super segrete si vedono sulla mappa e hai 2 bombe in più. Entrando in una compare **"Potrebbe stare qua!"**.
 - [ ] `giveitem Il Miracolo di San Gennaruzzo`, poi usa `goto s.angel.0` per entrare in una stanza dell'angelo: compare **"Il miracolo / di San Gennaruzzo!"** e appare un cuore eterno. Il comando `goto` crea una stanza speciale: se non scatta, prova con una stanza dell'angelo vera.
 - [ ] Con lo stesso oggetto, scendi di qualche piano e controlla che le stanze dell'angelo compaiano più spesso.
 - [ ] `giveitem Che Fai, Te Ne Privi?`, poi finisci qualche stanza: circa una volta su quattro compare un pickup in più con **"Che fai? Te ne privi?"**.
-- [ ] `giveitem La Mossa del Pro Player`, poi usalo: compare **"La mossa del pro player!"** e il danno sale di 2. Il bonus sparisce cambiando stanza. Riusalo e fatti colpire: il bonus sparisce e compare **"Sono un cretino"**, anche quando il colpo toglie un cuore intero.
+- [ ] `giveitem La Mossa del Pro Player`, poi usalo: compare **"La mossa del pro player!"** e il danno sale di 2. Il bonus sparisce cambiando stanza. Riusalo e fatti colpire: il bonus sparisce e compare **"Sono un cretino"**, anche quando il colpo toglie un cuore intero. Confermati scritta e +2 al danno; mancano la fine del bonus cambiando stanza e "Sono un cretino".
 - [ ] Resta in una stanza con un boss vivo per 60 secondi: compare **"Non muore!"**, una volta sola. Controlla che il tempo sia giusto e che non scatti entrando in stanze senza boss.
 - [ ] `giveitem c105`, poi usa il D6 su un piedistallo: l'oggetto cambia come sempre e compare **"Fammi sognare"**.
-- [ ] `giveitem La Trollata`, poi usalo in una stanza con nemici: appare una troll bomb su ogni nemico e compare **"M'ha trollato!"**. Controlla che le bombe restino addosso ai nemici abbastanza da colpirli.
+- [x] `giveitem La Trollata`, poi usalo in una stanza con nemici: appare una troll bomb su ogni nemico e compare **"M'ha trollato!"**. Controlla che le bombe restino addosso ai nemici abbastanza da colpirli.
 - [ ] `giveitem Fai Così, Fai Così`: una lacrima su due parte doppia. Controlla che la "ì" si veda bene nel nome e che il comando trovi l'oggetto; prova anche con un'arma che non spara lacrime (Brimstone), che non ha effetto.
 - [ ] `giveitem Mannaggia a Lui`, poi fatti colpire: il nemico più vicino subisce 10 volte il tuo danno e compare **"Mannaggia a lui!"**. Controlla il bilanciamento, soprattutto sui boss.
 - [ ] Le icone degli altri cinque oggetti (Non Vi Rubo Altro Tempo, Potrebbe Stare Qua, Il Miracolo di San Gennaruzzo, Che Fai, Te Ne Privi?, La Mossa del Pro Player) si vedono e le loro descrizioni in External Item Descriptions sono giuste.
