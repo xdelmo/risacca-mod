@@ -45,6 +45,7 @@ Gli oggetti originali del gioco vengono rinominati nei nomi e nelle descrizioni:
 | bomb / bombs | Bombiz-Bomboz |
 | boss / bosses | Beppe Bossicchio |
 | Mega Satan | Mega Stanley Kubrick |
+| Peep | Pippolins |
 | Treasure Room | Stanza d'Auro |
 | Bumbo | Bumbazzo |
 | Greed | Ballerino di Flamenco |

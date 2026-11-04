@@ -25,7 +25,7 @@ if EID then
   EID:addCollectible(ITEM_PRO, L.EID.PRO)
 end
 
-local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKills = 0, beastyShown = false, kubrickShown = false } end
+local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKills = 0, beastyShown = false, kubrickShown = false, pippolinsShown = false } end
 local run = freshRun()
 local roomFlags = {}
 
@@ -183,6 +183,10 @@ mod:AddCallback(ModCallbacks.MC_POST_NPC_INIT, function(_, npc)
   elseif npc.Type == EntityType.ENTITY_MEGA_SATAN and not run.kubrickShown then
     run.kubrickShown = true
     say(T.KUBRICK, nil, 30, P.BOSSNAME)
+    save()
+  elseif npc.Type == EntityType.ENTITY_PEEP and not run.pippolinsShown then -- variant 1 è The Bloat
+    run.pippolinsShown = true
+    say(T.PIPPOLINS, nil, 30, P.BOSSNAME)
     save()
   end
 end)
