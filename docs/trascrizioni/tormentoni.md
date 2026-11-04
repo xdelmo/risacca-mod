@@ -8,13 +8,18 @@ Conteggi su 75 trascrizioni. Sono ricerche nel testo dei sottotitoli automatici,
 
 | Frase | Volte | Video | Nota | Citazione |
 |---|---|---|---|---|
+| Trollato / la trollata | 233 | 65 | Oggetto La Trollata | `VtdB6XtNDbc`: …Bene, godo. E niente. Oh, come prima. Ma porco Giuda! M'ha trollato di nuovo, eh. Prendiamolo per il cuore. Ti devo dire, ti d… |
 | Tacchino | 224 | 61 | Scritta "Tacchino!" | `-AsV379j894`: …le run. Fatemi sapere nei commenti, mi raccomando, non fate tacchinardi perché altrimenti vi vengo a cercare a casa. Per tutti… |
-| Non muore | 93 | 42 | Scritta "Non muore!" | `PaBKSW5VdOY`: …tenzione. Ok. Quanto sta di HP? Madre mia, madre santa. Ok, non muore, eh. Devo giocare ultra concentrato qua. Ok, vai, vai, smar… |
+| Fai così, fai così | 123 | 43 | Oggetto Fai Così, Fai Così | `9r8pHkX8-EQ`: …rdissimo. È tardissimo. Ok, non so cosa volevo fare là, eh. Fai così, fai così, fai così. Questo lo prendo. Aspetta, prendo tutto. Ciao. P… |
+| Mannaggia a lui | 98 | 46 | Trinket Mannaggia a Lui | `IytPOo7mU3A`: …s, però più di così non riesco ad andare perché sono lento. Mannagia a lui. Il raggy pazzo. No, l'ho colpito. Sì, ma no. What the fuck… |
+| Non muore | 93 | 42 | Scritta "Non muore!" | `mpRVZjaYw50`: …erio? Però adesso li lasciamo. Non penso avremo problemi di Non muore. Wow! Là dentro non ci possiamo entrare al momento perché s… |
 | Ciao a tutti, io sono Risacca | 74 | 74 | Scritta a inizio run | `-1Q8zR4NU9g`: …Ciao a tutti, io sono Risacca. Benvenuti sul mio canale, bentornati in questo nuovo episo… |
 | C'ho l'ansia | 74 | 32 | Scritta "C'ho l'ansia" | `JeM5q4cjwXs`: …e me ne vado. Oddio, le pillole le potevo prendere. Oddio, c'ho l'ansia. Madonna, ho l'ansia. Allora, mi confermi che non posso pre… |
 | Potrebbe stare qua | 74 | 32 | Oggetto Potrebbe Stare Qua | `q4r3qL9sWs0`: …agon, come cacchio si dice? Però però no, eh. Mega mushroom potrebbe stare qua la Ry. Eccola. Eccolo. Dogma c'è. C'è speed damage. Grand f… |
 | Non vi rubo altro tempo | 63 | 57 | Oggetto Non Vi Rubo Altro Tempo | `-srJhobGDi8`: …iamo prendere in mezzo ci prendiamo. Detto ciò, ragazzi, io non vi rubo altro tempo, vi chiedo mi piace, come al solito, fatelo subito, senò po… |
+| Come cacchio si chiama | 57 | 38 | Rinomina di Eye of Greed | `VtdB6XtNDbc`: …Allora, con questo mi pare che con questo occhio del grid, come cacchio si chiama, praticamente quello che succede è che ogni tot spariamo qu… |
 | Pro player | 53 | 34 | Oggetto La Mossa del Pro Player | `-AsV379j894`: …io io io uh aspetta, aspetta, aspetta, aspetta che sono il pro player di Isaac. Yes, I am the one and only one and only pro playe… |
+| Non si sa mai | 50 | 32 | Rinomina di Car Battery | `-srJhobGDi8`: …. Io la car battery col vostro permesso me la piglio perché non si sa mai. Non si sa mai. Non si sa mai. Però è un item comunque cari… |
 | Sono un cretino | 48 | 27 | Scritta di La Mossa del Pro Player | `ygivTrxYv54`: …avore, non mi trollare. Ti prego, non mi trollare. Dai, no, sono un cretino. La bomba. C'era una cosa che dovevo fare, tenermi la bomba… |
 | Il godor | 31 | 20 | Scritta "IL GODOR!" / "GODOR MAXIMOR!" | `Am2P9XucHkg`: …ura. Ecco, già, guarda che stanza di quelle brutte, no? Ok, Godor, Godor. Bene, cerchiamo di tenerci anche il il lemon, la le… |
 | Fammi sognare | 29 | 21 | Scritta "Fammi sognare" | `rmSqsd3jVfk`: …e il sacchettino delle pillole. Dammi uno steam sale, fammi fammi sognare. Ok, mettiamo una bomba. Buono. E poi facciamo così. Ok. No… |
@@ -22,6 +27,7 @@ Conteggi su 75 trascrizioni. Sono ricerche nel testo dei sottotitoli automatici,
 | Alla facciazza vostra | 24 | 17 | Scritta "Alla facciazza vostra!" | `mpRVZjaYw50`: …unto skippiamo le treasure. Ce le prendiamo tutte dopo alla facciazza vostra. Ce le prendiamo tutte dopo le treasure. Facciamo co… |
 | Un bacione grande | 17 | 14 | Scritta "Un bacione grande dal vostro Risacca" | `-jv1Tg4N21Y`: …guardano da provincia di Messina, se non ho capito male. Un bacione e a voi e un bacione a tutti quelli che vi guardano da Sud… |
 | Che fai? Te ne privi? | 17 | 13 | Trinket Che Fai, Te Ne Privi? | `CSRyvMdmyGQ`: …ra. Un'altra tinted ovviamente a trollare i ragni. Che fai? Te ne privi di qualche ragnetto? Non te ne privi. Dammi roba bona. La c… |
+| Col vostro permessico | 13 | 13 | Rinomina di 0 - The Fool | `-jv1Tg4N21Y`: …non una, ben due bombe. Eh, io una qua però la piazzo, eh, col vostro permessico. Una qua ce la piazzo. Vediamo un po'. Eh, tutto rallentat… |
 | È XL? | 5 | 5 | Scritte "È XL?" / "SÌ, È XL!" | `-xwWe9YTBv0`: …quanto ci mette a schiattare? Dopo, dopo, dopo. Ok, ok. Ma è XL sto piano? Quanto cacchio dura? Oh, amico bello. E qua, qua… |
 | Win streak | 4 | 3 | Oggetto Win Streak | `PLbe-5qwwwg`: …ace qua sotto. Questo sempre, ma a maggior ragione sotto le win streak per arrivare a 100 mi piace e fare anche voi una streak di… |
 | Ho rotto il gioco | 0 | 0 | Oggetto Ho Rotto il Gioco |  |
@@ -42,7 +48,7 @@ Conteggi su 75 trascrizioni. Sono ricerche nel testo dei sottotitoli automatici,
 |---|---|---|---|---|
 | Sono un idiota | 217 | 66 | Scritta "Sono un idiota", non scelta nella issue #6 | `rmSqsd3jVfk`: …to. Abbiamo capito. Abbiamo preso tre volte il danno perché sono un idiota. Ok. Attenzione. Ti prego, dammi la Angel, non mi fare sche… |
 | Cortesemente | 165 | 65 | Scritta "Puoi morire, cortesemente?", non scelta nella issue #6 | `Am2P9XucHkg`: …. Assaie. No, ma mia, è partito una pallonata. Oh, schiatta cortesemente. Dai, tacchinibus. Ok, perché il doppio item. Ok, preso Lit… |
-| Fermi tutti | 144 | 59 | Scritta "Fermi tutti!", non scelta nella issue #6 | `PUYwEuaZPaA`: …biamo la doppia. È vero, ma io ci devo entrare nelle curst. Fermi tutti. [musica] Io ci devo entrare nelle curst. Abbiamo le curs m… |
+| Fermi tutti | 144 | 59 | Scritta "Fermi tutti!", non scelta nella issue #6 | `oeccXtdu4SA`: …iso il personaggio. Oh, cazzo, che giochiamo oggi, ragazzi? Fermi tutti, fermi tutti, fermi tutti, fermi tutti, fermi tutti, fermi… |
 | Che culo | 68 | 34 | Trinket Che Culo, non scelto nella issue #6 | `XlY7Qx9Cang`: …nello shop e qualcosa di buono nella Curst. Ah, prima qua. Che culo, che culo, che culo, che culo. Abbiamo ristabilito il tiars… |
 | Spacchettare | 64 | 33 | Oggetto Spacchettiamo, non scelto nella issue #6 | `PLbe-5qwwwg`: …agazzi. Qua dobbiamo dobbiamo usare il tutto per tutto. Ok, spacchettiamo tutto. Non dobbiamo prendere danno, però perché sennò p… |
 | Uno è andato | 58 | 41 | Scritta "E uno è andato!", non scelta nella issue #6 | `7qxtdtPgT30`: …Non mi interessa, amico mio. Uno mi ha itato. Non mi ha ok. Uno è andato giù, l'altro forse pure. Ok, uno. Ok, il danno non è male,… |
@@ -54,14 +60,9 @@ Conteggi su 75 trascrizioni. Sono ricerche nel testo dei sottotitoli automatici,
 
 | Frase | Volte | Video | Nota | Citazione |
 |---|---|---|---|---|
-| Trollato / la trollata | 233 | 65 |  | `VtdB6XtNDbc`: …Bene, godo. E niente. Oh, come prima. Ma porco Giuda! M'ha trollato di nuovo, eh. Prendiamolo per il cuore. Ti devo dire, ti d… |
-| Fai così, fai così | 123 | 43 |  | `9r8pHkX8-EQ`: …rdissimo. È tardissimo. Ok, non so cosa volevo fare là, eh. Fai così, fai così, fai così. Questo lo prendo. Aspetta, prendo tutto. Ciao. P… |
-| Mannaggia a lui | 98 | 46 |  | `IytPOo7mU3A`: …s, però più di così non riesco ad andare perché sono lento. Mannagia a lui. Il raggy pazzo. No, l'ho colpito. Sì, ma no. What the fuck… |
 | Dammi qua | 70 | 38 |  | `HpsTjihjUhU`: …lo shop. Ok, trolled. Troll trolled like a Bedward. Ok, ok, dammi qua. Ok, perfetto. Così possiamo prendere monete all'infinito,… |
 | C'ho paura | 61 | 33 |  | `JeM5q4cjwXs`: …. La minchiata è sempre dietro l'angolo. Ah, no, baby flam, c'ho paura. M'aveva quasi preso là. Non so perché c'ho tutta sta paura… |
-| Come cacchio si chiama | 57 | 38 |  | `VtdB6XtNDbc`: …Allora, con questo mi pare che con questo occhio del grid, come cacchio si chiama, praticamente quello che succede è che ogni tot spariamo qu… |
 | Porco lui | 55 | 28 |  | `KBPZLFoy4h8`: …scoppia vicino. È questa la mia più grande paura. Vedi? No, porco lui c'era il decino. Mannagia a lui c'era il decino. Vabbè, que… |
-| Non si sa mai | 50 | 32 | Di solito prendendo un HP o un oggetto "per sicurezza" | `-srJhobGDi8`: …. Io la car battery col vostro permesso me la piglio perché non si sa mai. Non si sa mai. Non si sa mai. Però è un item comunque cari… |
 | Tutto pazzo | 48 | 26 |  | `x6BnZL5G5Qs`: …razione, manca la la treasure ancora. Altro item, ma tu sei tutto pazzo, gioco. Gioco, tu sei tutto pazzo. Cioè, altro item, che cu… |
 | Non ci voglio credere | 44 | 27 |  | `-rl8f9lpmyc`: …, ragazzi, e che ci devi fare. Prendiamo questo. Sì, c'è il Non ci voglio credere. Guardate un po', adesso spariamo con entrambi contemporane… |
 | Tutte pare cose | 44 | 23 |  | `IytPOo7mU3A`: …e va bene, esci. Torniamo indietro che qua dobbiamo aprire tutte pare cose. Eh, è tanto tempo, cioè tanto tempo, no, però è un po' di… |

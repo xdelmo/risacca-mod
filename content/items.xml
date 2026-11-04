@@ -5,6 +5,9 @@
     <active name="La Mossa del Pro Player" description="Se non ti colpiscono" gfx="mossa_pro_player.png" maxcharges="3" quality="2" />
     <passive name="Potrebbe Stare Qua" description="A caccia di secret" gfx="potrebbe_stare_qua.png" quality="2" />
     <passive name="Il Miracolo di San Gennaruzzo" description="Tante volte ci ha salvati" gfx="san_gennaruzzo.png" quality="3" />
+    <active name="La Trollata" description="M'ha trollato!" gfx="la_trollata.png" maxcharges="4" quality="2" />
+    <passive name="Fai Così, Fai Così" description="Ogni seconda lacrima è doppia" gfx="fai_cosi.png" quality="3" />
     <trinket name="Win Streak" description="Non farti colpire" gfx="win_streak.png" />
     <trinket name="Che Fai, Te Ne Privi?" description="Un altro po' di roba" gfx="te_ne_privi.png" />
+    <trinket name="Mannaggia a Lui" description="Chi ti colpisce la paga" gfx="mannaggia_a_lui.png" />
 </items>

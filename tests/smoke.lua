@@ -9,7 +9,7 @@ local function enum()
   return setmetatable({}, { __index = function(t, k) nextId = nextId + 1; rawset(t, k, nextId); return nextId end })
 end
 ModCallbacks, EntityType, PickupVariant, CacheFlag, LevelCurse, CollectibleType = enum(), enum(), enum(), enum(), enum(), enum()
-RoomType, HeartSubType = enum(), enum()
+RoomType, HeartSubType, BombVariant = enum(), enum(), enum()
 function EntityRef(e) return { Entity = e } end
 
 Vector = setmetatable({ Zero = { X = 0, Y = 0 } }, { __call = function(_, x, y) return { X = x, Y = y } end })
@@ -53,6 +53,7 @@ local ids = {
   ["Ho Rotto il Gioco"] = 733, ["-1 al Dead God"] = 734, ["Win Streak"] = 190,
   ["Non Vi Rubo Altro Tempo"] = 735, ["Potrebbe Stare Qua"] = 736, ["Il Miracolo di San Gennaruzzo"] = 737,
   ["Che Fai, Te Ne Privi?"] = 191, ["La Mossa del Pro Player"] = 738,
+  ["La Trollata"] = 739, ["Fai Così, Fai Così"] = 740, ["Mannaggia a Lui"] = 192,
 }
 local spawned, lastSpawn = 0, nil
 local roomEntities = {}
@@ -286,6 +287,49 @@ fire(ModCallbacks.MC_USE_ITEM, 738, 738, nil, player); frames(5); shown = {}
 fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 2); frames(20)
 assert(math.abs(damageBonus() - noBonus) < 1e-9, "bonus rimasto dopo il colpo")
 expect({ "Sono un cretino" }) -- il cretino batte il tacchino dello stesso colpo
+
+-- La Trollata: una troll bomb per ogni nemico vulnerabile
+local function foe(distance)
+  local e = entity(true)
+  e.Position = { Distance = function() return distance end }
+  function e:TakeDamage(amount) self.damage = amount end
+  return e
+end
+local near, far = foe(10), foe(50)
+roomEntities = { far, near, entity(false) }
+spawnedBefore = spawned
+assert(fire(ModCallbacks.MC_USE_ITEM, 739, 739, nil, player) == true, "USE_ITEM deve ritornare true")
+assert(spawned == spawnedBefore + 2 and lastSpawn.t == EntityType.ENTITY_BOMB and lastSpawn.v == BombVariant.BOMB_TROLL, "troll bomb errate")
+frames(5)
+expect({ "M'ha trollato!" })
+
+-- Fai Così, Fai Così: una lacrima in più ogni due, anche se la gemella rilancia la callback
+local twins = 0
+local tear = { SpawnerEntity = player, Position = Vector(0, 0), Velocity = { Rotated = function(_, a) return { angle = a } end } }
+function player:FireTear(_, velocity)
+  assert(velocity.angle == 8, "lacrima gemella senza rotazione")
+  twins = twins + 1
+  fire(ModCallbacks.MC_POST_FIRE_TEAR, nil, tear)
+end
+fire(ModCallbacks.MC_POST_FIRE_TEAR, nil, { SpawnerEntity = nil })
+fire(ModCallbacks.MC_POST_FIRE_TEAR, nil, tear)
+fire(ModCallbacks.MC_POST_FIRE_TEAR, nil, tear)
+assert(twins == 0, "lacrima doppia senza l'oggetto")
+items[740] = true
+for _ = 1, 4 do fire(ModCallbacks.MC_POST_FIRE_TEAR, nil, tear) end
+assert(twins == 2, "lacrime gemelle errate: " .. twins)
+
+-- Mannaggia a Lui: colpisce solo il nemico più vicino, e solo col trinket
+fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 1); frames(5)
+assert(near.damage == nil, "danno senza il trinket")
+expect({})
+trinkets[192] = true
+fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 1); frames(5)
+assert(near.damage == player.Damage * 10 and far.damage == nil, "contraccolpo errato")
+expect({ "Mannaggia a lui!" })
+roomEntities = {}
+fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 1); frames(5)
+expect({})
 
 -- ogni callback registrata deve essere stata chiamata almeno una volta
 for i, c in ipairs(cbs) do assert(called[c], "callback #" .. i .. " mai chiamata") end
