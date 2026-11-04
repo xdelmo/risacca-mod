@@ -19,16 +19,19 @@ Mod per **The Binding of Isaac: Repentance** dedicata a [Risacca](https://www.yo
 | Compare The Beast / Mega Satan | *IL BEASTY BOY* / *MEGA STANLEY KUBRICK* |
 | Boss finale sconfitto | *Un bacione grande*, poi *dal vostro Risacca* |
 | Morte | *Beduins* |
+| Boss ancora vivo dopo 60 secondi nella stanza | *Non muore!* |
+| Uso del D6 | *Fammi sognare* |
 
 ### Oggetti nuovi
 
 - **Ho Rotto il Gioco** (attivo, 6 cariche): fa comparire un oggetto glitchato, come con TMTRAINER.
 - **-1 al Dead God** (passivo): ogni boss sconfitto dà +0.2 danno, +0.03 velocità, +0.1 gittata e un tiro un po' più rapido. Il bonus arriva al massimo a 10 boss e conta un solo boss per stanza.
 - **Win Streak** (trinket): dà +0.5 danno per ogni piano finito senza essere colpiti. Basta un colpo per azzerare la serie.
-- **Non Vi Rubo Altro Tempo** (attivo, 4 cariche): congela i nemici della stanza per 3 secondi.
-- **Potrebbe Stare Qua** (passivo): a ogni nuovo piano mostra le stanze segrete sulla mappa e dà 2 bombe.
-- **Il Miracolo di San Gennaruzzo** (passivo, nelle stanze dell'angelo): +25% di probabilità di una stanza dell'angelo a ogni nuovo piano e un cuore eterno alla prima visita di ognuna.
-- **Che Fai, Te Ne Privi?** (trinket): 25% di probabilità di un pickup in più quando finisci una stanza.
+- **Non Vi Rubo Altro Tempo** (attivo, 4 cariche): congela i nemici della stanza per 3 secondi. Scritte: *Non vi rubo altro tempo*, poi *3, 2, 1... Ah no, aspetta*.
+- **La Mossa del Pro Player** (attivo, 3 cariche): +2 danno fino al cambio di stanza, con la scritta *La mossa del pro player!*. Se ti colpiscono perdi il bonus e compare *Sono un cretino*.
+- **Potrebbe Stare Qua** (passivo): a ogni nuovo piano mostra le stanze segrete sulla mappa e dà 2 bombe. Scritta alla prima visita di una stanza segreta: *Potrebbe stare qua!*.
+- **Il Miracolo di San Gennaruzzo** (passivo, nelle stanze dell'angelo): +25% di probabilità di una stanza dell'angelo a ogni nuovo piano e un cuore eterno alla prima visita di ognuna, con la scritta *Il miracolo di San Gennaruzzo!*.
+- **Che Fai, Te Ne Privi?** (trinket): 25% di probabilità di un pickup in più quando finisci una stanza, con la scritta *Che fai? Te ne privi?*.
 
 Con [External Item Descriptions](https://steamcommunity.com/sharedfiles/filedetails/?id=836319872) attiva, gli oggetti mostrano anche la loro descrizione in italiano. Il riquadro Item Info del menu di pausa li mostra comunque come "Unknown": è un limite dell'API del gioco.
 
