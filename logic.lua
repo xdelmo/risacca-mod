@@ -33,6 +33,8 @@ L.TEXT = {
   SOGNARE = "Fammi sognare",
   TROLLATA = "M'ha trollato!",
   MANNAGGIA = "Mannaggia a lui!",
+  IDIOTA = "Sono un idiota!",
+  FERMI = "Fermi tutti!",
 }
 
 -- Descrizioni per External Item Descriptions: "#" va a capo, {{...}} sono le icone di EID.
@@ -48,6 +50,8 @@ L.EID = {
   TROLLATA = "Fa comparire una troll bomb addosso a ogni nemico della stanza#Se ti trovi vicino esplode anche su di te",
   FAICOSI = "Ogni seconda lacrima parte doppia",
   MANNAGGIA = "Quando vieni colpito, il nemico più vicino subisce 10 volte il tuo danno",
+  IDIOTA = "Non fa niente",
+  FERMI = "Non fa niente",
 }
 
 L.PRIO = { XL = 1, INTRO = 1, PICKUP = 2, TACCHINO = 2, ITEM = 2, ANSIA = 3, BOSSNAME = 3, BACIONE = 4, BEDUINS = 5, CRETINO = 3, NON_MUORE = 2, MANNAGGIA = 3 }

@@ -26,10 +26,10 @@ scartato | Mi stai viziando | mi stai viziando | Oggetto Mi Stai Viziando, non s
 scartato | Che culo | che culo | Trinket Che Culo, non scelto nella issue #6
 scartato | Non mi trollare | non mi trollare | Trinket e scritta Non Mi Trollare, non scelti nella issue #6
 scartato | Sei un fenomeno | sei un fenomeno | Scritta "Bravo, sei un fenomeno", non scelta nella issue #6
-scartato | Sono un idiota | sono un idiota | Scritta "Sono un idiota", non scelta nella issue #6
+nella mod | Sono un idiota | sono un idiota | Oggetto inutile Sono un Idiota (issue #29)
 scartato | Cortesemente | cortesemente | Scritta "Puoi morire, cortesemente?", non scelta nella issue #6
 scartato | Uno è andato | uno è andato | Scritta "E uno è andato!", non scelta nella issue #6
-scartato | Fermi tutti | fermi tutti | Scritta "Fermi tutti!", non scelta nella issue #6
+nella mod | Fermi tutti | fermi tutti | Oggetto inutile Fermi Tutti (issue #29)
 proposto | Non ti permettere mai più | permettere mai più | Scritta e trinket Non Ti Permettere Mai Più (issue #13)
 proposto | Qua che c'è di bello? | che c'è di bello | Scritta all'entrata nella stanza del tesoro (issue #13)
 proposto | Facciamo il boss | facciamo il boss | Scritta all'entrata nella stanza del boss (issue #13)
