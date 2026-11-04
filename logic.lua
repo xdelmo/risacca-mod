@@ -9,6 +9,7 @@ L.TEXT = {
   XL_NO = "No... non è XL",
   BEASTY = "IL BEASTY BOY",
   KUBRICK = "MEGA STANLEY KUBRICK",
+  PIPPOLINS = "PIPPOLINS",
   INTRO = "Ciao a tutti, io sono Risacca",
   INTRO_SUB = "Benvenuti sul mio canale",
   ANSIA = "C'ho l'ansia",

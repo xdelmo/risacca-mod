@@ -149,6 +149,15 @@ fire(ModCallbacks.MC_POST_NPC_INIT, nil, npc(EntityType.ENTITY_BEAST, 0))
 frames(40)
 expect({ "IL BEASTY BOY" })
 
+-- Peep: Pippolins una volta per run, The Bloat (variant 1) no
+fire(ModCallbacks.MC_POST_NPC_INIT, nil, npc(EntityType.ENTITY_PEEP, 1))
+frames(40)
+expect({})
+fire(ModCallbacks.MC_POST_NPC_INIT, nil, npc(EntityType.ENTITY_PEEP, 0))
+fire(ModCallbacks.MC_POST_NPC_INIT, nil, npc(EntityType.ENTITY_PEEP, 0))
+frames(40)
+expect({ "PIPPOLINS" })
+
 -- Satan ucciso due volte nella stessa stanza → un solo bacione
 fire(ModCallbacks.MC_POST_NEW_ROOM)
 fire(ModCallbacks.MC_POST_NPC_DEATH, nil, npc(84, 0))

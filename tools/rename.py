@@ -15,6 +15,7 @@ RULES = [(re.compile(p, re.I), r) for p, r in [
     (r"\bboss(es)?\b", "Beppe Bossicchio"),
     (r"\bBumbo\b", "Bumbazzo"),
     (r"\bGreed\b", "Ballerino di Flamenco"),
+    (r"\bPeep\b", "Pippolins"),
 ]]
 
 
@@ -58,6 +59,8 @@ def selftest():
         "Bumbo's Heart": "Bumbazzo's Heart",
         "Greed's Gullet": "Ballerino di Flamenco's Gullet",
         "Ultra Greedier": "Ultra Greedier",
+        "Peep": "Pippolins",
+        "Peeper": "Peeper",
     }
     for src, want in cases.items():
         got = rename_text(src)
