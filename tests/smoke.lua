@@ -99,18 +99,14 @@ local function fire(id, key, ...)
   return ret
 end
 
--- External Item Descriptions finto: registra le descrizioni ricevute
+-- External Item Descriptions finto: verifica caricamento tardivo (#50)
 local eid = {}
-EID = {
-  setModIndicatorName = function() end,
-  addCollectible = function(_, id, text) eid[id] = text end,
-  addTrinket = function(_, id, text) eid[id] = text end,
-}
+EID = nil
 
 dofile("main.lua")
 assert(#cbs > 0, "nessuna callback registrata")
 assert(#debugLogs == 0, "oggetti con ID mancante all'avvio: " .. table.concat(debugLogs, ", "))
-for _, id in pairs(ids) do assert(eid[id], "descrizione EID mancante: " .. id) end
+assert(next(eid) == nil, "EID non doveva essere ancora registrato prima del caricamento")
 
 -- Controllo coerenza nomi tra main.lua e content/items.xml (#49)
 local itemsXml = io.open("content/items.xml", "r")
@@ -121,6 +117,12 @@ for name in pairs(ids) do
   assert(xmlContent:find('name="' .. name .. '"', 1, true), "nome non presente in content/items.xml: " .. name)
 end
 
+-- Simula il caricamento di EID dopo main.lua
+EID = {
+  setModIndicatorName = function() end,
+  addCollectible = function(_, id, text) eid[id] = text end,
+  addTrinket = function(_, id, text) eid[id] = text end,
+}
 local function frames(n)
   for _ = 1, n do
     fire(ModCallbacks.MC_POST_PLAYER_UPDATE, nil, player)
@@ -135,8 +137,9 @@ local function expect(want)
   shown = {}
 end
 
--- nuova run: intro, poi "È XL?"
+-- nuova run: intro, poi "È XL?", e registrazione tardiva di EID
 fire(ModCallbacks.MC_POST_GAME_STARTED, nil, false)
+for _, id in pairs(ids) do assert(eid[id], "descrizione EID mancante: " .. id) end
 fire(ModCallbacks.MC_POST_NEW_LEVEL)
 fire(ModCallbacks.MC_POST_NEW_ROOM)
 frames(100)

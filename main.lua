@@ -43,8 +43,11 @@ for name, id in pairs({
   if id == -1 then Isaac.DebugString("[Risacca] ID non trovato: " .. name) end
 end
 
--- Descrizioni per External Item Descriptions, solo se l'altra mod è attiva
-if EID then
+-- Descrizioni per External Item Descriptions, indipendentemente dall'ordine di caricamento
+local eidRegistered = false
+local function registerEID()
+  if eidRegistered or not EID then return end
+  eidRegistered = true
   EID:setModIndicatorName("Risacca Mod")
   EID:addCollectible(ITEM_ROTTO, L.EID.ROTTO)
   EID:addCollectible(ITEM_DEADGOD, L.EID.DEADGOD)
@@ -63,6 +66,7 @@ if EID then
   EID:addCollectible(ITEM_IDIOTA, L.EID.IDIOTA)
   EID:addCollectible(ITEM_FERMI, L.EID.FERMI)
 end
+registerEID()
 
 local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKills = 0, beastyShown = false, kubrickShown = false, pippolinsShown = false, bumbazzoShown = false, tacchinoShown = false } end
 local run = freshRun()
@@ -102,6 +106,7 @@ local function refresh(flags)
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, isContinued)
+  registerEID()
   run = freshRun()
   resetPlayerState()
   if isContinued and mod:HasData() then
