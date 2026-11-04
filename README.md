@@ -29,6 +29,9 @@ Mod per **The Binding of Isaac: Repentance** dedicata a [Risacca](https://www.yo
 - **Win Streak** (trinket): dà +0.5 danno per ogni piano finito senza essere colpiti. Basta un colpo per azzerare la serie.
 - **Non Vi Rubo Altro Tempo** (attivo, 4 cariche): congela i nemici della stanza per 3 secondi. Scritte: *Non vi rubo altro tempo*, poi *3, 2, 1... Ah no, aspetta*.
 - **La Mossa del Pro Player** (attivo, 3 cariche): +2 danno fino al cambio di stanza, con la scritta *La mossa del pro player!*. Se ti colpiscono perdi il bonus e compare *Sono un cretino*.
+- **La Trollata** (attivo, 4 cariche): fa comparire una troll bomb addosso a ogni nemico della stanza, con la scritta *M'ha trollato!*. Se sei vicino, esplode anche su di te.
+- **Fai Così, Fai Così** (passivo): una lacrima su due parte doppia. Non ha effetto con le armi che non sparano lacrime, come Brimstone.
+- **Mannaggia a Lui** (trinket): quando ti colpiscono, il nemico più vicino subisce 4 volte il tuo danno, con la scritta *Mannaggia a lui!*.
 - **Potrebbe Stare Qua** (passivo): a ogni nuovo piano mostra le stanze segrete sulla mappa e dà 2 bombe. Scritta alla prima visita di una stanza segreta: *Potrebbe stare qua!*.
 - **Il Miracolo di San Gennaruzzo** (passivo, nelle stanze dell'angelo): +25% di probabilità di una stanza dell'angelo a ogni nuovo piano e un cuore eterno alla prima visita di ognuna, con la scritta *Il miracolo di San Gennaruzzo!*.
 - **Che Fai, Te Ne Privi?** (trinket): 25% di probabilità di un pickup in più quando finisci una stanza, con la scritta *Che fai? Te ne privi?*.
@@ -50,6 +53,11 @@ Gli oggetti originali del gioco vengono rinominati nei nomi e nelle descrizioni:
 | Treasure Room | Stanza d'Auro |
 | Bumbo | Bumbazzo |
 | Incubus | Il buddy più forte del gioco |
+| Eye of Greed | Come Cacchio Si Chiama |
+| Car Battery | Non Si Sa Mai |
+| 0 - The Fool | Col vostro permessico |
+| BFFS! | Miglior Investimento |
+| Stop Watch | Run Vinta |
 
 Anche alcuni boss cambiano nome: Peep diventa **Pippolins** e Bumbino diventa **Bumbazzo**, sia nella schermata VS sia nella scritta a inizio scontro. Mega Satan diventa **Mega Stanley** nella schermata VS e **Mega Stanley Kubrick** nella scritta. The Beast diventa **Il Beasty Boy** nella scritta e nell'immagine del nome.
 
