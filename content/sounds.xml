@@ -1,0 +1,5 @@
+<sounds root="sfx/">
+    <sound name="Risacca Tacchino">
+        <sample weight="1" path="tacchino.wav" />
+    </sound>
+</sounds>
