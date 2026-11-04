@@ -1,6 +1,6 @@
 # Tormentoni dai 20 nuovi video (issue #6)
 
-"Nuovi" qui vuol dire che la frase non è ancora usata dalla mod: non sta in `logic.lua`, `main.lua` o `content/items.xml`. Molte erano già dette anche nei 25 video precedenti, ma non erano state raccolte.
+"Nuovi" qui vuol dire che, quando è stato scritto questo elenco, la frase non era ancora usata dalla mod: non stava in `logic.lua`, `main.lua` o `content/items.xml`. Quelle aggiunte dopo sono indicate in [Proposte](#proposte). Molte erano già dette anche nei 25 video precedenti, ma non erano state raccolte.
 
 Le frequenze vengono da una ricerca testuale sui sottotitoli automatici, quindi sono approssimative e contano anche gli usi non da tormentone. Le citazioni riportano il testo dei sottotitoli, errori compresi. Le spiegazioni del contesto sono una mia lettura dei brani citati.
 

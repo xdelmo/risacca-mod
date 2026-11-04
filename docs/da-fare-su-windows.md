@@ -31,7 +31,7 @@ Apri la console con il tasto `\` (quello sopra Invio, oppure `ò`/`ù` sulla tas
 - [x] `giveitem Ho Rotto il Gioco`, poi usa l'oggetto con la barra spaziatrice: compare un oggetto glitchato.
 - [x] `giveitem -1 al Dead God`, poi uccidi un boss: le statistiche salgono (danno 3.50 → 3.70).
 - [ ] `giveitem Win Streak`, poi finisci un piano senza essere colpito: il danno deve salire di 0.5. Il contatore funziona, ma l'aumento del danno non è stato ancora visto.
-- [x] Le icone dei tre oggetti si vedono.
+- [x] Le icone di Ho Rotto il Gioco, -1 al Dead God e Win Streak si vedono.
 - [x] Prova il salvataggio dopo la correzione dei bonus:
   1. con -1 al Dead God già potenziato, esci con **Esc → Esci** e chiudi il gioco;
   2. riapri il gioco e rientra con **Continua**;
@@ -47,8 +47,8 @@ Apri la console con il tasto `\` (quello sopra Invio, oppure `ò`/`ù` sulla tas
 - [ ] `giveitem La Mossa del Pro Player`, poi usalo: compare **"La mossa del pro player!"** e il danno sale di 2. Il bonus sparisce cambiando stanza. Riusalo e fatti colpire: il bonus sparisce e compare **"Sono un cretino"**, anche quando il colpo toglie un cuore intero.
 - [ ] Resta in una stanza con un boss vivo per 60 secondi: compare **"Non muore!"**, una volta sola. Controlla che il tempo sia giusto e che non scatti entrando in stanze senza boss.
 - [ ] `giveitem c105`, poi usa il D6 su un piedistallo: l'oggetto cambia come sempre e compare **"Fammi sognare"**.
-- [ ] Le icone dei quattro oggetti nuovi si vedono e le loro descrizioni in External Item Descriptions sono giuste.
-- [ ] Le 7 icone sono state ridisegnate con il contorno da 2px: guardale sul piedistallo e nell'HUD, e controlla che siano leggibili accanto agli oggetti vanilla. Fai attenzione al "-1" di -1 al Dead God e a Il Miracolo di San Gennaruzzo, che potrebbe sembrare una pozione.
+- [ ] Le icone degli altri cinque oggetti (Non Vi Rubo Altro Tempo, Potrebbe Stare Qua, Il Miracolo di San Gennaruzzo, Che Fai, Te Ne Privi?, La Mossa del Pro Player) si vedono e le loro descrizioni in External Item Descriptions sono giuste.
+- [ ] Le 8 icone hanno il contorno da 2px: guardale sul piedistallo e nell'HUD, e controlla che siano leggibili accanto agli oggetti vanilla. Fai attenzione al "-1" di -1 al Dead God e a Il Miracolo di San Gennaruzzo, che potrebbe sembrare una pozione.
 
 Facoltativo, se ci arrivi: The Beast deve mostrare **"IL BEASTY BOY"**, Mega Satan **"MEGA STANLEY KUBRICK"**. Battere un boss finale (Satan, The Lamb, Mother…) deve mostrare **"Un bacione grande / dal vostro Risacca"**.
 
