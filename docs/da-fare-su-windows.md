@@ -65,10 +65,10 @@ Facoltativo, se ci arrivi: The Beast deve mostrare **"IL BEASTY BOY"**, Mega Sat
 - [ ] `giveitem c360`: **Il buddy più forte del gioco**. Controlla che la "ù" si veda bene.
 - [ ] `giveitem c385`: **Bumbazzo**.
 - [ ] `giveitem c249`, poi apri il riquadro Item Info nel menu di pausa: deve comparire **"Beppe Bossicchi drop 2 items"**. Se resta "Bosses drop 2 items", il gioco non sta caricando `info_display.xml` dalla mod.
+- [ ] `giveitem c414`, stesso riquadro: **"1 additional item will appear in Stanza d'Auro"**.
 - [ ] `giveitem c450`: **Come Cacchio Si Chiama**.
 - [ ] `giveitem c356`: **Non Si Sa Mai**.
 - [ ] `giveitem k1`: **Col vostro permessico**. L'annunciatore continua a dire "The Fool": la voce non cambia con la rinomina.
-- [ ] `giveitem c414`, stesso riquadro: **"1 additional item will appear in Stanza d'Auro"**.
 
 - [ ] Quando incontri Peep (piani Caves/Catacombs): la schermata VS mostra **PIPPOLINS** al posto del nome originale, leggibile e dentro lo schermo.
 - [ ] Quando incontri The Beast: se compare una schermata VS, deve mostrare **IL BEASTY BOY**. Il gioco non ha un'immagine del nome per questo boss, quindi è probabile che la schermata non ci sia: in quel caso segnalalo e basta.
