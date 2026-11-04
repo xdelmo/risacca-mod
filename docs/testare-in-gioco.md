@@ -27,7 +27,9 @@ Gli screenshot finiscono in `tools/gioco/` e sono ignorati da git. Vanno guardat
 ## Comportamenti del gioco da conoscere
 
 - Il gioco gira in tempo reale tra un comando dell'agente e l'altro, e i nemici possono uccidere Isaac. Chiudi ogni raffica con `-Freeze`, che lascia aperta la console e quindi mette in pausa.
-- Riprendi con `-Thaw` **solo se la console è davvero aperta**: `-Thaw` preme Esc, e senza console aperta Esc apre il menu di pausa. Con il menu aperto lo spazio seleziona solo "Resume Game" e i comandi non vanno a buon fine.
+- Riprendi con `-Thaw` solo se la console è davvero aperta: `-Thaw` preme Esc. Il menu di pausa può comunque comparire (causa non chiarita): guarda sempre il primo scatto.
+- Con il menu aperto i comandi si comportano male: alcuni si perdono del tutto (controlla la cronologia della console) e `goto` risponde "Changed room" ma cambia stanza solo alla ripresa. Chiudi prima la console, poi conferma "Resume Game" con Invio.
+- Con la console aperta il tasto console non la chiude, scrive `\`: cancellalo con Backspace e chiudi con Esc.
 - Dopo Invio la console resta aperta. `run.ps1` la chiude con Esc dopo ogni comando.
 - Esc sulla schermata di morte torna al menu; spazio lì riavvia la run.
 - Lo spazio a volte viene ignorato subito dopo `giveitem`: aspetta almeno 800 ms e tieni premuto 300-400 ms (`-FirstMs 800 -HoldMs 400`) prima di dichiarare un bug.

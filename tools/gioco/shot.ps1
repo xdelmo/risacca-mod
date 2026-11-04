@@ -1,4 +1,4 @@
-param([string]$Out = "$PSScriptRootshot.png")
+param([string]$Out = "$PSScriptRoot\shot.png")
 Add-Type -AssemblyName System.Drawing
 Add-Type @"
 using System;
