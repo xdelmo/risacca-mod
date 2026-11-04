@@ -6,3 +6,5 @@ extracted/
 resources-dlc3/
 *.local.code-workspace
 __pycache__/
+
+tools/gioco/*.png

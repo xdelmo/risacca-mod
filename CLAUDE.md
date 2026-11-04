@@ -65,3 +65,7 @@ Non c'è un test runner. I test sono script con `assert`: per provarne uno basta
 
 - Le scritte a schermo usano lettere accentate, come "È XL?". Se in gioco il font non le mostra, la soluzione prevista è usare `"E' XL?"` in `L.TEXT`, aggiornando anche gli `assert` nei test.
 - I commit finiscono con `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
+
+## Prove in gioco
+
+Come pilotare il gioco aperto (console, tasti, screenshot) e gli script in `tools/gioco/`: `docs/testare-in-gioco.md`.
