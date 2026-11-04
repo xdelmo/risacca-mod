@@ -54,7 +54,7 @@ Non c'è un test runner. I test sono script con `assert`: per provarne uno basta
   - Esempi: chiavi → Chiaviz-Chiavoz, boss → Beppe Bossicchio, Bumbo → Bumbazzo, Greed → Ballerino di Flamenco.
   - Le genera `tools/rename.py` in `resources-dlc3/` (git-ignored, perché contiene i testi del gioco e la repo non deve ridistribuirli), partendo dagli originali messi in `extracted/` (git-ignored).
   - Gli originali sono `items.xml`, `pocketitems.xml` e `stringtable.sta`, presi dal ResourceExtractor dell'utente.
-- **Pacchetto.** `tools/build.py` mette nello zip solo `metadata.xml`, `main.lua`, `logic.lua`, `content/`, `resources/` e `resources-dlc3/`. Esclude `docs/`, `tools/`, `tests/`, `extracted/` e i file nascosti.
+- **Pacchetto.** `tools/build.py` mette nello zip solo `metadata.xml`, `main.lua`, `logic.lua`, `content/`, `resources/` e `resources-dlc3/`, sotto `risacca-mod/`, più `readme.txt` (la guida all'installazione) alla radice dello zip. Esclude `docs/`, `tools/`, `tests/`, `extracted/` e i file nascosti.
 - **Pubblicazione.** In `metadata.xml` la visibilità resta `Private` finché l'utente non dà l'ok alla pubblicazione.
 - **Repo e release.** La repo GitHub è privata. Lo zip allegato alle release contiene `resources-dlc3/`, quindi i testi del gioco: se la repo diventa pubblica, gli allegati diventano pubblici con lei.
 

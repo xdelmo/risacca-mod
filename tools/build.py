@@ -27,6 +27,8 @@ def build(dst):
             files = [p] if p.is_file() else sorted(f for f in p.rglob("*") if f.is_file()) if p.is_dir() else []
             for f in files:
                 z.write(f, "risacca-mod/" + f.relative_to(ROOT).as_posix())
+        # alla radice dello zip, fuori dalla mod; CRLF per il Blocco note, comunque sia stato fatto il checkout
+        z.writestr("readme.txt", (ROOT / "readme.txt").read_bytes().replace(b"\r\n", b"\n").replace(b"\n", b"\r\n"))
     return dst
 
 
@@ -35,6 +37,9 @@ def selftest():
         assert missing_required(d) == REQUIRED
         with zipfile.ZipFile(build(Path(d) / "t.zip")) as z:
             names = z.namelist()
+            readme = z.read("readme.txt")
+    assert readme.count(b"\n") == readme.count(b"\r\n") > 0
+    assert not [w for w in (b"workshop", b"github") if w in readme.lower()], "il readme non deve rimandare altrove"
     for n in ["metadata.xml", "main.lua", "logic.lua"] + REQUIRED:
         assert "risacca-mod/" + n in names, (n, names)
     assert not [n for n in names if n.removeprefix("risacca-mod/").startswith(BANNED)], names
