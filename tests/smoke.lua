@@ -21,7 +21,13 @@ function GetPtrHash(e) return e.hash end
 function include(name) return dofile(name .. ".lua") end
 package.preload["json"] = function()
   return { encode = function(t) local s = {} for k, v in pairs(t) do s[#s + 1] = k .. "=" .. tostring(v) end return table.concat(s, ";") end,
-           decode = function() return { deadGodKills = 1 } end }
+           decode = function(s)
+             local t = {}
+             for k, v in s:gmatch("([%w_]+)=([^;]*)") do
+               if v == "true" then t[k] = true elseif v == "false" then t[k] = false else t[k] = tonumber(v) end
+             end
+             return t
+           end }
 end
 
 function RegisterMod(name)
@@ -46,6 +52,9 @@ function player:AddBombs(n) self.bombs = self.bombs + n end
 function player:AddCollectible(id) items[id] = true end
 function player:RemoveCollectible(id) items[id] = nil end
 function player:AddCacheFlags() end
+local costumes = {}
+function player:AddNullCostume(id) costumes[id] = true end
+function player:TryRemoveNullCostume(id) costumes[id] = nil end
 local evaluations = 0
 function player:EvaluateItems() evaluations = evaluations + 1 end
 function player:GetHearts() return self.hearts end
@@ -67,6 +76,7 @@ local debugLogs = {}
 Isaac = {
   GetItemIdByName = function(n) return ids[n] or -1 end,
   GetSoundIdByName = function(n) return n == "Risacca Tacchino" and 900 or -1 end,
+  GetCostumeIdByPath = function(p) return p == "gfx/characters/tacchino.anm2" and 901 or -1 end,
   GetTrinketIdByName = function(n) return ids[n] or -1 end,
   GetPlayer = function() return player end,
   Spawn = function(t, v, s) spawned = spawned + 1; lastSpawn = { t = t, v = v, s = s } end,
@@ -402,16 +412,25 @@ local dmg0, spd0 = damageBonus(), speedBonus()
 items[743], items[744] = true, true; frames(5)
 expect({})
 assert(math.abs(damageBonus() - dmg0) < 1e-9, "bonus Tacchino con 2 oggetti")
+assert(not costumes[901], "costume Tacchino con 2 oggetti")
 evaluations = 0
 items[745] = true; frames(5)
 expect({ "SEI UN TACCHINO! / Tacchinardi, tacchinibus" })
 assert(evaluations == 1, "statistiche non ricalcolate alla trasformazione")
 assert(#played == 1 and played[1] == 900, "verso del tacchino non suonato")
+assert(costumes[901], "costume Tacchino mancante alla trasformazione")
 assert(math.abs(damageBonus() - dmg0 - 1) < 1e-9 and math.abs(speedBonus() - spd0 + 0.1) < 1e-9, "bonus Tacchino errato")
 items[745] = nil; frames(5)
+assert(not costumes[901], "costume Tacchino rimasto senza un oggetto")
 items[745] = true; frames(5)
 expect({}) -- la scritta esce una volta per run
 assert(#played == 1, "verso del tacchino ripetuto nella stessa run")
+assert(costumes[901], "costume Tacchino non tornato con l'oggetto")
+-- Continua: il costume torna, senza ripetere scritta e verso
+costumes[901] = nil
+fire(ModCallbacks.MC_POST_GAME_STARTED, nil, true); frames(5)
+assert(costumes[901], "costume Tacchino perso dopo il Continua")
+assert(#played == 1, "verso del tacchino ripetuto dopo il Continua")
 items[743], items[744], items[745] = nil, nil, nil; frames(5)
 
 -- il suono dichiarato deve esistere e finire nella mod
@@ -420,6 +439,13 @@ local soundsContent = soundsXml:read("*all")
 soundsXml:close()
 assert(soundsContent:find('name="Risacca Tacchino"', 1, true) and soundsContent:find('path="tacchino.wav"', 1, true), "sounds.xml incoerente")
 assert(io.open("resources/sfx/tacchino.wav", "rb"), "manca resources/sfx/tacchino.wav"):close()
+
+-- il costume dichiarato deve esistere e finire nella mod
+local costumesXml = assert(io.open("content/costumes2.xml", "r"), "manca content/costumes2.xml")
+assert(costumesXml:read("*all"):find('anm2path="tacchino.anm2"', 1, true), "costumes2.xml incoerente")
+costumesXml:close()
+assert(io.open("resources/gfx/characters/tacchino.anm2", "rb"), "manca tacchino.anm2"):close()
+assert(io.open("resources/gfx/characters/tacchino.png", "rb"), "manca tacchino.png"):close()
 
 -- Nuova run: azzeramento dello stato per-player (#48)
 items[740] = true
