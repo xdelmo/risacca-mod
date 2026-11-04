@@ -101,6 +101,10 @@ local function refresh(flags)
   end
 end
 
+local function isRealHit(flags)
+  return (flags or 0) & (DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_RED_HEARTS) == 0
+end
+
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, isContinued)
   run = freshRun()
   resetPlayerState()
@@ -130,7 +134,8 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, function(_, _, _, player)
 end, ITEM_ROTTO)
 
 -- Win Streak
-mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function()
+mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, _, _, flags)
+  if not isRealHit(flags) then return end
   run.streak = 0
   run.hitThisFloor = true
 end, EntityType.ENTITY_PLAYER)
@@ -219,7 +224,8 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
   wasDead[idx] = dead
 end)
 
-mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, _, amount)
+mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, _, amount, flags)
+  if not isRealHit(flags) then return end
   if amount >= 2 and not roomFlags.tacchino then
     roomFlags.tacchino = true
     say(T.TACCHINO, nil, 2, P.TACCHINO)
@@ -336,7 +342,8 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player, flag)
   end
 end)
 
-mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity)
+mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity, _, flags)
+  if not isRealHit(flags) then return end
   local h = GetPtrHash(entity)
   if not proBonus[h] then return end
   proBonus[h] = nil
@@ -378,7 +385,8 @@ mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
 end)
 
 -- Mannaggia a Lui
-mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity)
+mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity, _, flags)
+  if not isRealHit(flags) then return end
   local player = entity:ToPlayer()
   local mult = player and player:GetTrinketMultiplier(TRINKET_MANNAGGIA) or 0
   if mult == 0 then return end
