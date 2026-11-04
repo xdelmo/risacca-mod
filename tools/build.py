@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parent.parent
 INCLUDE = ["metadata.xml", "main.lua", "logic.lua", "content", "resources", "resources-dlc3"]
 BANNED = ("docs/", "tools/", "tests/", "extracted/")
 # git-ignored: senza questi file lo zip uscirebbe senza rinomine
-REQUIRED = ["resources-dlc3/items.xml", "resources-dlc3/pocketitems.xml"]
+REQUIRED = ["resources-dlc3/items.xml", "resources-dlc3/pocketitems.xml", "resources-dlc3/info_display.xml"]
 
 
 def missing_required(root=ROOT):
