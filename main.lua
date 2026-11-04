@@ -47,6 +47,19 @@ local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKill
 local run = freshRun()
 local roomFlags = {}
 
+-- stato per player, chiave GetPtrHash(player)
+local devilPending, prevQueued, armed, wasDead = {}, {}, {}, {}
+local proBonus = {}
+local tearCount, doubling = {}, false
+local wasTacchino = {}
+
+local function resetPlayerState()
+  devilPending, prevQueued, armed, wasDead = {}, {}, {}, {}
+  proBonus = {}
+  tearCount, doubling = {}, false
+  wasTacchino = {}
+end
+
 local function save() mod:SaveData(json.encode(run)) end
 
 local function players()
@@ -69,6 +82,7 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, isContinued)
   run = freshRun()
+  resetPlayerState()
   if isContinued and mod:HasData() then
     local ok, data = pcall(json.decode, mod:LoadData())
     if ok and type(data) == "table" then
@@ -152,9 +166,6 @@ mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function()
   local t, s = L.xlText(isXL)
   say(t, s, 90, P.XL)
 end)
-
--- stato per player, chiave GetPtrHash(player)
-local devilPending, prevQueued, armed, wasDead = {}, {}, {}, {}
 
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, pickup, collider)
   local player = collider:ToPlayer()
@@ -290,7 +301,6 @@ mod:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, function(_, rng, pos)
 end)
 
 -- La Mossa del Pro Player: il bonus è per player e finisce col primo colpo o con la stanza
-local proBonus = {}
 
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, function(_, _, _, player)
   proBonus[GetPtrHash(player)] = true
@@ -332,7 +342,6 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, function()
 end, ITEM_TROLLATA)
 
 -- Fai Così, Fai Così: doubling evita che la lacrima gemella conti come un nuovo tiro
-local tearCount, doubling = {}, false
 
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
   if doubling or not tear.SpawnerEntity then return end
@@ -373,8 +382,6 @@ local function isTacchino(player)
   end
   return L.isTacchino(n)
 end
-
-local wasTacchino = {}
 
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
   local idx = GetPtrHash(player)

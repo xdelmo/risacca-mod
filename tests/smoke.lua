@@ -384,6 +384,24 @@ items[745] = true; frames(5)
 expect({}) -- la scritta esce una volta per run
 items[743], items[744], items[745] = nil, nil, nil; frames(5)
 
+-- Nuova run: azzeramento dello stato per-player (#48)
+items[740] = true
+fire(ModCallbacks.MC_POST_FIRE_TEAR, nil, tear)
+assert(twins == 2, "lacrima dispari non deve sdoppiare")
+fire(ModCallbacks.MC_USE_ITEM, 738, 738, nil, player)
+assert(damageBonus() > noBonus, "bonus Pro Player non attivo prima del reset")
+shown = {}
+fire(ModCallbacks.MC_POST_GAME_STARTED, nil, false)
+frames(35)
+shown = {}
+assert(damageBonus() < 1e-9, "bonus Pro Player ereditato nella nuova run")
+local twinsBefore = twins
+fire(ModCallbacks.MC_POST_FIRE_TEAR, nil, tear)
+assert(twins == twinsBefore, "Fai Cosi ha ereditato il conteggio colpi della run precedente")
+fire(ModCallbacks.MC_POST_FIRE_TEAR, nil, tear)
+assert(twins == twinsBefore + 1, "Fai Cosi non ha raddoppiato al 2 colpo della nuova run")
+items[740] = nil
+
 -- ogni callback registrata deve essere stata chiamata almeno una volta
 for i, c in ipairs(cbs) do assert(called[c], "callback #" .. i .. " mai chiamata") end
 expect({})
