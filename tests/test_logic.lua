@@ -51,6 +51,11 @@ local b = L.deadGodBonus(3)
 assert(near(b.damage, 0.6) and near(b.speed, 0.09) and near(b.range, 12) and near(b.fireDelay, -0.3))
 assert(near(L.deadGodBonus(15).damage, 2.0))
 
+-- Non muore!: serve un boss vivo e 60 secondi nella stanza
+assert(not L.nonMuore(1799, 1))
+assert(L.nonMuore(1800, 1))
+assert(not L.nonMuore(5000, 0))
+
 -- queue_suppresses_lower
 local q = L.newQueue()
 q:push(L.TEXT.TACCHINO, nil, 2, L.PRIO.TACCHINO)

@@ -52,7 +52,7 @@ function player:ToPlayer() return self end
 local ids = {
   ["Ho Rotto il Gioco"] = 733, ["-1 al Dead God"] = 734, ["Win Streak"] = 190,
   ["Non Vi Rubo Altro Tempo"] = 735, ["Potrebbe Stare Qua"] = 736, ["Il Miracolo di San Gennaruzzo"] = 737,
-  ["Che Fai, Te Ne Privi?"] = 191,
+  ["Che Fai, Te Ne Privi?"] = 191, ["La Mossa del Pro Player"] = 738,
 }
 local spawned, lastSpawn = 0, nil
 local roomEntities = {}
@@ -70,7 +70,9 @@ function level.GetCurses() return 0 end
 function level:ApplyBlueMapEffect() self.blueMap = self.blueMap + 1 end
 function level:UpdateVisibility() self.visibility = self.visibility + 1 end
 function level:AddAngelRoomChance(c) self.angelChance = self.angelChance + c end
-local room = { kind = RoomType.ROOM_DEFAULT, first = true }
+local room = { kind = RoomType.ROOM_DEFAULT, first = true, frameCount = 0, bosses = 0 }
+function room:GetFrameCount() return self.frameCount end
+function room:GetAliveBossesCount() return self.bosses end
 function room:GetType() return self.kind end
 function room:IsFirstVisit() return self.first end
 function room:GetCenterPos() return Vector(0, 0) end
@@ -236,6 +238,45 @@ expect({})
 fire(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, nil, rng(0.1), Vector(0, 0)); frames(5)
 assert(spawned == spawnedBefore + 1 and lastSpawn.v == PickupVariant.PICKUP_BOMB, "pickup errato")
 expect({ "Che fai? Te ne privi?" })
+
+-- Non muore!: dopo 60 secondi col boss vivo, una sola volta per stanza
+room.bosses = 1; room.frameCount = 1799; frames(5)
+expect({})
+room.frameCount = 1800; frames(20)
+expect({ "Non muore!" })
+fire(ModCallbacks.MC_POST_NEW_ROOM); frames(5)
+expect({ "Non muore!" })
+fire(ModCallbacks.MC_POST_NEW_ROOM)
+room.bosses = 0; frames(5)
+expect({})
+room.frameCount = 0
+
+-- Fammi sognare: scritta al D6, senza alterarne l'uso
+local D6 = CollectibleType.COLLECTIBLE_D6
+assert(fire(ModCallbacks.MC_USE_ITEM, D6, D6, nil, player) == nil, "il D6 non deve ricevere un ritorno")
+frames(5)
+expect({ "Fammi sognare" })
+
+-- La Mossa del Pro Player: +2 danni fino al primo colpo o al cambio stanza
+local function damageBonus()
+  local base = player.Damage
+  fire(ModCallbacks.MC_EVALUATE_CACHE, nil, player, CacheFlag.CACHE_DAMAGE)
+  local d = player.Damage - base
+  player.Damage = base
+  return d
+end
+local noBonus = damageBonus()
+evaluations = 0
+assert(fire(ModCallbacks.MC_USE_ITEM, 738, 738, nil, player) == true, "USE_ITEM deve ritornare true")
+assert(evaluations == 1 and math.abs(damageBonus() - noBonus - 2) < 1e-9, "bonus Pro Player errato")
+frames(5)
+expect({ "La mossa del pro player!" })
+fire(ModCallbacks.MC_POST_NEW_ROOM)
+assert(math.abs(damageBonus() - noBonus) < 1e-9, "bonus rimasto dopo il cambio stanza")
+fire(ModCallbacks.MC_USE_ITEM, 738, 738, nil, player); frames(5); shown = {}
+fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 2); frames(20)
+assert(math.abs(damageBonus() - noBonus) < 1e-9, "bonus rimasto dopo il colpo")
+expect({ "Sono un cretino" }) -- il cretino batte il tacchino dello stesso colpo
 
 -- ogni callback registrata deve essere stata chiamata almeno una volta
 for i, c in ipairs(cbs) do assert(called[c], "callback #" .. i .. " mai chiamata") end
