@@ -2,6 +2,7 @@
     <active name="Ho Rotto il Gioco" description="Ho rotto il gioco!" gfx="ho_rotto_il_gioco.png" maxcharges="6" quality="2" />
     <passive name="-1 al Dead God" description="Un boss alla volta" gfx="meno_uno_dead_god.png" cache="damage speed range firedelay" quality="2" />
     <active name="Non Vi Rubo Altro Tempo" description="3, 2, 1... Ah no, aspetta" gfx="non_vi_rubo.png" maxcharges="4" quality="2" />
+    <active name="La Mossa del Pro Player" description="Se non ti colpiscono" gfx="mossa_pro_player.png" maxcharges="3" quality="2" />
     <passive name="Potrebbe Stare Qua" description="A caccia di secret" gfx="potrebbe_stare_qua.png" quality="2" />
     <passive name="Il Miracolo di San Gennaruzzo" description="Tante volte ci ha salvati" gfx="san_gennaruzzo.png" quality="3" />
     <trinket name="Win Streak" description="Non farti colpire" gfx="win_streak.png" />

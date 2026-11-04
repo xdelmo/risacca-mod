@@ -17,6 +17,7 @@ OUT = {
     "potrebbe_stare_qua": "resources/gfx/items/collectibles/potrebbe_stare_qua.png",
     "san_gennaruzzo": "resources/gfx/items/collectibles/san_gennaruzzo.png",
     "te_ne_privi": "resources/gfx/items/trinkets/te_ne_privi.png",
+    "mossa_pro_player": "resources/gfx/items/collectibles/mossa_pro_player.png",
 }
 PALETTE = {
     "K": (8, 0, 0),        # Contorno Isaac: colore del bordo in 443 collezionabili vanilla su 548
@@ -186,6 +187,23 @@ SPRITES = {
         "  YYYYYYYyyyyb  ",
         "   yyyyyyyybb   ",
         "     bbbbbb     ",
+    ],
+    "mossa_pro_player": [  # Controller grigio con la corona d'oro del pro player
+        "     L   Y   y      ",
+        "     LY YYY Yy      ",
+        "     LYYYYYYyy      ",
+        "     LYYYYYYyy      ",
+        "                    ",
+        "    wwggggggggmm    ",
+        "  wwwggggggggggmmm  ",
+        " wwggddgggggggRggmm ",
+        " wgddddddggggRgRgmm ",
+        " wgddddddgggggRggmm ",
+        " wgggddggggggggggmm ",
+        " wgggggggmmmmgggmmm ",
+        " wwggggmmm  mmggmmm ",
+        "  wgggmm      mggm  ",
+        "   wgmm        mm   ",
     ],
 }
 

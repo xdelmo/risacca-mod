@@ -10,6 +10,7 @@ local ITEM_RUBO = Isaac.GetItemIdByName("Non Vi Rubo Altro Tempo")
 local ITEM_STARE = Isaac.GetItemIdByName("Potrebbe Stare Qua")
 local ITEM_GENNARO = Isaac.GetItemIdByName("Il Miracolo di San Gennaruzzo")
 local TRINKET_PRIVI = Isaac.GetTrinketIdByName("Che Fai, Te Ne Privi?")
+local ITEM_PRO = Isaac.GetItemIdByName("La Mossa del Pro Player")
 
 -- Descrizioni per External Item Descriptions, solo se l'altra mod è attiva
 if EID then
@@ -21,6 +22,7 @@ if EID then
   EID:addCollectible(ITEM_STARE, L.EID.STARE)
   EID:addCollectible(ITEM_GENNARO, L.EID.GENNARO)
   EID:addTrinket(TRINKET_PRIVI, L.EID.PRIVI)
+  EID:addCollectible(ITEM_PRO, L.EID.PRO)
 end
 
 local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKills = 0, beastyShown = false, kubrickShown = false } end
@@ -192,6 +194,20 @@ mod:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, function(_, npc)
   end
 end)
 
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+  if roomFlags.nonMuore then return end
+  local room = game:GetRoom()
+  if L.nonMuore(room:GetFrameCount(), room:GetAliveBossesCount()) then
+    roomFlags.nonMuore = true
+    say(T.NON_MUORE, nil, 0, P.NON_MUORE)
+  end
+end)
+
+-- Fammi sognare: niente return, altrimenti si altera l'uso del D6
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, function()
+  say(T.SOGNARE, nil, 0, P.ITEM)
+end, CollectibleType.COLLECTIBLE_D6)
+
 -- ===== Oggetti dei tormentoni: effetto più scritta =====
 
 -- Non Vi Rubo Altro Tempo
@@ -243,4 +259,35 @@ mod:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, function(_, rng, pos)
   Isaac.Spawn(EntityType.ENTITY_PICKUP, kinds[rng:RandomInt(#kinds) + 1], 0,
     Isaac.GetFreeNearPosition(pos, 40), Vector.Zero, nil)
   say(T.PRIVI, nil, 0, P.ITEM)
+end)
+
+-- La Mossa del Pro Player: il bonus è per player e finisce col primo colpo o con la stanza
+local proBonus = {}
+
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, function(_, _, _, player)
+  proBonus[GetPtrHash(player)] = true
+  refresh(CacheFlag.CACHE_DAMAGE)
+  say(T.PRO, nil, 0, P.ITEM)
+  return true
+end, ITEM_PRO)
+
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player, flag)
+  if flag == CacheFlag.CACHE_DAMAGE and proBonus[GetPtrHash(player)] then
+    player.Damage = player.Damage + L.PRO_DAMAGE
+  end
+end)
+
+mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity)
+  local h = GetPtrHash(entity)
+  if not proBonus[h] then return end
+  proBonus[h] = nil
+  refresh(CacheFlag.CACHE_DAMAGE)
+  say(T.CRETINO, nil, 0, P.CRETINO)
+end, EntityType.ENTITY_PLAYER)
+
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
+  if next(proBonus) then
+    proBonus = {}
+    refresh(CacheFlag.CACHE_DAMAGE)
+  end
 end)

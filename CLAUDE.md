@@ -34,7 +34,7 @@ Non c'è un test runner. I test sono script con `assert`: per provarne uno basta
 - **`main.lua`.** Fa solo da collegamento con le callback del gioco, e ha tre sezioni:
   - **oggetti nuovi:** Ho Rotto il Gioco, -1 al Dead God, Win Streak;
   - **scritte a schermo:** ognuna fa `say(...)` → la coda → `HUD:ShowItemText` dentro `MC_POST_UPDATE`;
-  - **oggetti dei tormentoni:** Non Vi Rubo Altro Tempo, Potrebbe Stare Qua, Il Miracolo di San Gennaruzzo, Che Fai, Te Ne Privi?. Stanno in fondo perché usano anche `say`.
+  - **oggetti dei tormentoni:** Non Vi Rubo Altro Tempo, Potrebbe Stare Qua, Il Miracolo di San Gennaruzzo, Che Fai, Te Ne Privi?, La Mossa del Pro Player. Stanno in fondo perché usano anche `say`.
 
   La stessa callback può essere registrata due volte, una per sezione, ed è voluto.
 - **Coda delle scritte.**

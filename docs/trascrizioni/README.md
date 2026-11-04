@@ -30,3 +30,27 @@ L'ordine è quello del canale, dal video più recente. I titoli sono quelli rest
 | [`-xwWe9YTBv0.txt`](<-xwWe9YTBv0.txt>) | MEGA Eden Win Streak MUSHROOM | 1:15:25 | [YouTube](https://www.youtube.com/watch?v=-xwWe9YTBv0) |
 | [`uip0_a5I-98.txt`](<uip0_a5I-98.txt>) | The RETURN of a NIGHTMARE: Tainted Jacob | 34:20 | [YouTube](https://www.youtube.com/watch?v=uip0_a5I-98) |
 | [`-jv1Tg4N21Y.txt`](<-jv1Tg4N21Y.txt>) | WIN STREAKS are back with a VENGEANCE! | 55:02 | [YouTube](https://www.youtube.com/watch?v=-jv1Tg4N21Y) |
+| [`IytPOo7mU3A.txt`](<IytPOo7mU3A.txt>) | C-Section + Godhead e si ASFALTA TUTTO | 50:52 | [YouTube](https://www.youtube.com/watch?v=IytPOo7mU3A) |
+| [`HVyrHjMLCTg.txt`](<HVyrHjMLCTg.txt>) | I found a very STRANGE ITEM... | 58:39 | [YouTube](https://www.youtube.com/watch?v=HVyrHjMLCTg) |
+| [`p2ZhteZsCE4.txt`](<p2ZhteZsCE4.txt>) | Sometimes you just need a run with TAINTED THE LOST | 59:17 | [YouTube](https://www.youtube.com/watch?v=p2ZhteZsCE4) |
+| [`KBPZLFoy4h8.txt`](<KBPZLFoy4h8.txt>) | I did it. | 1:09:59 | [YouTube](https://www.youtube.com/watch?v=KBPZLFoy4h8) |
+| [`rmSqsd3jVfk.txt`](<rmSqsd3jVfk.txt>) | at a certain point I understood NOTHING anymore | 1:04:37 | [YouTube](https://www.youtube.com/watch?v=rmSqsd3jVfk) |
+| [`vJcazyRbzP8.txt`](<vJcazyRbzP8.txt>) | An INSANE run for the most ABSURD episode on the channel | 1:18:11 | [YouTube](https://www.youtube.com/watch?v=vJcazyRbzP8) |
+| [`JeM5q4cjwXs.txt`](<JeM5q4cjwXs.txt>) | Is it possible to WIN without HEARTS, BOMBS, and COINS? | 44:46 | [YouTube](https://www.youtube.com/watch?v=JeM5q4cjwXs) |
+| [`bmPvKnxdb-8.txt`](<bmPvKnxdb-8.txt>) | Finishing the THIRD SAVE FILE on a high note | 1:11:12 | [YouTube](https://www.youtube.com/watch?v=bmPvKnxdb-8) |
+| [`x6BnZL5G5Qs.txt`](<x6BnZL5G5Qs.txt>) | spawno con il BRIMSTONE e poi trovo QUESTO nello Shop | 42:45 | [YouTube](https://www.youtube.com/watch?v=x6BnZL5G5Qs) |
+| [`JesrnjvbA8o.txt`](<JesrnjvbA8o.txt>) | Basement I, Angel Room and SACRED HEART: what more could you want? | 1:02:47 | [YouTube](https://www.youtube.com/watch?v=JesrnjvbA8o) |
+| [`-rl8f9lpmyc.txt`](<-rl8f9lpmyc.txt>) | I'm playing as Lazarus and Tainted Lazarus AT THE SAME TIME (broken run) | 52:54 | [YouTube](https://www.youtube.com/watch?v=-rl8f9lpmyc) |
+| [`a5aUnek5tTo.txt`](<a5aUnek5tTo.txt>) | An UNEXPECTED ITEM helps me complete Tainted Cain | 1:05:38 | [YouTube](https://www.youtube.com/watch?v=a5aUnek5tTo) |
+| [`95q6RBQddAE.txt`](<95q6RBQddAE.txt>) | WAFER, ti amo | 40:29 | [YouTube](https://www.youtube.com/watch?v=95q6RBQddAE) |
+| [`qoVoyBi1ZnM.txt`](<qoVoyBi1ZnM.txt>) | TIME ATTACK runs with Tainted Cain are… | 40:40 | [YouTube](https://www.youtube.com/watch?v=qoVoyBi1ZnM) |
+| [`5jyifdQecb4.txt`](<5jyifdQecb4.txt>) | ROCK BOTTOM in Basement I? | 58:38 | [YouTube](https://www.youtube.com/watch?v=5jyifdQecb4) |
+| [`l_SPsxxTCLY.txt`](<l_SPsxxTCLY.txt>) | qui si vede chi è un PRO PLAYER e chi è uno SCARSONE | 1:16:55 | [YouTube](https://www.youtube.com/watch?v=l_SPsxxTCLY) |
+| [`naKuuFtap3s.txt`](<naKuuFtap3s.txt>) | non temere: Tainted Lazarus è FORTISSIMO | 1:24:49 | [YouTube](https://www.youtube.com/watch?v=naKuuFtap3s) |
+| [`Am2P9XucHkg.txt`](<Am2P9XucHkg.txt>) | playing TAINTED EDEN is PURE MADNESS | 1:04:11 | [YouTube](https://www.youtube.com/watch?v=Am2P9XucHkg) |
+| [`ygivTrxYv54.txt`](<ygivTrxYv54.txt>) | How to CANCEL the Tainted Eden REROLL | 1:06:07 | [YouTube](https://www.youtube.com/watch?v=ygivTrxYv54) |
+| [`rvuiCTHLz6A.txt`](<rvuiCTHLz6A.txt>) | How to find the ULTRA SECRET ROOM in The Binding of Isaac | 1:14:52 | [YouTube](https://www.youtube.com/watch?v=rvuiCTHLz6A) |
+
+`sMFBfUme4pE` ("-3 al DEAD GOD", 31:19) è saltato perché YouTube non ha sottotitoli per quel video.
+
+I tormentoni estratti da questo gruppo di video sono in [`tormentoni-issue-6.md`](tormentoni-issue-6.md).
