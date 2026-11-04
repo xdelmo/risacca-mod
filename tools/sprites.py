@@ -3,13 +3,14 @@ e i nomi dei boss rinominati per la schermata VS.
 Standard grafici e regole visive documentati in docs/standard-grafici.md.
 Uso: python3 tools/sprites.py [--selftest]
 """
+import math
 import random
 import sys
 import tempfile
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = {
@@ -454,71 +455,111 @@ def write_costume(base):
     return d / "tacchino.png", d / "tacchino.anm2"
 
 
-# Sostituiscono i PNG vanilla con lo stesso percorso: (righe, altezza delle lettere, spessore del tratto)
+# Sostituiscono i PNG vanilla con lo stesso percorso: (righe, altezza delle lettere, spessore del tratto, distanza tra le lettere in tratti)
 BOSS_NAMES = {
-    "resources/gfx/ui/boss/bossname_68.0_peep.png": (["PIPPOLINS"], 28, 6),
-    "resources/gfx/ui/boss/bossname_274.0_megasatan.png": (["MEGA STANLEY"], 20, 4),
-    "resources/gfx/ui/boss/bossname_thebeast.png": (["IL BEASTY BOY"], 20, 4),  # il vanilla non ha questo PNG, il nome viene da bossportraits.xml
-    "resources/gfx/ui/boss/bossname_bumbino.png": (["BUMBAZZO"], 28, 6),
+    "resources/gfx/ui/boss/bossname_68.0_peep.png": (["PIPPOLINS"], 27, 6, 1),
+    "resources/gfx/ui/boss/bossname_274.0_megasatan.png": (["MEGA STANLEY"], 21, 4.5, 0.75),
+    "resources/gfx/ui/boss/bossname_thebeast.png": (["IL BEASTY BOY"], 21, 4.8, 0.8),  # il vanilla non ha questo PNG, il nome viene da bossportraits.xml
+    "resources/gfx/ui/boss/bossname_bumbino.png": (["BUMBAZZO"], 27, 5.6, 1),
 }
 BOSS_NAME_COLOR = (199, 178, 153)  # l'unico colore dei bossname vanilla
 BOSS_NAME_SIZE = (256, 64)         # il ritaglio di BossName in versusscreen.anm2
-BOSS_NAME_CENTER = 104             # i nomi vanilla più larghi vanno da x=0 a x=205: così MEGA STANLEY non tocca il bordo
-GLYPHS = {  # tratti su una griglia alta 6
-    "A": [[(0, 6), (2, 0), (4, 6)], [(1, 4), (3, 4)]],
-    "B": [[(0, 0), (0, 6), (3, 6), (4, 5), (4, 4), (3, 3), (0, 3)], [(0, 0), (3, 0), (4, 1), (4, 2), (3, 3)]],
-    "C": [[(4, 1), (3, 0), (1, 0), (0, 1), (0, 5), (1, 6), (3, 6), (4, 5)]],
-    "D": [[(0, 0), (0, 6), (3, 6), (4, 5), (4, 1), (3, 0), (0, 0)]],
-    "E":[[(4, 0), (0, 0), (0, 6), (4, 6)], [(0, 3), (3, 3)]],
-    "F": [[(4, 0), (0, 0), (0, 6)], [(0, 3), (3, 3)]],
-    "G": [[(4, 1), (3, 0), (1, 0), (0, 1), (0, 5), (1, 6), (3, 6), (4, 5), (4, 3), (2, 3)]],
-    "I": [[(0, 0), (2, 0)], [(1, 0), (1, 6)], [(0, 6), (2, 6)]],  # con le stanghette, o si fonde con la L
-    "L": [[(0, 0), (0, 6), (4, 6)]],
-    "M": [[(0, 6), (0, 0), (2, 3), (4, 0), (4, 6)]],
-    "N": [[(0, 6), (0, 0), (4, 6), (4, 0)]],
-    "O": [[(1, 0), (3, 0), (4, 1), (4, 5), (3, 6), (1, 6), (0, 5), (0, 1), (1, 0)]],
-    "P": [[(0, 6), (0, 0), (3, 0), (4, 1), (4, 2), (3, 3), (0, 3)]],
-    "R": [[(0, 6), (0, 0), (3, 0), (4, 1), (4, 2), (3, 3), (0, 3)], [(2, 3), (4, 6)]],
-    "S": [[(4, 1), (3, 0), (1, 0), (0, 1), (0, 2), (1, 3), (3, 3), (4, 4), (4, 5), (3, 6), (1, 6), (0, 5)]],
-    "T": [[(0, 0), (4, 0)], [(2, 0), (2, 6)]],
-    "U": [[(0, 0), (0, 5), (1, 6), (3, 6), (4, 5), (4, 0)]],
-    "Y": [[(0, 0), (2, 3), (4, 0)], [(2, 3), (2, 6)]],
-    "Z": [[(0, 0), (4, 0), (0, 6), (4, 6)]],
+BOSS_NAME_CENTER = (96, 30)        # la mediana dei nomi vanilla
+# Pennellate su una griglia alta 6: si stringono verso la fine, quindi conta il verso. Più di due punti = curva.
+GLYPHS = {
+    "A": [[(1.7, 0), (0, 6.2)], [(1.6, 0), (3.5, 6)], [(0.5, 4), (3, 3.8)]],
+    "B": [[(0.2, 0), (0, 6)], [(0, 0.1), (2.6, 0), (3.1, 1.3), (2.4, 2.6), (0.4, 3)], [(0.4, 3), (2.8, 3.1), (3.4, 4.6), (2.4, 5.8), (0, 6)]],
+    "C": [[(3.2, 0.7), (2.4, 0), (0.8, 0.3), (0, 2.8), (0.8, 5.6), (2.4, 6), (3.3, 5.2)]],
+    "D": [[(0.2, 0), (0, 6)], [(0, 0.1), (2.2, 0.2), (3.5, 2.4), (3, 5), (0, 6)]],
+    "E": [[(0.1, 0), (0, 6)], [(0, 0.1), (3, 0)], [(0, 2.9), (2.4, 2.8)], [(0, 6), (3.2, 5.8)]],
+    "F": [[(0.1, 0), (0, 6.3)], [(0, 0.1), (3.1, 0)], [(0, 3), (2.4, 2.8)]],
+    "G": [[(3.3, 0.8), (2.4, 0), (0.8, 0.3), (0, 2.9), (0.8, 5.6), (2.4, 6), (3.5, 4.8), (3.4, 3.4)], [(3.5, 3.3), (1.9, 3.3)]],
+    "I": [[(0.8, 0), (0.6, 6.2)]],
+    "L": [[(0.1, 0), (0, 6)], [(0, 6), (3.2, 5.7)]],
+    "M": [[(0.4, 0), (0, 6.2)], [(0.4, 0), (2.1, 4)], [(3.9, 0), (2, 4)], [(3.9, 0), (4.3, 6.2)]],
+    "N": [[(0.2, 0), (0, 6.2)], [(0.2, 0), (3.6, 6)], [(3.8, 0), (3.6, 6.1)]],
+    "O": [[(1.8, 0), (0.5, 0.6), (0, 3), (0.7, 5.5), (1.9, 6), (3.2, 5.2), (3.6, 2.8), (2.9, 0.6), (1.4, 0.1)]],
+    "P": [[(0.2, 0), (0, 6.4)], [(0, 0.1), (2.6, 0), (3.3, 1.4), (2.4, 3), (0.2, 3.5)]],
+    "R": [[(0.2, 0), (0, 6.3)], [(0, 0.1), (2.6, 0), (3.2, 1.4), (2.3, 2.8), (0.2, 3.3)], [(1.1, 3.1), (3.4, 6.2)]],
+    "S": [[(3.1, 0.7), (2.2, 0), (0.7, 0.4), (0.3, 1.8), (1.7, 3), (3.1, 4), (2.8, 5.5), (1.2, 6), (0, 5.2)]],
+    "T": [[(0, 0.2), (3.8, 0)], [(1.9, 0), (1.7, 6.3)]],
+    "U": [[(0.1, 0), (0, 3.8), (0.7, 5.6), (1.9, 6), (3, 5.3), (3.3, 3.4)], [(3.3, 0), (3.4, 6.1)]],
+    "Y": [[(0, 0), (1.7, 3)], [(3.5, 0), (1.5, 3.4), (1.3, 6.3)]],
+    "Z": [[(0, 0.2), (3.2, 0)], [(3.2, 0), (0, 5.9)], [(0, 5.9), (3.4, 5.7)]],
 }
 
 
-def render_boss_name(lines, height, stroke):
-    ss = 4  # disegna in grande e riduce, per avere i bordi morbidi dei nomi vanilla
-    u, gap = height / 6, stroke
+def brush_stroke(draw, pts, width, rng, ss):
+    """Timbra cerchi lungo il tratto: pieno all'inizio, sottile in fondo, con lo spessore che oscilla."""
+    pts = [(x * ss, y * ss) for x, y in pts]
+    for _ in range(2 if len(pts) > 2 else 0):  # arrotonda le curve tagliando gli angoli
+        cut = [(0.75 * a + 0.25 * c, 0.75 * b + 0.25 * d) for (a, b), (c, d) in zip(pts, pts[1:])]
+        cut2 = [(0.25 * a + 0.75 * c, 0.25 * b + 0.75 * d) for (a, b), (c, d) in zip(pts, pts[1:])]
+        pts = [pts[0]] + [p for pair in zip(cut, cut2) for p in pair] + [pts[-1]]
+    lengths = [((c - a) ** 2 + (d - b) ** 2) ** 0.5 for (a, b), (c, d) in zip(pts, pts[1:])]
+    total, done = sum(lengths), 0
+    phase, waves = rng.uniform(0, 6.28), rng.uniform(1.5, 3)
+    for (a, b), (c, d), length in zip(pts, pts[1:], lengths):
+        for i in range(max(1, int(length))):
+            t = (done + i) / total
+            r = width * ss / 2 * min(1, 0.72 + t * 2.5) * (1 - 0.55 * max(0, t - 0.7) / 0.3) * (1 + 0.1 * math.sin(phase + t * waves * 6.28))
+            x, y = a + (c - a) * i / length, b + (d - b) * i / length
+            draw.ellipse((x - r, y - r, x + r, y + r), fill=255)
+        done += length
+
+
+def render_boss_name(lines, height, stroke, spacing):
+    ss = 4  # disegna in grande e riduce: il bordo a 128 dei nomi vanilla viene da qui
+    u = height / 6
     rng = random.Random(" ".join(lines))  # stesso testo, stessi PNG
-    mask = Image.new("L", (BOSS_NAME_SIZE[0] * ss, BOSS_NAME_SIZE[1] * ss), 0)
+    w, h = BOSS_NAME_SIZE
+    mask = Image.new("L", (2 * w * ss, 2 * h * ss), 0)
     draw = ImageDraw.Draw(mask)
-    top = (BOSS_NAME_SIZE[1] - height * len(lines) - 10 * (len(lines) - 1)) / 2
     for n, line in enumerate(lines):
-        widths = [2 * u if c == " " else max(x for s in GLYPHS[c] for x, _ in s) * u for c in line]
-        x = BOSS_NAME_CENTER - (sum(widths) + gap * (len(line) - 1)) / 2
-        y = top + n * (height + 10)
-        for c, w in zip(line, widths):
-            dx, dy = rng.uniform(-0.5, 0.5), rng.uniform(-1.5, 1.5)  # lettere storte, come a mano
-            for s in GLYPHS.get(c, []):
-                pts = [((x + dx + px * u) * ss, (y + dy + py * u) * ss) for px, py in s]
-                draw.line(pts, fill=255, width=stroke * ss, joint="curve")
-                for px, py in (pts[0], pts[-1]):
-                    r = stroke * ss / 2
-                    draw.ellipse((px - r, py - r, px + r, py + r), fill=255)
-            x += w + gap
-    alpha = mask.resize(BOSS_NAME_SIZE, Image.LANCZOS).point(lambda a: 0 if a < 64 else 128 if a < 192 else 255)
+        x, base = 16.0, h + height / 2 + n * (height + 6)
+        first = True
+        for c in line:
+            if c == " ":
+                x += 1.4 * u
+                first = True
+                continue
+            scale = 1.18 if first else rng.uniform(0.94, 1.04)  # l'iniziale è più grande, le altre ballano
+            tilt, dy = rng.uniform(-0.07, 0.07), rng.uniform(-1, 1)
+            for s in GLYPHS[c]:
+                pts = []
+                for px, py in s:
+                    px, py = (px + rng.uniform(-0.1, 0.1)) * u * scale, (py - 6 + rng.uniform(-0.1, 0.1)) * u * scale
+                    pts.append((x + px - py * tilt, base + dy + py + px * tilt))
+                brush_stroke(draw, pts, stroke, rng, ss)
+            x += max(px for st in GLYPHS[c] for px, _ in st) * u * scale + stroke * spacing
+            if c == "I":
+                x += 0.5 * u  # un tratto dritto accanto a un altro si fonde: IL e IN diventerebbero una macchia
+            first = False
+    alpha = mask.resize((2 * w, 2 * h), Image.BOX).point(lambda a: 0 if a < 90 else 128 if a < 165 else 255)
+    x0, y0, x1, y1 = alpha.getbbox()
     im = Image.new("RGBA", BOSS_NAME_SIZE, BOSS_NAME_COLOR + (0,))
-    im.putalpha(alpha)
+    a = Image.new("L", BOSS_NAME_SIZE, 0)
+    a.paste(alpha.crop((x0, y0, x1, y1)), (BOSS_NAME_CENTER[0] - (x1 - x0) // 2, BOSS_NAME_CENTER[1] - (y1 - y0) // 2))
+    im.putalpha(a)
     return im
+
+
+def boss_name_metrics(im):
+    """Larghezza, altezza, centro x, spessore medio del tratto e quota di pixel semitrasparenti."""
+    alpha = im.getchannel("A")
+    solid = alpha.point(lambda v: 255 if v >= 128 else 0)
+    x0, y0, x1, y1 = solid.getbbox()
+    area = solid.histogram()[255]
+    edge = area - solid.filter(ImageFilter.MinFilter(3)).histogram()[255]
+    return x1 - x0, y1 - y0, (x0 + x1) / 2, 2 * area / edge, alpha.histogram()[128] / area
 
 
 def write_boss_names(base):
     paths = []
-    for rel, (lines, height, stroke) in BOSS_NAMES.items():
+    for rel, spec in BOSS_NAMES.items():
         p = Path(base) / rel
         p.parent.mkdir(parents=True, exist_ok=True)
-        render_boss_name(lines, height, stroke).save(p)
+        render_boss_name(*spec).save(p)
         paths.append(p)
     return paths
 
@@ -573,7 +614,11 @@ def selftest():
             assert im.size == BOSS_NAME_SIZE and im.mode == "RGBA", (p, im.size, im.mode)
             x0, y0, x1, y1 = im.getchannel("A").getbbox()
             # x0 e y0 a 0 vorrebbero dire lettere tagliate dal bordo
-            assert x0 >= 1 and x1 <= 212 and y0 >= 1 and y1 <= 63, (p, x0, y0, x1, y1)
+            assert x0 >= 1 and y0 >= 1 and y1 <= 63, (p, x0, y0, x1, y1)
+            # Soglie misurate sui PNG vanilla, tranne la larghezza: il vanilla arriva a 205, ma così il nome non tocca il bordo
+            width, tall, center, thick, semi = boss_name_metrics(im)
+            assert width <= 190 and 25 <= tall <= 56 and 84.5 <= center <= 104, (p, width, tall, center)
+            assert 4.2 <= thick <= 6.9 and 0.07 <= semi <= 0.12, (p, thick, semi)
             colors = [c for _, c in im.getcolors(65536)]
             assert {c[:3] for c in colors if c[3]} == {BOSS_NAME_COLOR}, p
             assert {c[3] for c in colors} == {0, 128, 255}, p
