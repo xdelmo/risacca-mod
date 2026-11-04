@@ -1,4 +1,4 @@
-"""Genera resources-dlc3/items.xml e pocketitems.xml con i nomi alla Risacca.
+"""Genera resources-dlc3/items.xml, pocketitems.xml e info_display.xml con i nomi alla Risacca.
 Uso: python3 tools/rename.py <cartella_estratta> | --selftest"""
 import re
 import sys
@@ -8,14 +8,12 @@ from pathlib import Path
 
 
 RULES = [(re.compile(p, re.I), r) for p, r in [
-    (r"\bMega Satan\b", "Mega Stanley Kubrick"),
     (r"\btreasure rooms?\b", "Stanza d'Auro"),
     (r"\bkeys?\b", "Chiaviz-Chiavoz"),
     (r"\bbombs?\b", "Bombiz-Bomboz"),
     (r"\bboss(es)?\b", "Beppe Bossicchio"),
     (r"\bBumbo\b", "Bumbazzo"),
     (r"\bGreed\b", "Ballerino di Flamenco"),
-    (r"\bPeep\b", "Pippolins"),
 ]]
 
 
@@ -42,6 +40,14 @@ def convert(src, table, dst):
     tree.write(dst, encoding="utf-8", xml_declaration=True)
 
 
+def convert_info(src, dst):
+    # regex e non ElementTree: il file ha più radici (collectibles, trinkets, pills, cards)
+    s = Path(src).read_bytes().decode("utf-8")
+    s = re.sub(r'\btext="([^"]*)"', lambda m: 'text="%s"' % rename_text(m[1]), s)
+    Path(dst).parent.mkdir(parents=True, exist_ok=True)
+    Path(dst).write_bytes(s.encode("utf-8"))
+
+
 def selftest():
     cases = {
         "Skeleton Key": "Skeleton Chiaviz-Chiavoz",
@@ -51,16 +57,15 @@ def selftest():
         "Mom's Key": "Mom's Chiaviz-Chiavoz",
         "+5 bombs": "+5 Bombiz-Bomboz",
         "Boss Rush": "Beppe Bossicchio Rush",
-        "Mega Satan": "Mega Stanley Kubrick",
         "Treasure Room": "Stanza d'Auro",
+        "1 additional item will appear in treasure rooms": "1 additional item will appear in Stanza d'Auro",
+        "Bosses drop 2 items": "Beppe Bossicchio drop 2 items",
         "Treasure Map": "Treasure Map",
         "Incubus": "Il buddy più forte del gioco",
         "Bumbo": "Bumbazzo",
         "Bumbo's Heart": "Bumbazzo's Heart",
         "Greed's Gullet": "Ballerino di Flamenco's Gullet",
         "Ultra Greedier": "Ultra Greedier",
-        "Peep": "Pippolins",
-        "Peeper": "Peeper",
     }
     for src, want in cases.items():
         got = rename_text(src)
@@ -83,6 +88,13 @@ def selftest():
         assert out[0].attrib == {"id": "1", "name": "#SAD_ONION_NAME", "description": "Tears up"}, out[0].attrib
         assert out[1].get("name") == "Skeleton Chiaviz-Chiavoz", out[1].attrib
         assert out[1].get("description") == "99 Chiaviz-Chiavoz", out[1].attrib
+        (d / "info.xml").write_bytes(
+            b'<collectibles>\r\n<info tag="boss" text="&lt;color=0xFFc30404&gt;Spawns 2 keys"/>\r\n</collectibles>\r\n'
+            b'<cards>\r\n<info text="Skips the boss room"/>\r\n</cards>\r\n')
+        convert_info(d / "info.xml", d / "info_out.xml")
+        assert (d / "info_out.xml").read_bytes() == (
+            b'<collectibles>\r\n<info tag="boss" text="&lt;color=0xFFc30404&gt;Spawns 2 Chiaviz-Chiavoz"/>\r\n</collectibles>\r\n'
+            b'<cards>\r\n<info text="Skips the Beppe Bossicchio room"/>\r\n</cards>\r\n')
     print("OK")
 
 
@@ -101,6 +113,8 @@ if __name__ == "__main__":
         selftest()
     else:
         src = Path(sys.argv[1])
+        out = Path(__file__).resolve().parent.parent / "resources-dlc3"
         table = load_table(src / "stringtable.sta")
         for f in ("items.xml", "pocketitems.xml"):
-            convert(src / f, table, Path(__file__).resolve().parent.parent / "resources-dlc3" / f)
+            convert(src / f, table, out / f)
+        convert_info(src / "info_display.xml", out / "info_display.xml")

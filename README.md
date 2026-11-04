@@ -44,12 +44,12 @@ Gli oggetti originali del gioco vengono rinominati nei nomi e nelle descrizioni:
 | key / keys | Chiaviz-Chiavoz |
 | bomb / bombs | Bombiz-Bomboz |
 | boss / bosses | Beppe Bossicchio |
-| Mega Satan | Mega Stanley Kubrick |
-| Peep | Pippolins |
 | Treasure Room | Stanza d'Auro |
 | Bumbo | Bumbazzo |
 | Greed | Ballerino di Flamenco |
 | Incubus | Il buddy più forte del gioco |
+
+Tre boss cambiano nome: Peep diventa **Pippolins**, sia nella schermata VS sia nella scritta a inizio scontro. Mega Satan diventa **Mega Stanley** nella schermata VS e **Mega Stanley Kubrick** nella scritta. The Beast diventa **Il Beasty Boy** nella scritta e nell'immagine del nome.
 
 ## Installazione
 

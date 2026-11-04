@@ -1,12 +1,14 @@
-"""Disegna gli sprite 32x32 della mod da griglie di caratteri in stile Binding of Isaac: Repentance+.
+"""Disegna gli sprite 32x32 della mod da griglie di caratteri in stile Binding of Isaac: Repentance+
+e i nomi dei boss rinominati per la schermata VS.
 Standard grafici e regole visive documentati in docs/standard-grafici.md.
 Uso: python3 tools/sprites.py [--selftest]
 """
+import random
 import sys
 import tempfile
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = {
@@ -233,7 +235,70 @@ def outline(im):
     return out
 
 
+# Sostituiscono i PNG vanilla con lo stesso percorso: (righe, altezza delle lettere, spessore del tratto)
+BOSS_NAMES = {
+    "resources/gfx/ui/boss/bossname_68.0_peep.png": (["PIPPOLINS"], 28, 6),
+    "resources/gfx/ui/boss/bossname_274.0_megasatan.png": (["MEGA STANLEY"], 20, 4),
+    "resources/gfx/ui/boss/bossname_thebeast.png": (["IL BEASTY BOY"], 20, 4),  # il vanilla non ha questo PNG, il nome viene da bossportraits.xml
+}
+BOSS_NAME_COLOR = (199, 178, 153)  # l'unico colore dei bossname vanilla
+BOSS_NAME_SIZE = (256, 64)         # il ritaglio di BossName in versusscreen.anm2
+BOSS_NAME_CENTER = 104             # i nomi vanilla più larghi vanno da x=0 a x=205: così MEGA STANLEY non tocca il bordo
+GLYPHS = {  # tratti su una griglia alta 6
+    "A": [[(0, 6), (2, 0), (4, 6)], [(1, 4), (3, 4)]],
+    "B": [[(0, 0), (0, 6), (3, 6), (4, 5), (4, 4), (3, 3), (0, 3)], [(0, 0), (3, 0), (4, 1), (4, 2), (3, 3)]],
+    "E":[[(4, 0), (0, 0), (0, 6), (4, 6)], [(0, 3), (3, 3)]],
+    "G": [[(4, 1), (3, 0), (1, 0), (0, 1), (0, 5), (1, 6), (3, 6), (4, 5), (4, 3), (2, 3)]],
+    "I": [[(0, 0), (2, 0)], [(1, 0), (1, 6)], [(0, 6), (2, 6)]],  # con le stanghette, o si fonde con la L
+    "L": [[(0, 0), (0, 6), (4, 6)]],
+    "M": [[(0, 6), (0, 0), (2, 3), (4, 0), (4, 6)]],
+    "N": [[(0, 6), (0, 0), (4, 6), (4, 0)]],
+    "O": [[(1, 0), (3, 0), (4, 1), (4, 5), (3, 6), (1, 6), (0, 5), (0, 1), (1, 0)]],
+    "P": [[(0, 6), (0, 0), (3, 0), (4, 1), (4, 2), (3, 3), (0, 3)]],
+    "S": [[(4, 1), (3, 0), (1, 0), (0, 1), (0, 2), (1, 3), (3, 3), (4, 4), (4, 5), (3, 6), (1, 6), (0, 5)]],
+    "T": [[(0, 0), (4, 0)], [(2, 0), (2, 6)]],
+    "Y": [[(0, 0), (2, 3), (4, 0)], [(2, 3), (2, 6)]],
+}
+
+
+def render_boss_name(lines, height, stroke):
+    ss = 4  # disegna in grande e riduce, per avere i bordi morbidi dei nomi vanilla
+    u, gap = height / 6, stroke
+    rng = random.Random(" ".join(lines))  # stesso testo, stessi PNG
+    mask = Image.new("L", (BOSS_NAME_SIZE[0] * ss, BOSS_NAME_SIZE[1] * ss), 0)
+    draw = ImageDraw.Draw(mask)
+    top = (BOSS_NAME_SIZE[1] - height * len(lines) - 10 * (len(lines) - 1)) / 2
+    for n, line in enumerate(lines):
+        widths = [2 * u if c == " " else max(x for s in GLYPHS[c] for x, _ in s) * u for c in line]
+        x = BOSS_NAME_CENTER - (sum(widths) + gap * (len(line) - 1)) / 2
+        y = top + n * (height + 10)
+        for c, w in zip(line, widths):
+            dx, dy = rng.uniform(-0.5, 0.5), rng.uniform(-1.5, 1.5)  # lettere storte, come a mano
+            for s in GLYPHS.get(c, []):
+                pts = [((x + dx + px * u) * ss, (y + dy + py * u) * ss) for px, py in s]
+                draw.line(pts, fill=255, width=stroke * ss, joint="curve")
+                for px, py in (pts[0], pts[-1]):
+                    r = stroke * ss / 2
+                    draw.ellipse((px - r, py - r, px + r, py + r), fill=255)
+            x += w + gap
+    alpha = mask.resize(BOSS_NAME_SIZE, Image.LANCZOS).point(lambda a: 0 if a < 64 else 128 if a < 192 else 255)
+    im = Image.new("RGBA", BOSS_NAME_SIZE, BOSS_NAME_COLOR + (0,))
+    im.putalpha(alpha)
+    return im
+
+
+def write_boss_names(base):
+    paths = []
+    for rel, (lines, height, stroke) in BOSS_NAMES.items():
+        p = Path(base) / rel
+        p.parent.mkdir(parents=True, exist_ok=True)
+        render_boss_name(lines, height, stroke).save(p)
+        paths.append(p)
+    return paths
+
+
 def write_all(base):
+    write_boss_names(base)
     paths, imgs = [], []
     for name, rel in OUT.items():
         im = render(SPRITES[name])
@@ -276,6 +341,15 @@ def selftest():
             assert sum(1 for c in px if c[3] > 0) >= 60, p
             assert any(c[3] > 0 and 0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2] < 40 for c in px), p
             check_vanilla_style(im, p)
+        for p in write_boss_names(Path(d)):
+            im = Image.open(p)
+            assert im.size == BOSS_NAME_SIZE and im.mode == "RGBA", (p, im.size, im.mode)
+            x0, y0, x1, y1 = im.getchannel("A").getbbox()
+            # x0 e y0 a 0 vorrebbero dire lettere tagliate dal bordo
+            assert x0 >= 1 and x1 <= 212 and y0 >= 1 and y1 <= 63, (p, x0, y0, x1, y1)
+            colors = [c for _, c in im.getcolors(65536)]
+            assert {c[:3] for c in colors if c[3]} == {BOSS_NAME_COLOR}, p
+            assert {c[3] for c in colors} == {0, 128, 255}, p
     print("SELFTEST OK")
 
 
