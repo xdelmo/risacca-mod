@@ -10,6 +10,10 @@ local function enum()
 end
 ModCallbacks, EntityType, PickupVariant, CacheFlag, LevelCurse, CollectibleType = enum(), enum(), enum(), enum(), enum(), enum()
 RoomType, HeartSubType, BombVariant = enum(), enum(), enum()
+DamageFlag = {
+  DAMAGE_NO_PENALTIES = 1 << 14,
+  DAMAGE_RED_HEARTS = 1 << 17,
+}
 function EntityRef(e) return { Entity = e } end
 
 Vector = setmetatable({ Zero = { X = 0, Y = 0 } }, { __call = function(_, x, y) return { X = x, Y = y } end })
@@ -315,7 +319,10 @@ expect({ "La mossa del pro player!" })
 fire(ModCallbacks.MC_POST_NEW_ROOM)
 assert(math.abs(damageBonus() - noBonus) < 1e-9, "bonus rimasto dopo il cambio stanza")
 fire(ModCallbacks.MC_USE_ITEM, 738, 738, nil, player); frames(5); shown = {}
-fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 2); frames(20)
+fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 1, DamageFlag.DAMAGE_NO_PENALTIES); frames(5)
+assert(damageBonus() > noBonus, "bonus Pro Player perso con danno senza penalita")
+expect({})
+fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 2, 0); frames(20)
 assert(math.abs(damageBonus() - noBonus) < 1e-9, "bonus rimasto dopo il colpo")
 expect({ "Sono un cretino" }) -- il cretino batte il tacchino dello stesso colpo
 
@@ -355,7 +362,10 @@ fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 1); fram
 assert(near.damage == nil, "danno senza il trinket")
 expect({})
 trinkets[192] = true
-fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 1); frames(5)
+fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 1, DamageFlag.DAMAGE_NO_PENALTIES); frames(5)
+assert(near.damage == nil, "Mannaggia a Lui ha colpito con danno senza penalita")
+expect({})
+fire(ModCallbacks.MC_ENTITY_TAKE_DMG, EntityType.ENTITY_PLAYER, player, 1, 0); frames(5)
 assert(near.damage == player.Damage * 4 and far.damage == nil, "contraccolpo errato")
 expect({ "Mannaggia a lui!" })
 roomEntities = {}
