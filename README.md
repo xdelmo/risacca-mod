@@ -10,7 +10,6 @@ Mod per **The Binding of Isaac: Repentance** dedicata a [Risacca](https://www.yo
 
 | Quando | Scritta |
 |---|---|
-| Inizio di una nuova run | *Ciao a tutti, io sono Risacca*, poi *Benvenuti sul mio canale* |
 | Ogni nuovo piano | *È XL?*, poi *SÌ, È XL!* oppure *No... non è XL* |
 | Oggetto di qualità 3 / 4 | *IL GODOR!* / *GODOR MAXIMOR!* |
 | Oggetto preso con un patto col diavolo | *Alla facciazza vostra!* |

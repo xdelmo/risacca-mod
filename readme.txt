@@ -42,8 +42,8 @@ INSTALLAZIONE
    Seleziona "Risacca Mod" e controlla che sia attiva.
    Esci dal menu: se il gioco si ricarica è normale.
 
-Fatto! Inizia una nuova partita: all'inizio compare la scritta
-"Ciao a tutti, io sono Risacca".
+Fatto! Inizia una nuova partita: all'inizio del piano compare la
+scritta "È XL?".
 
 
 SE QUALCOSA NON VA

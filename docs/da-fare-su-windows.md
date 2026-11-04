@@ -15,7 +15,6 @@ Prima di provare, chiudi e riapri il gioco: le modifiche alla mod si vedono solo
 
 Nuova run, con un personaggio qualsiasi:
 
-- [x] All'inizio compare **"Ciao a tutti, io sono Risacca / Benvenuti sul mio canale"**.
 - [x] Poco dopo compare **"È XL?"**, poi **"No... non è XL"**. In un piano XL deve uscire **"SÌ, È XL!"**. Confermati entrambi, ciascuno in un'unica scritta con "È XL?". Il piano XL si forza con `curse 2` seguito da `stage 2`.
 - [x] **Controlla le lettere accentate:** guarda se "È" e "Ì" si vedono bene. Se vedi quadratini o lettere sbagliate, fai uno screenshot. "È", "è" e "Ì" si vedono bene.
 - [x] Raccogli un oggetto di qualità 3 o 4: compare **"IL GODOR!"** o **"GODOR MAXIMOR!"**.
