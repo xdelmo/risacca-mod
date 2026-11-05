@@ -22,4 +22,27 @@
     <Pool Name="angel">
         <Item Name="Il Miracolo di San Gennaruzzo" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     </Pool>
+    <Pool Name="greedTreasure">
+        <Item Name="Ho Rotto il Gioco" Weight="0.5" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="-1 al Dead God" Weight="0.5" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Non Vi Rubo Altro Tempo" Weight="0.5" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="La Mossa del Pro Player" Weight="0.5" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Potrebbe Stare Qua" Weight="0.5" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="La Trollata" Weight="0.5" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Fai Così, Fai Così" Weight="0.5" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Sono un Idiota" Weight="0.5" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Fermi Tutti" Weight="0.5" DecreaseBy="1" RemoveOn="0.1" />
+    </Pool>
+    <Pool Name="greedBoss">
+        <Item Name="Tacchinardi" Weight="0.5" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Tacchinibus" Weight="0.5" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Il Tacchino della Domenica" Weight="0.5" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="-1 al Dead God" Weight="0.5" DecreaseBy="1" RemoveOn="0.1" />
+    </Pool>
+    <Pool Name="greedShop">
+        <Item Name="Potrebbe Stare Qua" Weight="0.5" DecreaseBy="1" RemoveOn="0.1" />
+    </Pool>
+    <Pool Name="greedAngel">
+        <Item Name="Il Miracolo di San Gennaruzzo" Weight="0.5" DecreaseBy="1" RemoveOn="0.1" />
+    </Pool>
 </ItemPools>
