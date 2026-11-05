@@ -19,16 +19,15 @@ Mod per **The Binding of Isaac: Repentance** dedicata a [Risacca](https://www.yo
 | Boss finale sconfitto | *Un bacione grande*, poi *dal vostro Risacca* |
 | Morte | *Beduins* |
 | Boss ancora vivo dopo 60 secondi nella stanza | *Non muore!* |
-| Uso del D6 | *Fammi sognare* |
 
 ### Oggetti nuovi
 
 - **Ho Rotto il Gioco** (attivo, 6 cariche): fa comparire un oggetto glitchato, come con TMTRAINER.
 - **-1 al Dead God** (passivo): ogni boss sconfitto dà +0.2 danno, +0.03 velocità, +0.1 gittata e un tiro un po' più rapido. Il bonus arriva al massimo a 10 boss e conta un solo boss per stanza.
 - **Win Streak** (trinket): dà +0.5 danno per ogni piano finito senza essere colpiti. Basta un colpo per azzerare la serie.
-- **Non Vi Rubo Altro Tempo** (attivo, 4 cariche): congela i nemici della stanza per 3 secondi. Scritte: *Non vi rubo altro tempo*, poi *3, 2, 1... Ah no, aspetta*.
-- **La Mossa del Pro Player** (attivo, 3 cariche): +2 danno fino al cambio di stanza, con la scritta *La mossa del pro player!*. Se ti colpiscono perdi il bonus e compare *Sono un cretino*.
-- **La Trollata** (attivo, 4 cariche): fa comparire una troll bomb addosso a ogni nemico della stanza, con la scritta *M'ha trollato!*. Se sei vicino, esplode anche su di te.
+- **Non Vi Rubo Altro Tempo** (attivo, 4 cariche): congela i nemici della stanza per 3 secondi.
+- **La Mossa del Pro Player** (attivo, 3 cariche): +2 danno fino al cambio di stanza. Se ti colpiscono perdi il bonus e compare *Sono un cretino*.
+- **La Trollata** (attivo, 4 cariche): fa comparire una troll bomb addosso a ogni nemico della stanza. Se sei vicino, esplode anche su di te.
 - **Fai Così, Fai Così** (passivo): una lacrima su due parte doppia. Non ha effetto con le armi che non sparano lacrime, come Brimstone.
 - **Mannaggia a Lui** (trinket): quando ti colpiscono, il nemico più vicino subisce 4 volte il tuo danno, con la scritta *Mannaggia a lui!*.
 - **Potrebbe Stare Qua** (passivo): a ogni nuovo piano mostra le stanze segrete sulla mappa e dà 2 bombe. Scritta alla prima visita di una stanza segreta: *Potrebbe stare qua!*.

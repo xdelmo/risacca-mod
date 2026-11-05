@@ -17,7 +17,7 @@ nella mod | San Gennaro | san gennar | Oggetto Il Miracolo di San Gennaruzzo
 nella mod | Pro player | pro player | Oggetto La Mossa del Pro Player
 nella mod | Sono un cretino | sono un cretino | Scritta di La Mossa del Pro Player
 nella mod | Non muore | non muore | Scritta "Non muore!"
-nella mod | Fammi sognare | fammi sognare | Scritta "Fammi sognare"
+scartato | Fammi sognare | fammi sognare | Scritta "Fammi sognare" all'uso del D6, tolta perché nel gioco gli attivabili non mostrano scritte
 nella mod | Ho rotto il gioco | rotto il gioco | Oggetto Ho Rotto il Gioco
 nella mod | Win streak | win streak | Oggetto Win Streak
 nella mod | Col vostro permessico | col vostro permessic | Rinomina di 0 - The Fool
