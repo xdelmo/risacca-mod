@@ -62,12 +62,18 @@ La mod è attiva, ma gli oggetti del gioco hanno i nomi di sempre:
 
 AGGIORNARE LA MOD
 -----------------
+Prima, finisci o abbandona la partita in corso: una partita salvata
+con gli oggetti della mod può non ripartire senza la mod. I tuoi
+salvataggi e gli sblocchi non si toccano.
 Con il gioco chiuso, cancella la vecchia cartella mods\risacca-mod e
 ripeti i passi dal 4 al 7 con il nuovo file zip.
 
 
-DISINSTALLARE LA MOD
---------------------
+DISINSTALLARE O DISATTIVARE LA MOD
+----------------------------------
+Prima, finisci o abbandona la partita in corso: una partita salvata
+con gli oggetti della mod può non ripartire senza la mod. I tuoi
+salvataggi e gli sblocchi non si toccano.
 Con il gioco chiuso, cancella la cartella mods\risacca-mod.
 
 

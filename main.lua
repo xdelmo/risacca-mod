@@ -70,7 +70,8 @@ local function registerEID()
 end
 registerEID()
 
-local function freshRun() return { streak = 0, hitThisFloor = false, deadGodKills = 0, beastyShown = false, kubrickShown = false, pippolinsShown = false, bumbazzoShown = false, tacchinoShown = false } end
+-- v: versione del formato dei dati salvati, da aumentare se cambia il significato di una chiave
+local function freshRun() return { v = 1, streak = 0, hitThisFloor = false, deadGodKills = 0, beastyShown = false, kubrickShown = false, pippolinsShown = false, bumbazzoShown = false, tacchinoShown = false } end
 local run = freshRun()
 local roomFlags = {}
 
