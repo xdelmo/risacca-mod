@@ -25,7 +25,7 @@ python3 tools/rename.py extracted     # genera resources-dlc3/ dai file del Reso
 python3 tools/tormentoni.py           # rigenera docs/trascrizioni/tormentoni.md da tormentoni.txt
 ```
 
-Non c'è un test runner. I test sono script con `assert`: per provarne uno basta lanciare il file. Sul PC Windows `lua` e Pillow non sono installati: i test Lua si possono lanciare con il Lua 5.3 del pacchetto Python `lupa`.
+Non c'è un test runner. I test sono script con `assert`: per provarne uno basta lanciare il file. La GitHub Action in `.github/workflows/test.yml` li lancia tutti a ogni push, con Lua 5.3. Sul PC Windows `lua` e Pillow non sono installati: i test Lua si possono lanciare con il Lua 5.3 del pacchetto Python `lupa`.
 
 ## Architettura
 

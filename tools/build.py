@@ -1,4 +1,5 @@
 """Crea dist/risacca-mod.zip con solo i file della mod. Uso: python3 tools/build.py [--selftest]"""
+import shutil
 import sys
 import tempfile
 import zipfile
@@ -15,27 +16,36 @@ def missing_required(root=ROOT):
     return [name for name in REQUIRED if not (Path(root) / name).is_file()]
 
 
-def build(dst):
-    missing = missing_required()
+def build(dst, root=ROOT):
+    missing = missing_required(root)
     if missing:
         sys.exit("File mancanti: " + ", ".join(missing) + "\nRigenerali con: python3 tools/rename.py extracted")
     dst = Path(dst)
     dst.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(dst, "w", zipfile.ZIP_DEFLATED) as z:
         for name in INCLUDE:
-            p = ROOT / name
+            p = root / name
             files = [p] if p.is_file() else sorted(f for f in p.rglob("*") if f.is_file()) if p.is_dir() else []
             for f in files:
-                z.write(f, "risacca-mod/" + f.relative_to(ROOT).as_posix())
+                z.write(f, "risacca-mod/" + f.relative_to(root).as_posix())
         # alla radice dello zip, fuori dalla mod; CRLF per il Blocco note, comunque sia stato fatto il checkout
-        z.writestr("readme.txt", (ROOT / "readme.txt").read_bytes().replace(b"\r\n", b"\n").replace(b"\n", b"\r\n"))
+        z.writestr("readme.txt", (root / "readme.txt").read_bytes().replace(b"\r\n", b"\n").replace(b"\n", b"\r\n"))
     return dst
 
 
 def selftest():
     with tempfile.TemporaryDirectory() as d:
         assert missing_required(d) == REQUIRED
-        with zipfile.ZipFile(build(Path(d) / "t.zip")) as z:
+        # copia della mod con resources-dlc3/ finto: il selftest gira anche su un clone pulito
+        root = Path(d) / "mod"
+        root.mkdir()
+        for name in INCLUDE[:-1] + ["readme.txt"]:
+            src = ROOT / name
+            (shutil.copytree if src.is_dir() else shutil.copy2)(src, root / name)
+        for name in REQUIRED:
+            (root / name).parent.mkdir(parents=True, exist_ok=True)
+            (root / name).write_text("<items />")
+        with zipfile.ZipFile(build(Path(d) / "t.zip", root)) as z:
             names = z.namelist()
             readme = z.read("readme.txt")
     assert readme.count(b"\n") == readme.count(b"\r\n") > 0
