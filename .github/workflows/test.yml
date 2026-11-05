@@ -1,0 +1,22 @@
+name: test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # Lua 5.3: la stessa versione del gioco
+      - run: sudo apt-get update && sudo apt-get install -y lua5.3
+      - run: pip install Pillow
+      - run: luac5.3 -p main.lua logic.lua
+      - run: lua5.3 tests/test_logic.lua
+      - run: lua5.3 tests/smoke.lua
+      - run: |
+          for t in rename sprites leggibilita tormentoni build; do
+            python3 tools/$t.py --selftest
+          done
