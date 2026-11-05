@@ -56,6 +56,7 @@ Apri la console con il tasto `\` (quello sopra Invio, oppure `ò`/`ù` sulla tas
 - [ ] `giveitem Tacchinardi`, `giveitem Tacchinibus`, `giveitem Il Tacchino della Domenica`: ognuno dà i suoi cuori; al terzo compare **"SEI UN TACCHINO!"**, si sente il verso del tacchino e il danno sale di 1, la velocità scende di 0.1.
 - [ ] Sempre al terzo oggetto la testa prende cresta, becco e bargigli. Controlla nelle 4 direzioni che siano allineati alla testa (si corregge con `COSTUME_Y` e `COSTUME_PARTS` in `tools/sprites.py`). Esci e continua la run: il costume deve esserci ancora, una sola volta. Con `remove` di uno dei tre oggetti sparisce.
 - [ ] `giveitem Sono un Idiota` e `giveitem Fermi Tutti`: compaiono *Sono un idiota!* e *Fermi tutti!*, e le statistiche non cambiano.
+- [ ] **Modalità Greed:** fai una run Greed e controlla che gli oggetti della mod escano dai piedistalli (tesoro, boss, negozio, angelo). Hanno peso 0.5 perché le pool Greed sono più piccole: annota se escono troppo spesso o troppo poco.
 - [ ] Le 16 icone hanno il contorno da 2px: guardale sul piedistallo e nell'HUD, e controlla che siano leggibili accanto agli oggetti vanilla. Fai attenzione al "-1" di -1 al Dead God e a Il Miracolo di San Gennaruzzo, che potrebbe sembrare una pozione, e al nuovo detonatore di La Trollata.
 
 Facoltativo, se ci arrivi: The Beast deve mostrare **"IL BEASTY BOY"**, Mega Satan **"MEGA STANLEY KUBRICK"**, Peep **"PIPPOLINS"** (The Bloat invece niente). Battere un boss finale (Satan, The Lamb, Mother…) deve mostrare **"Un bacione grande / dal vostro Risacca"**.
