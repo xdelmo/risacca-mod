@@ -409,6 +409,27 @@ COSTUME_Y = -5
 ANM2_TINT = 'AlphaTint="255" BlueOffset="0" BlueTint="255" GreenOffset="0" GreenTint="255" Interpolated="false" RedOffset="0" RedTint="255" Rotation="0" Visible="true" XScale="100" YScale="100"'
 
 
+# Cappello da asino di Sono un Idiota: stesso disegno in ogni direzione. Più alto della cresta, quindi più in alto nell'anm2
+CONO = [
+    "     Wt     ",
+    "     ts     ",
+    "    Wtsu    ",
+    "    ttsu    ",
+    "   lRRRrr   ",
+    "   RRRrrr   ",
+    "   Wttssu   ",
+    "  Wtttssuu  ",
+    "  ttttssuu  ",
+    "  ttttsssu  ",
+    " lRRRRRrrrr ",
+    " RRRRRRrrrr ",
+    "Wtttttsssuuu",
+    "ssssssuuuuuu",
+]
+CONO_PARTS = {name: [(10, 1, CONO)] for name in ("HeadDown", "HeadRight", "HeadUp")}
+CONO_Y = -11
+
+
 def render_costume_frame(parts):
     im = Image.new("RGBA", (32, 32), (0, 0, 0, 0))
     for ox, oy, rows in parts:
@@ -419,40 +440,40 @@ def render_costume_frame(parts):
     return outline(im)  # una passata sola: due coprirebbero la faccia
 
 
-def write_costume(base):
-    right = render_costume_frame(COSTUME_PARTS["HeadRight"])
+def write_costume(base, name="tacchino", parts=COSTUME_PARTS, offset_y=COSTUME_Y):
+    right = render_costume_frame(parts["HeadRight"])
     frames = {
-        "HeadDown": render_costume_frame(COSTUME_PARTS["HeadDown"]),
+        "HeadDown": render_costume_frame(parts["HeadDown"]),
         "HeadRight": right,
-        "HeadUp": render_costume_frame(COSTUME_PARTS["HeadUp"]),
+        "HeadUp": render_costume_frame(parts["HeadUp"]),
         "HeadLeft": right.transpose(Image.FLIP_LEFT_RIGHT),
     }
     sheet = Image.new("RGBA", (32 * len(frames), 32), (0, 0, 0, 0))
     anims = []
-    for i, (name, frame) in enumerate(frames.items()):
+    for i, (anim, frame) in enumerate(frames.items()):
         sheet.paste(frame, (32 * i, 0))
         # 4 tick come la testa vanilla: il costume resta uguale anche mentre si spara
         anims.append(
-            f'    <Animation FrameNum="4" Loop="false" Name="{name}">\n'
+            f'    <Animation FrameNum="4" Loop="false" Name="{anim}">\n'
             f'      <RootAnimation><Frame {ANM2_TINT} Delay="4" XPosition="0" YPosition="0"/></RootAnimation>\n'
             f'      <LayerAnimations><LayerAnimation LayerId="0" Visible="true">\n'
             f'        <Frame {ANM2_TINT} Delay="4" Width="32" Height="32" XCrop="{32 * i}" YCrop="0" '
-            f'XPivot="{COSTUME_PIVOT[0]}" YPivot="{COSTUME_PIVOT[1]}" XPosition="0" YPosition="{COSTUME_Y}"/>\n'
+            f'XPivot="{COSTUME_PIVOT[0]}" YPivot="{COSTUME_PIVOT[1]}" XPosition="0" YPosition="{offset_y}"/>\n'
             f"      </LayerAnimation></LayerAnimations>\n"
             f"      <NullAnimations/>\n      <Triggers/>\n    </Animation>\n"
         )
     anm2 = (
         '<AnimatedActor>\n  <Info CreatedBy="tools/sprites.py" CreatedOn="" Fps="30" Version="1"/>\n  <Content>\n'
-        '    <Spritesheets><Spritesheet Id="0" Path="tacchino.png"/></Spritesheets>\n'
+        f'    <Spritesheets><Spritesheet Id="0" Path="{name}.png"/></Spritesheets>\n'
         '    <Layers><Layer Id="0" Name="head0" SpritesheetId="0"/></Layers>\n'
         '    <Nulls/>\n    <Events/>\n  </Content>\n  <Animations DefaultAnimation="HeadDown">\n'
         + "".join(anims) + "  </Animations>\n</AnimatedActor>\n"
     )
     d = Path(base) / COSTUME_DIR
     d.mkdir(parents=True, exist_ok=True)
-    sheet.save(d / "tacchino.png")
-    (d / "tacchino.anm2").write_text(anm2, encoding="utf-8")
-    return d / "tacchino.png", d / "tacchino.anm2"
+    sheet.save(d / f"{name}.png")
+    (d / f"{name}.anm2").write_text(anm2, encoding="utf-8")
+    return d / f"{name}.png", d / f"{name}.anm2"
 
 
 # Sostituiscono i PNG vanilla con lo stesso percorso: (righe, altezza delle lettere, spessore del tratto, distanza tra le lettere in tratti)
@@ -567,6 +588,7 @@ def write_boss_names(base):
 def write_all(base):
     write_boss_names(base)
     write_costume(base)
+    write_costume(base, "cono", CONO_PARTS, CONO_Y)
     paths, imgs = [], []
     for name, rel in OUT.items():
         im = render(SPRITES[name])
@@ -622,13 +644,14 @@ def selftest():
             colors = [c for _, c in im.getcolors(65536)]
             assert {c[:3] for c in colors if c[3]} == {BOSS_NAME_COLOR}, p
             assert {c[3] for c in colors} == {0, 128, 255}, p
-        png, anm2 = write_costume(Path(d))
-        sheet = Image.open(png)
-        assert sheet.size == (128, 32) and sheet.mode == "RGBA", sheet.size
-        for i in range(4):
-            assert sheet.crop((32 * i, 0, 32 * i + 32, 32)).getchannel("A").getbbox(), i
-        root = ET.parse(anm2).getroot()
-        assert sorted(a.get("Name") for a in root.iter("Animation")) == ["HeadDown", "HeadLeft", "HeadRight", "HeadUp"]
+        for png, anm2 in (write_costume(Path(d)), write_costume(Path(d), "cono", CONO_PARTS, CONO_Y)):
+            sheet = Image.open(png)
+            assert sheet.size == (128, 32) and sheet.mode == "RGBA", sheet.size
+            for i in range(4):
+                assert sheet.crop((32 * i, 0, 32 * i + 32, 32)).getchannel("A").getbbox(), i
+            root = ET.parse(anm2).getroot()
+            assert sorted(a.get("Name") for a in root.iter("Animation")) == ["HeadDown", "HeadLeft", "HeadRight", "HeadUp"]
+            assert root.find(".//Spritesheet").get("Path") == png.name, anm2
     print("SELFTEST OK")
 
 

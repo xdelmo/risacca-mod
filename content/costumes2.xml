@@ -1,3 +1,4 @@
 <costumes anm2root="gfx/characters/">
     <costume anm2path="tacchino.anm2" type="none" />
+    <costume anm2path="cono.anm2" type="none" />
 </costumes>

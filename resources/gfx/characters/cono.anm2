@@ -1,0 +1,43 @@
+<AnimatedActor>
+  <Info CreatedBy="tools/sprites.py" CreatedOn="" Fps="30" Version="1"/>
+  <Content>
+    <Spritesheets><Spritesheet Id="0" Path="cono.png"/></Spritesheets>
+    <Layers><Layer Id="0" Name="head0" SpritesheetId="0"/></Layers>
+    <Nulls/>
+    <Events/>
+  </Content>
+  <Animations DefaultAnimation="HeadDown">
+    <Animation FrameNum="4" Loop="false" Name="HeadDown">
+      <RootAnimation><Frame AlphaTint="255" BlueOffset="0" BlueTint="255" GreenOffset="0" GreenTint="255" Interpolated="false" RedOffset="0" RedTint="255" Rotation="0" Visible="true" XScale="100" YScale="100" Delay="4" XPosition="0" YPosition="0"/></RootAnimation>
+      <LayerAnimations><LayerAnimation LayerId="0" Visible="true">
+        <Frame AlphaTint="255" BlueOffset="0" BlueTint="255" GreenOffset="0" GreenTint="255" Interpolated="false" RedOffset="0" RedTint="255" Rotation="0" Visible="true" XScale="100" YScale="100" Delay="4" Width="32" Height="32" XCrop="0" YCrop="0" XPivot="16" YPivot="28" XPosition="0" YPosition="-11"/>
+      </LayerAnimation></LayerAnimations>
+      <NullAnimations/>
+      <Triggers/>
+    </Animation>
+    <Animation FrameNum="4" Loop="false" Name="HeadRight">
+      <RootAnimation><Frame AlphaTint="255" BlueOffset="0" BlueTint="255" GreenOffset="0" GreenTint="255" Interpolated="false" RedOffset="0" RedTint="255" Rotation="0" Visible="true" XScale="100" YScale="100" Delay="4" XPosition="0" YPosition="0"/></RootAnimation>
+      <LayerAnimations><LayerAnimation LayerId="0" Visible="true">
+        <Frame AlphaTint="255" BlueOffset="0" BlueTint="255" GreenOffset="0" GreenTint="255" Interpolated="false" RedOffset="0" RedTint="255" Rotation="0" Visible="true" XScale="100" YScale="100" Delay="4" Width="32" Height="32" XCrop="32" YCrop="0" XPivot="16" YPivot="28" XPosition="0" YPosition="-11"/>
+      </LayerAnimation></LayerAnimations>
+      <NullAnimations/>
+      <Triggers/>
+    </Animation>
+    <Animation FrameNum="4" Loop="false" Name="HeadUp">
+      <RootAnimation><Frame AlphaTint="255" BlueOffset="0" BlueTint="255" GreenOffset="0" GreenTint="255" Interpolated="false" RedOffset="0" RedTint="255" Rotation="0" Visible="true" XScale="100" YScale="100" Delay="4" XPosition="0" YPosition="0"/></RootAnimation>
+      <LayerAnimations><LayerAnimation LayerId="0" Visible="true">
+        <Frame AlphaTint="255" BlueOffset="0" BlueTint="255" GreenOffset="0" GreenTint="255" Interpolated="false" RedOffset="0" RedTint="255" Rotation="0" Visible="true" XScale="100" YScale="100" Delay="4" Width="32" Height="32" XCrop="64" YCrop="0" XPivot="16" YPivot="28" XPosition="0" YPosition="-11"/>
+      </LayerAnimation></LayerAnimations>
+      <NullAnimations/>
+      <Triggers/>
+    </Animation>
+    <Animation FrameNum="4" Loop="false" Name="HeadLeft">
+      <RootAnimation><Frame AlphaTint="255" BlueOffset="0" BlueTint="255" GreenOffset="0" GreenTint="255" Interpolated="false" RedOffset="0" RedTint="255" Rotation="0" Visible="true" XScale="100" YScale="100" Delay="4" XPosition="0" YPosition="0"/></RootAnimation>
+      <LayerAnimations><LayerAnimation LayerId="0" Visible="true">
+        <Frame AlphaTint="255" BlueOffset="0" BlueTint="255" GreenOffset="0" GreenTint="255" Interpolated="false" RedOffset="0" RedTint="255" Rotation="0" Visible="true" XScale="100" YScale="100" Delay="4" Width="32" Height="32" XCrop="96" YCrop="0" XPivot="16" YPivot="28" XPosition="0" YPosition="-11"/>
+      </LayerAnimation></LayerAnimations>
+      <NullAnimations/>
+      <Triggers/>
+    </Animation>
+  </Animations>
+</AnimatedActor>

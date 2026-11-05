@@ -76,7 +76,9 @@ local debugLogs = {}
 Isaac = {
   GetItemIdByName = function(n) return ids[n] or -1 end,
   GetSoundIdByName = function(n) return n == "Risacca Tacchino" and 900 or -1 end,
-  GetCostumeIdByPath = function(p) return p == "gfx/characters/tacchino.anm2" and 901 or -1 end,
+  GetCostumeIdByPath = function(p)
+    return ({ ["gfx/characters/tacchino.anm2"] = 901, ["gfx/characters/cono.anm2"] = 902 })[p] or -1
+  end,
   GetTrinketIdByName = function(n) return ids[n] or -1 end,
   GetPlayer = function() return player end,
   Spawn = function(t, v, s) spawned = spawned + 1; lastSpawn = { t = t, v = v, s = s } end,
@@ -427,6 +429,16 @@ assert(costumes[901], "costume Tacchino perso dopo il Continua")
 assert(#played == 1, "verso del tacchino ripetuto dopo il Continua")
 items[743], items[744], items[745] = nil, nil, nil; frames(5)
 
+-- Sono un Idiota: il cono c'è finché c'è l'oggetto e torna dopo il Continua
+assert(not costumes[902], "cono senza l'oggetto")
+items[741] = true; frames(5)
+assert(costumes[902], "cono mancante con Sono un Idiota")
+costumes[902] = nil
+fire(ModCallbacks.MC_POST_GAME_STARTED, nil, true); frames(5)
+assert(costumes[902], "cono perso dopo il Continua")
+items[741] = nil; frames(5)
+assert(not costumes[902], "cono rimasto senza l'oggetto")
+
 -- il suono dichiarato deve esistere e finire nella mod
 local soundsXml = assert(io.open("content/sounds.xml", "r"), "manca content/sounds.xml")
 local soundsContent = soundsXml:read("*all")
@@ -436,8 +448,11 @@ assert(io.open("resources/sfx/tacchino.wav", "rb"), "manca resources/sfx/tacchin
 
 -- il costume dichiarato deve esistere e finire nella mod
 local costumesXml = assert(io.open("content/costumes2.xml", "r"), "manca content/costumes2.xml")
-assert(costumesXml:read("*all"):find('anm2path="tacchino.anm2"', 1, true), "costumes2.xml incoerente")
+local costumesContent = costumesXml:read("*all")
+assert(costumesContent:find('anm2path="tacchino.anm2"', 1, true) and costumesContent:find('anm2path="cono.anm2"', 1, true), "costumes2.xml incoerente")
 costumesXml:close()
+assert(io.open("resources/gfx/characters/cono.anm2", "rb"), "manca cono.anm2"):close()
+assert(io.open("resources/gfx/characters/cono.png", "rb"), "manca cono.png"):close()
 assert(io.open("resources/gfx/characters/tacchino.anm2", "rb"), "manca tacchino.anm2"):close()
 assert(io.open("resources/gfx/characters/tacchino.png", "rb"), "manca tacchino.png"):close()
 

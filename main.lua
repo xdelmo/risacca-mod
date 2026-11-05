@@ -23,6 +23,7 @@ local ITEM_IDIOTA = Isaac.GetItemIdByName("Sono un Idiota")
 local ITEM_FERMI = Isaac.GetItemIdByName("Fermi Tutti")
 local SOUND_TACCHINO = Isaac.GetSoundIdByName("Risacca Tacchino")
 local COSTUME_TACCHINO = Isaac.GetCostumeIdByPath("gfx/characters/tacchino.anm2")
+local COSTUME_CONO = Isaac.GetCostumeIdByPath("gfx/characters/cono.anm2")
 
 for name, id in pairs({
   ["Ho Rotto il Gioco"] = ITEM_ROTTO,
@@ -80,12 +81,14 @@ local devilPending, prevQueued, armed, wasDead = {}, {}, {}, {}
 local proBonus = {}
 local tearCount, doubling = {}, false
 local wasTacchino = {}
+local wasIdiota = {}
 
 local function resetPlayerState()
   devilPending, prevQueued, armed, wasDead = {}, {}, {}, {}
   proBonus = {}
   tearCount, doubling = {}, false
   wasTacchino = {}
+  wasIdiota = {}
 end
 
 local function save() mod:SaveData(json.encode(run)) end
@@ -428,6 +431,16 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
     end
   end
   wasTacchino[idx] = now
+
+  local idiota = player:HasCollectible(ITEM_IDIOTA)
+  if idiota ~= (wasIdiota[idx] or false) then
+    if idiota then
+      player:AddNullCostume(COSTUME_CONO)
+    else
+      player:TryRemoveNullCostume(COSTUME_CONO)
+    end
+  end
+  wasIdiota[idx] = idiota
 end)
 
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player, flag)
