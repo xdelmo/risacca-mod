@@ -82,6 +82,13 @@ Per disinstallarla, con il gioco chiuso apri la cartella "mods" come
 ai passi 2 e 3 e cancella la cartella "risacca-mod".
 
 
+RESPONSABILITÀ
+--------------
+Installi e usi la mod a tuo rischio. L'autore non si assume alcuna
+responsabilità per errori, salvataggi persi o danneggiati o altri danni.
+Prima di installarla, fai un backup dei salvataggi.
+
+
 CREDITI
 -------
 Mod creata da xdelmo.

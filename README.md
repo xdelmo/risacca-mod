@@ -68,6 +68,8 @@ La mod non è ancora sullo Steam Workshop.
 
 Prima di aggiornare, disattivare o disinstallare la mod, finisci o abbandona la run in corso: una run salvata con gli oggetti della mod non riparte senza la mod e va persa. Il salvataggio del gioco e gli sblocchi restano intatti.
 
+Installi e usi la mod a tuo rischio: l'autore non si assume alcuna responsabilità per errori, salvataggi persi o danneggiati o altri danni. Prima di installarla, fai un backup dei salvataggi.
+
 La guida passo passo per Windows è in [`readme.txt`](readme.txt), che si trova anche dentro lo zip.
 
 Serve Repentance, ed è provata su Repentance+ v1.9.7.17. La mod non ha bisogno di REPENTOGON né di altre mod.
