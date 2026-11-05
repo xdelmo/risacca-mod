@@ -82,4 +82,9 @@ Per disinstallarla, con il gioco chiuso apri la cartella "mods" come
 ai passi 2 e 3 e cancella la cartella "risacca-mod".
 
 
+CREDITI
+-------
+Mod creata da xdelmo.
+
+
 Un bacione grande dal vostro Risacca.
