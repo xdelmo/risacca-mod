@@ -15,6 +15,7 @@ from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parent.parent
 ICONS = ROOT / "resources/gfx/items/collectibles"
+# git-ignored: è la grafica del gioco. Si scarica da The Spriters Resource (Rebirth > Items (Repentance))
 REFERENCE = ROOT / "docs/PC _ Computer - The Binding of Isaac_ Rebirth - Items - Items (Repentance).png"
 BG = [(24, 20, 20), (120, 104, 96)]  # HUD, piedistallo
 CELL, LABEL = 72, 120
@@ -37,6 +38,8 @@ def row(im, twin):
 
 def vanilla():
     """Gli oggetti della tavola di riferimento, griglia di celle 32x32: [(nome, immagine)]."""
+    if not REFERENCE.is_file():
+        sys.exit(f"Manca la tavola di riferimento: {REFERENCE.relative_to(ROOT)}")
     sheet = Image.open(REFERENCE).convert("RGBA")
     cells = []
     for y in range(0, sheet.height, 32):
@@ -100,6 +103,9 @@ def selftest():
     off = Image.new("RGBA", (32, 32))
     off.putpixel((3, 3), (1, 2, 3, 255))
     assert centered(off).keys() == {(15, 15)}
+    if not REFERENCE.is_file():  # clone pulito o CI: la tavola non è nella repo
+        print("SELFTEST OK (senza la tavola di riferimento)")
+        return
     refs = vanilla()
     assert len(refs) > 500  # se la griglia fosse sfasata, le celle piene non tornerebbero
     results = analyze()

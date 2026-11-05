@@ -8,3 +8,8 @@ resources-dlc3/
 __pycache__/
 
 tools/gioco/*.png
+
+# contenuti di terzi, solo in locale: sottotitoli dei video e tavola con la grafica del gioco
+docs/trascrizioni/*.txt
+!docs/trascrizioni/tormentoni.txt
+docs/PC _ Computer - The Binding of Isaac_ Rebirth - Items - Items (Repentance).png

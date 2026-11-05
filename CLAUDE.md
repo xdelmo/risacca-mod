@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Mod per The Binding of Isaac: Repentance dedicata allo YouTuber Risacca, provata su Repentance+. È un regalo da pubblicare sullo Steam Workshop. Comunica con l'utente in italiano. Il codice si scrive su macOS o sul PC Windows, dove la repo è anche la cartella della mod (`...\The Binding of Isaac Rebirth\mods\risacca-mod\`). Le prove in gioco le fa l'utente, e quelle ancora da fare sono in `docs/da-fare-su-windows.md`.
 
-Il design è in `docs/superpowers/specs/2026-11-01-risacca-mod-design.md`, il piano in `docs/superpowers/plans/2026-11-01-risacca-mod.md`. I tormentoni vengono dalle trascrizioni dei video in `docs/trascrizioni/`: il riepilogo con conteggi e stato è in `docs/trascrizioni/tormentoni.md`, generato da `tormentoni.txt`.
+Il design è in `docs/superpowers/specs/2026-11-01-risacca-mod-design.md`, il piano in `docs/superpowers/plans/2026-11-01-risacca-mod.md`. I tormentoni vengono dalle trascrizioni dei video in `docs/trascrizioni/` (i `.txt` sono git-ignored, solo in locale): il riepilogo con conteggi e stato è in `docs/trascrizioni/tormentoni.md`, generato da `tormentoni.txt`.
 
 ## Comandi
 
@@ -53,7 +53,7 @@ Non c'è un test runner. I test sono script con `assert`: per provarne uno basta
   - un player finto e un HUD che registra le scritte.
 
   Alla fine controlla che ogni callback registrata sia stata chiamata. Se aggiungi una callback, aggiungi anche uno scenario che la chiama.
-- **Contenuti XML e Sprite.** Gli oggetti nuovi stanno in `content/items.xml` e `content/itempools.xml`. Gli ID dipendono dall'ordine in `items.xml`: si aggiunge solo in fondo, anche in `ORDER` di `tools/build.py`, che altrimenti si ferma. Un oggetto non si toglie mai: al limite si rende inutile e si toglie dalle pool. Gli sprite si generano da griglie di caratteri in `tools/sprites.py`: non modificare i PNG a mano. Le immagini degli oggetti devono seguire fedelmente lo stile The Binding of Isaac: Repentance+; la guida completa agli standard visivi (palette, proporzioni 32x32, contorno 2px `(8, 0, 0)`, luce in alto a sinistra, riflessi del vetro, checklist e procedura per un'icona nuova) è documentata in `docs/standard-grafici.md` e supportata dalle skill in `.agents/skills/`. Come tavola di riferimento visivo ufficiale di tutti gli item vanilla c'è `docs/PC _ Computer - The Binding of Isaac_ Rebirth - Items - Items (Repentance).png`.
+- **Contenuti XML e Sprite.** Gli oggetti nuovi stanno in `content/items.xml` e `content/itempools.xml`. Gli ID dipendono dall'ordine in `items.xml`: si aggiunge solo in fondo, anche in `ORDER` di `tools/build.py`, che altrimenti si ferma. Un oggetto non si toglie mai: al limite si rende inutile e si toglie dalle pool. Gli sprite si generano da griglie di caratteri in `tools/sprites.py`: non modificare i PNG a mano. Le immagini degli oggetti devono seguire fedelmente lo stile The Binding of Isaac: Repentance+; la guida completa agli standard visivi (palette, proporzioni 32x32, contorno 2px `(8, 0, 0)`, luce in alto a sinistra, riflessi del vetro, checklist e procedura per un'icona nuova) è documentata in `docs/standard-grafici.md` e supportata dalle skill in `.agents/skills/`. Come tavola di riferimento visivo ufficiale di tutti gli item vanilla c'è `docs/PC _ Computer - The Binding of Isaac_ Rebirth - Items - Items (Repentance).png`: è git-ignored, e da dove scaricarla è scritto in `docs/standard-grafici.md`.
 - **Rinomine dei vanilla.**
   - Esempi: chiavi → Chiaviz-Chiavoz, boss → Beppe Bossicchio, Bumbo → Bumbazzo. I nomi interi (Eye of Greed → Come Cacchio Si Chiama, Car Battery → Non Si Sa Mai, 0 - The Fool → Col vostro permessico) stanno in `EXACT` e hanno la precedenza sulle regole.
   - Le genera `tools/rename.py` in `resources-dlc3/` (git-ignored, perché contiene i testi del gioco e la repo non deve ridistribuirli), partendo dagli originali messi in `extracted/` (git-ignored).
@@ -63,7 +63,7 @@ Non c'è un test runner. I test sono script con `assert`: per provarne uno basta
 - **Suoni.** Si dichiarano in `content/sounds.xml` e i file stanno in `resources/sfx/`: `.wav` a 16 bit, altrimenti il gioco li riproduce come rumore.
 - **Pacchetto.** `tools/build.py` mette nello zip solo `metadata.xml`, `main.lua`, `logic.lua`, `content/`, `resources/` e `resources-dlc3/`, sotto `risacca-mod/`, più `readme.txt` (la guida all'installazione) alla radice dello zip. Esclude `docs/`, `tools/`, `tests/`, `extracted/` e i file nascosti.
 - **Pubblicazione.** In `metadata.xml` la visibilità resta `Private` finché l'utente non dà l'ok alla pubblicazione.
-- **Repo e release.** La repo GitHub è privata. Lo zip allegato alle release contiene `resources-dlc3/`, quindi i testi del gioco: se la repo diventa pubblica, gli allegati diventano pubblici con lei.
+- **Repo e release.** La repo GitHub è pubblica e per ora la mod si scarica dallo zip delle release, che contiene `resources-dlc3/` (i testi del gioco modificati, come in ogni mod che rinomina gli oggetti). Non committare contenuti di terzi: le trascrizioni e la tavola vanilla restano in locale (`.gitignore`), le skill in `.agents/skills/` sono Apache-2.0 con la loro `LICENSE`.
 
 ## Testi
 
