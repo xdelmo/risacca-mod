@@ -9,7 +9,7 @@ Prima di provare, chiudi e riapri il gioco: le modifiche alla mod si vedono solo
 - [x] La mod è in `C:\Program Files (x86)\Steam\steamapps\common\The Binding of Isaac Rebirth\mods\risacca-mod\`. Non è la repo ma una copia senza `.git`: le modifiche alla repo arrivano in gioco solo copiandole lì. Oggi ha gli stessi 33 file dello zip della release v1.3, a parte i fine riga.
 - [x] La console di debug è attiva (`EnableDebugConsole=1` in `Documenti\My Games\Binding of Isaac Repentance+\options.ini`).
 - [x] Il gioco carica la mod senza errori Lua.
-- [ ] Installazione da zero seguendo solo il `readme.txt` dello zip (prima sposta altrove la cartella della repo): la mod compare nel menu **Mods** e si attiva. Controlla anche se la cartella `mods` esiste già e se Windows chiede l'autorizzazione a copiare. Lo zip della v1.3 ha la struttura descritta dal readme (`risacca-mod/` e `readme.txt`) e `metadata.xml` è `Private`; l'installazione vera non è stata fatta.
+- [ ] Installazione da zero seguendo solo il `readme.txt` dello zip: la mod compare nel menu **Mods** e si attiva. Controlla anche se Windows chiede l'autorizzazione a copiare. Con lo zip della release v1.4, senza altre copie della mod, la cartella `risacca-mod/` è stata estratta con uno script in `mods\`: 35 file, compare nel menu Mods e `main.lua` viene eseguito, con scritte e rinomine visibili in gioco. Restano da provare a mano il trascinamento da Esplora risorse e l'eventuale richiesta di autorizzazione.
 
 ## 2. Provare le scritte
 
@@ -85,6 +85,19 @@ Facoltativo, se ci arrivi: The Beast deve mostrare **"IL BEASTY BOY"**, Mega Sat
 - [ ] Rivedi PIPPOLINS, MEGA STANLEY e BUMBAZZO nella schermata VS dopo il ridisegno delle lettere (#73): devono sembrare scritti come gli altri nomi e non toccare il bordo destro, con `goto s.boss.2020`, `goto s.boss.5000` e `goto s.boss.5270`. PIPPOLINS e BUMBAZZO vanno bene. **MEGA STANLEY arriva ancora al bordo destro** al massimo dello scorrimento (visto in una finestra quasi quadrata). Il PNG è largo 189 px, meno di nomi vanilla come Blighted Ovum (205) e Mask of Infamy (199): probabilmente non è un difetto della mod, ma non ho visto un vanilla sulla stessa schermata.
 
 Le chiavi e le bombe raccolte da terra non cambiano nome: le rinomine riguardano solo nomi e descrizioni di oggetti, trinket, carte e pillole.
+
+## 5. Provare i salvataggi (issue #2)
+
+Prima fai un backup di `Documenti\My Games\Binding of Isaac Repentance+` e di `Steam\userdata\<id>\250900\remote`.
+
+Provato con la release v1.4 su Repentance+ v1.9.7.17.J460.
+
+- [ ] **A.** Con un salvataggio vanilla senza la mod, installa la mod e fai una nuova run: statistiche e Collezione devono restare uguali a prima. Confronto dei byte con il backup: cambiano solo contatori e checksum. Statistiche e Collezione non sono state guardate a schermo.
+- [ ] **B.** Con la mod, esci a metà run con almeno un oggetto della mod addosso, poi Continua: oggetti e bonus ci sono ancora. Confermato con Esci → Continua senza chiudere il gioco. Con il riavvio del gioco c'è solo la prova precedente della sezione 3 (-1 al Dead God).
+- [x] **C.** Finisci o abbandona la run, disattiva la mod e riavvia: nessun crash, sblocchi e statistiche intatti. Run conclusa con la morte: nessun crash, nessun errore o avviso nel log e persistente cambiato solo nei byte finali. Sblocchi e statistiche non sono stati guardati a schermo.
+- [x] **D.** Con una run aperta e oggetti della mod addosso, disattiva la mod e riavvia. Qui un problema è atteso: annota cosa succede. Nessun crash, ma la run va persa: il log dice `Invalid collectible ID: 733` e `Failed to read player data from gamestate`, il gioco cancella il gamestate e CONTINUE diventa grigio. Il persistente resta identico byte per byte.
+- [ ] **E.** Prima e dopo l'uso di Ho Rotto il Gioco, controlla nella Collezione se TMTRAINER risulta sbloccato. Il persistente cambia solo in contatore e checksum, quindi non risulta nessuno sblocco. La Collezione non è stata guardata a schermo.
+- [x] **F.** Confronta i file di salvataggio prima e dopo A e C (hash o dimensione) e controlla `log.txt` dopo ogni avvio. Fatto: nessun errore Lua nel log. Da disattivata, il log mostra comunque `LOADED MOD .../risacca-mod/content/`, ma `main.lua` non viene eseguito e gli ID degli oggetti risultano invalidi.
 
 ## Da inviarmi
 

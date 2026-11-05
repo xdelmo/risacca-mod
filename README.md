@@ -66,7 +66,7 @@ La mod non è ancora sullo Steam Workshop.
 1. Scarica `risacca-mod.zip` dalle [release](https://github.com/xdelmo/risacca-mod/releases), aprilo e trascina la cartella `risacca-mod` dentro `...\steamapps\common\The Binding of Isaac Rebirth\mods\`.
 2. Attivala dal menu **Mods** del gioco.
 
-Prima di aggiornare, disattivare o disinstallare la mod, finisci o abbandona la run in corso: una run salvata con gli oggetti della mod può non ripartire senza la mod. Il salvataggio del gioco e gli sblocchi restano intatti.
+Prima di aggiornare, disattivare o disinstallare la mod, finisci o abbandona la run in corso: una run salvata con gli oggetti della mod non riparte senza la mod e va persa. Il salvataggio del gioco e gli sblocchi restano intatti.
 
 La guida passo passo per Windows è in [`readme.txt`](readme.txt), che si trova anche dentro lo zip.
 
@@ -88,6 +88,8 @@ Per rigenerare le rinomine:
 1. Estrai `items.xml`, `pocketitems.xml` e `stringtable.sta` con il ResourceExtractor del gioco.
 2. Mettili in `extracted/`.
 3. Lancia `python3 tools/rename.py extracted`.
+
+Va rifatto a ogni patch del gioco, aggiornando `GAME_VERSION` e `VANILLA_COUNTS` in `tools/build.py`. La versione è nel `log.txt` del gioco.
 
 Le immagini degli oggetti devono essere in pieno stile The Binding of Isaac: Repentance+. Si generano da griglie di caratteri con `python3 tools/sprites.py`, e per disegnarle si usano le skill in `.agents/skills/`.
 

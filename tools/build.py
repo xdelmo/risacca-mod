@@ -11,6 +11,10 @@ INCLUDE = ["metadata.xml", "main.lua", "logic.lua", "content", "resources", "res
 BANNED = ("docs/", "tools/", "tests/", "extracted/")
 # git-ignored: senza questi file lo zip uscirebbe senza rinomine
 REQUIRED = ["resources-dlc3/items.xml", "resources-dlc3/pocketitems.xml", "resources-dlc3/info_display.xml"]
+# Versione del gioco da cui viene resources-dlc3/ e quante voci hanno i suoi file (estratti e generati devono
+# coincidere): definizioni vecchie dopo una patch possono far crashare il gioco. A ogni patch si rigenera e si aggiorna.
+GAME_VERSION = "1.9.7.17.J460"
+VANILLA_COUNTS = {"resources-dlc3/items.xml": 959, "resources-dlc3/pocketitems.xml": 148}
 # Gli ID degli oggetti della mod dipendono dall'ordine in content/items.xml: cambiarlo cambia gli oggetti
 # di una run continuata. Si aggiunge solo in fondo, qui e in items.xml; non si toglie mai una voce.
 ORDER = {
@@ -36,10 +40,19 @@ def missing_required(root=ROOT):
     return [name for name in REQUIRED if not (Path(root) / name).is_file()]
 
 
+def count_errors(root=ROOT):
+    return [name for name, n in VANILLA_COUNTS.items() if len(ET.parse(Path(root) / name).getroot()) != n]
+
+
 def build(dst, root=ROOT):
     missing = missing_required(root)
     if missing:
         sys.exit("File mancanti: " + ", ".join(missing) + "\nRigenerali con: python3 tools/rename.py extracted")
+    wrong = count_errors(root)
+    if wrong:
+        sys.exit("Numero di voci diverso da VANILLA_COUNTS in tools/build.py (" + ", ".join(wrong) + ", gioco "
+                 + GAME_VERSION + ").\nSe il gioco è stato aggiornato, riestrai i file, rilancia tools/rename.py "
+                 "e aggiorna GAME_VERSION e VANILLA_COUNTS.")
     wrong = order_errors(item_order((root / "content" / "items.xml").read_text(encoding="utf-8")))
     if wrong:
         sys.exit("Ordine di content/items.xml diverso da ORDER in tools/build.py (" + ", ".join(wrong) + ").\n"
@@ -72,7 +85,11 @@ def selftest():
             (shutil.copytree if src.is_dir() else shutil.copy2)(src, root / name)
         for name in REQUIRED:
             (root / name).parent.mkdir(parents=True, exist_ok=True)
-            (root / name).write_text("<items />")
+            (root / name).write_text("<items>" + "<x />" * VANILLA_COUNTS.get(name, 0) + "</items>")
+        assert count_errors(root) == []
+        (root / REQUIRED[0]).write_text("<items />")
+        assert count_errors(root) == [REQUIRED[0]]
+        (root / REQUIRED[0]).write_text("<items>" + "<x />" * VANILLA_COUNTS[REQUIRED[0]] + "</items>")
         with zipfile.ZipFile(build(Path(d) / "t.zip", root)) as z:
             names = z.namelist()
             readme = z.read("readme.txt")
