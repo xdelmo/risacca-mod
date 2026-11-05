@@ -92,6 +92,10 @@ Le immagini degli oggetti devono essere in pieno stile The Binding of Isaac: Rep
 
 I dettagli sull'architettura sono in [CLAUDE.md](CLAUDE.md).
 
+## Licenza
+
+Il codice e la grafica degli oggetti della mod sono originali e rilasciati con licenza [MIT](LICENSE). Nomi, tormentoni e personaggio appartengono a Risacca. The Binding of Isaac è di Edmund McMillen e Nicalis.
+
 ---
 
 *Un bacione grande dal vostro Risacca.*
