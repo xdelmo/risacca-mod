@@ -28,7 +28,8 @@ INSTALLAZIONE
    Nuovo > Cartella, e chiamala mods (tutto minuscolo).
 
 4. Apri risacca-mod.zip con un doppio clic: dentro vedi la cartella
-   "risacca-mod" e questo file.
+   "risacca-mod" e questo file. Se lo zip si apre con un altro
+   programma, come WinRAR o 7-Zip, va bene lo stesso.
 
 5. Trascina la cartella "risacca-mod" dentro la cartella "mods".
    Non usare "Estrai tutto", perché crea una cartella di troppo.
@@ -39,11 +40,12 @@ INSTALLAZIONE
    e una cartella che si chiama resources-dlc3.
 
 7. Avvia il gioco e, dal menu principale, entra in "Mods".
-   Seleziona "Risacca Mod" e controlla che sia attiva.
+   Nella lista c'è "Risacca Mod": di solito è già attiva. Se risulta
+   disattivata, selezionala per attivarla.
    Esci dal menu: se il gioco si ricarica è normale.
 
-Fatto! Inizia una nuova partita: all'inizio del piano compare la
-scritta "È XL?".
+Fatto! Inizia una nuova partita: appena comincia il primo piano compare
+la scritta "È XL?", e subito dopo "No... non è XL".
 
 
 SE QUALCOSA NON VA
@@ -65,8 +67,9 @@ AGGIORNARE LA MOD
 Prima, finisci o abbandona la partita in corso: una partita salvata
 con gli oggetti della mod può non ripartire senza la mod. I tuoi
 salvataggi e gli sblocchi non si toccano.
-Con il gioco chiuso, cancella la vecchia cartella mods\risacca-mod e
-ripeti i passi dal 4 al 7 con il nuovo file zip.
+Con il gioco chiuso, apri la cartella "mods" come ai passi 2 e 3,
+cancella la vecchia cartella "risacca-mod" e ripeti i passi dal 4 al 7
+con il nuovo file zip.
 
 
 DISINSTALLARE O DISATTIVARE LA MOD
@@ -74,7 +77,9 @@ DISINSTALLARE O DISATTIVARE LA MOD
 Prima, finisci o abbandona la partita in corso: una partita salvata
 con gli oggetti della mod può non ripartire senza la mod. I tuoi
 salvataggi e gli sblocchi non si toccano.
-Con il gioco chiuso, cancella la cartella mods\risacca-mod.
+Per disattivarla basta toglierla dal menu "Mods" del gioco.
+Per disinstallarla, con il gioco chiuso apri la cartella "mods" come
+ai passi 2 e 3 e cancella la cartella "risacca-mod".
 
 
 Un bacione grande dal vostro Risacca.
