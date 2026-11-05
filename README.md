@@ -67,6 +67,8 @@ La mod non è ancora sullo Steam Workshop.
 1. Scarica `risacca-mod.zip` dalle [release](https://github.com/xdelmo/risacca-mod/releases), aprilo e trascina la cartella `risacca-mod` dentro `...\steamapps\common\The Binding of Isaac Rebirth\mods\`.
 2. Attivala dal menu **Mods** del gioco.
 
+Prima di aggiornare, disattivare o disinstallare la mod, finisci o abbandona la run in corso: una run salvata con gli oggetti della mod può non ripartire senza la mod. Il salvataggio del gioco e gli sblocchi restano intatti.
+
 La guida passo passo per Windows è in [`readme.txt`](readme.txt), che si trova anche dentro lo zip.
 
 Serve Repentance, ed è provata su Repentance+ v1.9.7.17. La mod non ha bisogno di REPENTOGON né di altre mod.
