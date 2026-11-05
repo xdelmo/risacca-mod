@@ -40,7 +40,7 @@ Gli screenshot finiscono in `tools/gioco/` e sono ignorati da git. Vanno guardat
 
 - `giveitem c735` oggetto, `giveitem t191` trinket, `spawn 5.100.1` piedistallo con oggetto, `goto s.angel.0` stanza speciale, `restart` nuova run, `debug 3` invulnerabilità (si disattiva ripetendolo).
 - Id attuali: Non Vi Rubo c735, Mossa c736, Potrebbe Stare Qua c737, San Gennaruzzo c738, Trollata c739, Fai Così c740, Che Fai t191, Mannaggia t192. Gli id possono cambiare se si aggiungono oggetti: verificali con `peek.ps1`.
-- Con `debug 3` attivo non scattano le prove sui colpi subiti (Tacchino, Sono un cretino, Mannaggia a Lui, C'ho l'ansia).
+- Con `debug 3` attivo Tacchino, Sono un cretino e Mannaggia a Lui scattano lo stesso quando si è colpiti, a cuori invariati. C'ho l'ansia non è stata riprovata.
 - `debug N` è un interruttore e `restart` azzera `debug 3`: leggi in console "Enabled/Disabled debug flag". `debug 10` uccide subito i nemici.
 - Stanze boss: Peep `goto s.boss.2020`, Mega Satan `goto s.boss.5000`. La schermata VS dura circa 2 secondi: scatta subito (`-FirstMs 300 -EveryMs 500`).
 - `run.ps1 -Name x -Shots 1 -Freeze` senza `-Thaw` fotografa la console già aperta, con le risposte ai comandi.
