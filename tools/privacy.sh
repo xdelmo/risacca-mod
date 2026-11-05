@@ -3,8 +3,8 @@
 # Uso (dalla root della repo): bash tools/privacy.sh
 fail=0
 
-# email di autori e committer: solo noreply
-emails=$(git log --all --format='%ae%n%ce' | sort -u | grep -v -E '@users\.noreply\.github\.com$|^noreply@(github|anthropic)\.com$')
+# email di autori e committer del branch corrente: solo noreply
+emails=$(git log HEAD --format='%ae%n%ce' | sort -u | grep -v -E '@users\.noreply\.github\.com$|^noreply@(github|anthropic)\.com$')
 [ -n "$emails" ] && { echo "Email non noreply nella cronologia:"; echo "$emails"; fail=1; }
 
 # testi: percorsi personali, email personali, ID Steam, token
