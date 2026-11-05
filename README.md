@@ -101,7 +101,3 @@ Mod creata da [xdelmo](https://github.com/xdelmo).
 ## Licenza
 
 Il codice e la grafica degli oggetti della mod sono originali e rilasciati con licenza [MIT](LICENSE). Nomi, tormentoni e personaggio appartengono a Risacca. The Binding of Isaac è di Edmund McMillen e Nicalis. Le skill in `.agents/skills/` vengono da [omer-metin/skills-for-antigravity](https://github.com/omer-metin/skills-for-antigravity), con licenza [Apache 2.0](.agents/skills/LICENSE).
-
----
-
-*Un bacione grande dal vostro Risacca.*
