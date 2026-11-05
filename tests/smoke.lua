@@ -258,7 +258,7 @@ roomEntities = { enemy, rock }
 assert(fire(ModCallbacks.MC_USE_ITEM, 735, 735, nil, player) == true, "USE_ITEM deve ritornare true")
 assert(enemy.frozen == 90 and rock.frozen == nil, "congelamento errato")
 frames(60)
-expect({ "Non vi rubo altro tempo", "3, 2, 1... Ah no, aspetta" })
+expect({}) -- gli attivabili non mostrano scritte all'uso
 
 -- Potrebbe Stare Qua: mappa e bombe a ogni piano
 fire(ModCallbacks.MC_POST_NEW_LEVEL)
@@ -324,12 +324,6 @@ room.bosses = 0; frames(5)
 expect({})
 room.frameCount = 0
 
--- Fammi sognare: scritta al D6, senza alterarne l'uso
-local D6 = CollectibleType.COLLECTIBLE_D6
-assert(fire(ModCallbacks.MC_USE_ITEM, D6, D6, nil, player) == nil, "il D6 non deve ricevere un ritorno")
-frames(5)
-expect({ "Fammi sognare" })
-
 -- La Mossa del Pro Player: +2 danni fino al primo colpo o al cambio stanza
 local function damageBonus()
   local base = player.Damage
@@ -343,7 +337,7 @@ evaluations = 0
 assert(fire(ModCallbacks.MC_USE_ITEM, 738, 738, nil, player) == true, "USE_ITEM deve ritornare true")
 assert(evaluations == 1 and math.abs(damageBonus() - noBonus - 2) < 1e-9, "bonus Pro Player errato")
 frames(5)
-expect({ "La mossa del pro player!" })
+expect({})
 fire(ModCallbacks.MC_POST_NEW_ROOM)
 assert(math.abs(damageBonus() - noBonus) < 1e-9, "bonus rimasto dopo il cambio stanza")
 fire(ModCallbacks.MC_USE_ITEM, 738, 738, nil, player); frames(5); shown = {}
@@ -367,7 +361,7 @@ spawnedBefore = spawned
 assert(fire(ModCallbacks.MC_USE_ITEM, 739, 739, nil, player) == true, "USE_ITEM deve ritornare true")
 assert(spawned == spawnedBefore + 2 and lastSpawn.t == EntityType.ENTITY_BOMB and lastSpawn.v == BombVariant.BOMB_TROLL, "troll bomb errate")
 frames(5)
-expect({ "M'ha trollato!" })
+expect({})
 
 -- Fai Così, Fai Così: una lacrima in più ogni due, anche se la gemella rilancia la callback
 local twins = 0

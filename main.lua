@@ -273,20 +273,14 @@ mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
   end
 end)
 
--- Fammi sognare: niente return, altrimenti si altera l'uso del D6
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, function()
-  say(T.SOGNARE, nil, 0, P.ITEM)
-end, CollectibleType.COLLECTIBLE_D6)
-
--- ===== Oggetti dei tormentoni: effetto più scritta =====
+-- ===== Oggetti dei tormentoni =====
+-- Gli attivabili non mostrano scritte all'uso, come nel gioco originale
 
 -- Non Vi Rubo Altro Tempo
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, function(_, _, _, player)
   for _, e in ipairs(Isaac.GetRoomEntities()) do
     if e:IsVulnerableEnemy() then e:AddFreeze(EntityRef(player), L.RUBO_FRAMES) end
   end
-  say(T.RUBO, nil, 0, P.ITEM)
-  say(T.RUBO_DOPO, nil, 45, P.ITEM)
   return true
 end, ITEM_RUBO)
 
@@ -336,7 +330,6 @@ end)
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, function(_, _, _, player)
   proBonus[GetPtrHash(player)] = true
   refresh(CacheFlag.CACHE_DAMAGE)
-  say(T.PRO, nil, 0, P.ITEM)
   return true
 end, ITEM_PRO)
 
@@ -369,7 +362,6 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, function()
       Isaac.Spawn(EntityType.ENTITY_BOMB, BombVariant.BOMB_TROLL, 0, e.Position, Vector.Zero, nil)
     end
   end
-  say(T.TROLLATA, nil, 0, P.ITEM)
   return true
 end, ITEM_TROLLATA)
 
