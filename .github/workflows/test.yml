@@ -7,6 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # tools/privacy.sh controlla tutta la cronologia
+      - run: bash tools/privacy.sh
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
