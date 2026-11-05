@@ -162,9 +162,9 @@ python3 tools/sprites.py
 
 ## 9. Tavola di Riferimento Visivo Ufficiale
 
-Nella cartella `docs/` è presente il foglio completo (spritesheet) ad alta fedeltà con tutti gli oggetti ufficiali di Repentance, da usare come benchmark costante e fonte di verità visiva per silhouette, shading, palette e spessore dei contorni:
+Il foglio completo (spritesheet) con tutti gli oggetti ufficiali di Repentance è il benchmark costante e la fonte di verità visiva per silhouette, shading, palette e spessore dei contorni. Contiene la grafica del gioco, quindi non è nella repo: si scarica da The Spriters Resource (The Binding of Isaac: Rebirth > Items > Items (Repentance)) e si salva in `docs/`, dove è git-ignored, con questo nome:
 
-- **File di riferimento:** [`docs/PC _ Computer - The Binding of Isaac_ Rebirth - Items - Items (Repentance).png`]().png)
+- **File di riferimento:** `docs/PC _ Computer - The Binding of Isaac_ Rebirth - Items - Items (Repentance).png`
 
 Quando si progetta o si revisiona un oggetto custom, fare riferimento agli item ufficiali analoghi presenti nello spritesheet:
 - **Orologi e strumenti meccanici:** confrontare con *Broken Watch*, *Stop Watch*, *Glowing Hourglass*.

@@ -1,6 +1,6 @@
 # Trascrizioni
 
-Ogni file si chiama `<id-video>.txt`. Sono sottotitoli automatici di YouTube, quindi i nomi degli oggetti possono risultare storpiati.
+Ogni file si chiama `<id-video>.txt`. Sono sottotitoli automatici di YouTube, quindi i nomi degli oggetti possono risultare storpiati. Non sono nella repo: restano in locale (git-ignored), qui c'è solo l'elenco.
 L'ordine è quello del canale, dal video più recente. I titoli sono quelli restituiti da YouTube e possono essere tradotti automaticamente.
 
 | File | Titolo | Durata | Video |
